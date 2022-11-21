@@ -17,8 +17,8 @@ explore: bqml_models {}
 explore: segments_test {
     #Repeated nested object
     join: segments_test_copy {
-      view_label: "Persons: Cities Lived:"
-      sql: LEFT JOIN UNNEST(orderLines.discountAmount) as persons_cities_lived ;;
+      view_label: "Nested content"
+      sql: LEFT JOIN UNNEST(orderLines.discountAmount) as discountAmount ;;
       relationship: one_to_many
     }
 
