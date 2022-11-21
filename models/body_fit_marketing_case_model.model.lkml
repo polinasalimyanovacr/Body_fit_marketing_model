@@ -14,6 +14,15 @@ explore: segments_test_copy {}
 
 explore: bqml_models {}
 
-explore: segments_test {}
+explore: segments_test {
+    #Repeated nested object
+    join: segments_test_copy {
+      view_label: "Persons: Cities Lived:"
+      sql: LEFT JOIN UNNEST(orderLines.discountAmount) as persons_cities_lived ;;
+      relationship: one_to_many
+    }
 
-explore: gads_customer_match_user_list {}
+
+#explore: gads_customer_match_user_list {}
+
+}
