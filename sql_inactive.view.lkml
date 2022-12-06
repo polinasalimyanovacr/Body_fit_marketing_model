@@ -1,0 +1,37 @@
+view: sql_inactive {
+  derived_table: {
+    sql: SELECT t1.contactId, t1.inactive,
+      FROM
+      (
+      SELECT customer.contactId AS contactId,
+      SUM(quantityOrdered) AS quantityOrdered,
+      max(CASE WHEN ((CAST(createdTimestamp AS DateTime)) BETWEEN DATE_ADD(CURRENT_DATE(), INTERVAL -24 MONTH) AND (CURRENT_DATE() - INTERVAL 6 MONTH) AND (quantityOrdered > 0)) THEN true ELSE false END) AS purchaseInPast,
+      min(CASE WHEN ((CAST(createdTimestamp AS DateTime)) BETWEEN DATE_ADD(CURRENT_DATE(), INTERVAL -6 MONTH) AND CURRENT_DATE() AND (quantityOrdered > 0)) THEN false ELSE true END) AS inactive
+      FROM `body-fit-dev.orders.order_actual` order_actual,
+      UNNEST (order_actual.orderLines) AS orderLines
+      GROUP BY contactId
+      ) t1
+      INNER JOIN `body-fit-dev.contacts.contact_actual` contact_actual ON t1.contactId = contact_actual.contactId,
+      UNNEST (contact_actual.opts) AS opts WHERE value = true
+       ;;
+  }
+
+  measure: count {
+    type: count
+    drill_fields: [detail*]
+  }
+
+  dimension: contact_id {
+    type: string
+    sql: ${TABLE}.contactId ;;
+  }
+
+  dimension: inactive {
+    type: yesno
+    sql: ${TABLE}.inactive ;;
+  }
+
+  set: detail {
+    fields: [contact_id, inactive]
+  }
+}
