@@ -1,7 +1,7 @@
 view: sql_salesbuyer {
   derived_table: {
-    sql: SELECT t1.contactId, t1.quantityOrdered, t1.discountQuantity, t1.discountQuantityPercentage, t1.SalesBuyer,
-      value AS optIn FROM
+    sql: SELECT t1.contactId, t1.discountQuantityPercentage, t1.SalesBuyer,
+      FROM
       (
       SELECT customer.contactId AS contactId,
       SUM (quantityOrdered) AS quantityOrdered,
