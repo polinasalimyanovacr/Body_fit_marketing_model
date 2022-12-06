@@ -14,6 +14,8 @@ explore: segments_test_copy {}
 
 explore: bqml_models {}
 
+explore: sql_salesbuyer {}
+
 explore: segments_test {
     #Repeated nested object
     join: segments_test_copy {
