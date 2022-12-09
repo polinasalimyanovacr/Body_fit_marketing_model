@@ -1,7 +1,6 @@
 view: sql_productslast18months {
   derived_table: {
     sql: SELECT t1.contactId,
-      t1.sku,
       t1.productLast18Months,
       productType,
       reportingCategory,
