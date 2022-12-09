@@ -26,7 +26,4 @@ explore: segments_test {
       relationship: one_to_many
     }
 
-
-#explore: gads_customer_match_user_list {}
-
 }
