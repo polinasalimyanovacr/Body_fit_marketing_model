@@ -12,6 +12,8 @@ persist_with: body_fit_marketing_case_model_default_datagroup
 
 explore: segments_test_copy {}
 
+explore: sql_inactive {}
+
 explore: bqml_models {}
 
 explore: sql_salesbuyer {}
