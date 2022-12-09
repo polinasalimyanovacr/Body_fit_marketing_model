@@ -14,8 +14,6 @@ explore: segments_test_copy {}
 
 explore: sql_inactive {}
 
-#explore: bqml_models {}
-
 explore: sql_salesbuyer {}
 
 explore: segments_test {
