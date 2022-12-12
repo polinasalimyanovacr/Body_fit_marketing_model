@@ -1,6 +1,6 @@
 view: sql_salesbuyer {
   derived_table: {
-    sql: SELECT t1.contactId, t1.discountQuantityPercentage, t1.SalesBuyer, t1.quantityOrdered, value
+    sql: SELECT t1.contactId, t1.discountQuantityPercentage, t1.SalesBuyer, t1.quantityOrdered
       FROM
       (
       SELECT customer.contactId AS contactId,
@@ -48,11 +48,6 @@ view: sql_salesbuyer {
     sql: ${TABLE}.SalesBuyer ;;
   }
 
-  dimension: opt_in {
-    type: yesno
-    sql: ${TABLE}.value ;;
-  }
-
   set: detail {
     fields: [
       contact_id,
@@ -60,7 +55,6 @@ view: sql_salesbuyer {
       discount_quantity,
       discount_quantity_percentage,
       sales_buyer,
-      opt_in
     ]
   }
 }
