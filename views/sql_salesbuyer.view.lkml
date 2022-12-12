@@ -1,6 +1,6 @@
 view: sql_salesbuyer {
   derived_table: {
-    sql: SELECT t1.contactId, t1.discountQuantityPercentage, t1.SalesBuyer,
+    sql: SELECT t1.contactId, t1.discountQuantityPercentage, t1.SalesBuyer, t1.quantityOrdered,
       FROM
       (
       SELECT customer.contactId AS contactId,
