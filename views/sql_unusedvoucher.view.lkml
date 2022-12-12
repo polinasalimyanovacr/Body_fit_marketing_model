@@ -3,9 +3,9 @@ view: sql_unusedvoucher {
     sql: SELECT referral_actual.refereeContactID AS contactId,
       referral_actual.voucherCode NOT IN (
       SELECT order_actual.voucherCode
-      FROM `body-fit-dev.referrals.referral_order_actual` order_actual) AS unused,
+      FROM `body-fit-test.referrals.referral_order_actual` order_actual) AS unused,
       referral_actual.voucherCode AS voucherCode,
-      FROM `body-fit-dev.referrals.referral_contact_actual` referral_actual
+      FROM `body-fit-test.referrals.referral_contact_actual` referral_actual
        ;;
   }
 

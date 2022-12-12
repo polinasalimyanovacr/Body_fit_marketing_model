@@ -12,11 +12,11 @@ view: sql_inactive {
                           AND CURRENT_DATE() AND (quantityOrdered > 0))
                     THEN false ELSE true END))
       THEN true ELSE false END AS inactive,
-      FROM `body-fit-dev.orders.order_actual` order_actual,
+      FROM `body-fit-test.orders.order_actual` order_actual,
       UNNEST (order_actual.orderLines) AS orderLines
       GROUP BY contactId
       ) t1
-      INNER JOIN `body-fit-dev.contacts.contact_actual` contact_actual ON t1.contactId = contact_actual.contactId,
+      INNER JOIN `body-fit-test.contacts.contact_actual` contact_actual ON t1.contactId = contact_actual.contactId,
       UNNEST (contact_actual.opts) AS opts WHERE value = true
        ;;
   }
