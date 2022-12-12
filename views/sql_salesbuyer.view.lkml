@@ -9,8 +9,8 @@ view: sql_salesbuyer {
       (SUM (CASE WHEN discountAmount > 0 THEN 1 END)/SUM (quantityOrdered)) AS discountQuantityPercentage,
       IFNULL(((SUM (CASE WHEN discountAmount > 0 THEN 1 END)/SUM (quantityOrdered))>=0.75), false) AS SalesBuyer,
       FROM `body-fit-test.orders.order_actual` order_actual,
-      UNNEST (order_actual.orderLines) AS orderLines WHERE (quantityOrdered > 0) AND ((CAST(createdTimestamp AS DateTime))
-      BETWEEN DATE_ADD(CURRENT_DATE(), INTERVAL -18 MONTH) AND CURRENT_DATE())
+      UNNEST (order_actual.orderLines) AS orderLines WHERE ((quantityOrdered > 0) AND ((CAST(createdTimestamp AS DateTime))
+      BETWEEN DATE_ADD(CURRENT_DATE(), INTERVAL -18 MONTH) AND CURRENT_DATE()))
       GROUP BY customer.contactId) t1
       INNER JOIN `body-fit-test.contacts.contact_actual` contact_actual ON t1.contactId = contact_actual.contactId,
       UNNEST (contact_actual.opts) AS opts WHERE value = true
