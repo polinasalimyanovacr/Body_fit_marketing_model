@@ -9,7 +9,7 @@ view: sql_productslast18months {
             (
             SELECT customer.contactId AS contactId,
             product.sku AS sku,
-            ((CAST(createdTimestamp AS DateTime)) BETWEEN DATE_ADD(CURRENT_DATE(), INTERVAL -18 MONTH) AND CURRENT_DATE()) AS productLast18Months,
+            (((CAST(createdTimestamp AS DateTime)) BETWEEN DATE_ADD(CURRENT_DATE(), INTERVAL -18 MONTH) AND CURRENT_DATE()) AND (quantityOrdered > 0)) AS productLast18Months,
             FROM `body-fit-test.orders.order_actual` order_actual,
             UNNEST (order_actual.orderLines) AS orderLines
             ) t1
