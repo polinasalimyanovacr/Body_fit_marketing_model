@@ -16,6 +16,8 @@ explore: sql_inactive {}
 
 explore: sql_salesbuyer {}
 
+explore: sql_unusedvoucher{}
+
 explore: segments_test {
     #Repeated nested object
     join: segments_test_copy {
