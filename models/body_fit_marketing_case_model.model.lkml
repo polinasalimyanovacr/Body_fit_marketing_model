@@ -10,6 +10,8 @@ datagroup: body_fit_marketing_case_model_default_datagroup {
 
 persist_with: body_fit_marketing_case_model_default_datagroup
 
+explore: bqml_models {}
+
 explore: segments_test_copy {}
 
 explore: sql_inactive {}
@@ -17,6 +19,8 @@ explore: sql_inactive {}
 explore: sql_salesbuyer {}
 
 explore: sql_unusedvoucher{}
+
+explore: sql_productslast18months {}
 
 explore: segments_test {
     #Repeated nested object
