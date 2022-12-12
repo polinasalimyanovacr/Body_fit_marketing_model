@@ -50,7 +50,7 @@ view: sql_salesbuyer {
 
   dimension: opt_in {
     type: yesno
-    sql: ${TABLE}.optIn ;;
+    sql: ${TABLE}.value ;;
   }
 
   set: detail {
