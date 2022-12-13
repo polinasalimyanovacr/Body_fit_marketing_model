@@ -6,7 +6,6 @@ view: sql_inactive {
                 FROM
                   (
                   SELECT customer.contactId AS contactId,
-                  SUM(quantityOrdered) AS quantityOrdered,
                   CASE WHEN (max(CASE WHEN ((CAST(createdTimestamp AS DateTime)) BETWEEN DATE_ADD(CURRENT_DATE(), INTERVAL -24 MONTH)
                                       AND (CURRENT_DATE() - INTERVAL 6 MONTH) AND (quantityOrdered > 0))
                                 THEN true ELSE false END)
