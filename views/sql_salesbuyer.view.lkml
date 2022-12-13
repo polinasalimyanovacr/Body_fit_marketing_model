@@ -2,8 +2,8 @@ view: sql_salesbuyer {
   derived_table: {
     sql: SELECT t1.contactId AS Id,
       (t1.discountQuantity/t1.quantityOrdered) AS discountQuantityPercentage,
-      CASE WHEN (IFNULL(((t1.discountQuantity/t1.quantityOrdered) >= 0.75), false) AND (value = true)) THEN true ELSE false END AS salesBuyer,
-      IFNULL(value, false) AS optIn,
+      CASE WHEN (IFNULL(((t1.discountQuantity/t1.quantityOrdered) >= 0.75), false) AND (s.opts.value = true)) THEN true ELSE false END AS salesBuyer,
+      IFNULL(s.opts.value, false) AS optIn,
       FROM
       (SELECT customer.contactId AS contactId,
       SUM (CASE WHEN ((quantityOrdered > 0) AND ((CAST(createdTimestamp AS DateTime))
@@ -13,8 +13,9 @@ view: sql_salesbuyer {
             FROM `body-fit-test.orders.order_actual` order_actual,
             UNNEST (order_actual.orderLines) AS orderLines
             GROUP BY contactId) t1
-            INNER JOIN `body-fit-test.contacts.contact_actual` contact_actual ON t1.contactId = contact_actual.contactId,
-            UNNEST (contact_actual.opts) AS opts;;
+            LEFT JOIN ( SELECT contactId, opts, FROM `body-fit-test.contacts.contact_actual` contact_actual, UNNEST (contact_actual.opts) AS opts) s
+            ON t1.contactId = s.contactId
+            ;;
   }
 
   measure: count {

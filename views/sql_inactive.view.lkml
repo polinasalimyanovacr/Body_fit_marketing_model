@@ -1,8 +1,8 @@
 view: sql_inactive {
   derived_table: {
     sql: SELECT t1.contactId,
-          CASE WHEN (t1.inactive AND value = true) THEN true ELSE false END AS inActive,
-          IFNULL(value, false) AS optIn,
+          CASE WHEN (t1.inactive AND s.opts.value = true) THEN true ELSE false END AS inActive,
+          IFNULL(s.opts.value, false) AS optIn,
                 FROM
                   (
                   SELECT customer.contactId AS contactId,
@@ -17,8 +17,9 @@ view: sql_inactive {
                   UNNEST (order_actual.orderLines) AS orderLines
                   GROUP BY contactId
                   ) t1
-                  INNER JOIN `body-fit-test.contacts.contact_actual` contact_actual ON t1.contactId = contact_actual.contactId,
-                  UNNEST (contact_actual.opts) AS opts;;
+                  LEFT JOIN (SELECT opts, contactId, FROM `body-fit-test.contacts.contact_actual` contact_actual, UNNEST (contact_actual.opts) AS opts) s
+                  ON t1.contactId = s.contactId
+                  ;;
   }
 
   measure: count {
