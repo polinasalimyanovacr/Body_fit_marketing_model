@@ -1,6 +1,6 @@
 view: sql_inactive {
   derived_table: {
-    sql: SELECT t1.contactId, t1.inactive,
+    sql: SELECT t1.contactId, (t1.inactive AND value = true) AS inActive, value AS optIn
     FROM
       (
       SELECT customer.contactId AS contactId,
@@ -17,7 +17,7 @@ view: sql_inactive {
       GROUP BY contactId
       ) t1
       INNER JOIN `body-fit-test.contacts.contact_actual` contact_actual ON t1.contactId = contact_actual.contactId,
-      UNNEST (contact_actual.opts) AS opts WHERE value = true
+      UNNEST (contact_actual.opts) AS opts
        ;;
   }
 
