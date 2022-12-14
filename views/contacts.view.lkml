@@ -83,8 +83,9 @@ view: contacts {
   dimension: Button_1 {
     type:  string
     sql:  ${email_consent}  ;;
-    drill_fields: [ count]
-    html: <a href="https://crystalloids.eu.looker.com/dashboards/48?f[orders.shipping_address_city]={{value}}&f[orders.shipping_address_country_code]={{value}}"><button>Send the audience</button></a>
+
+    drill_fields: [count]
+    html: <a href="https://crystalloids.eu.looker.com/dashboards/48?f[sql_salesbuyer.sales_buyer]={{value}}&f[orders.shipping_address_country_code]={{value}}&f[sql_inactive.inactive]={{value}}"><button>Send the audience</button></a>
 
       ;;
       }
