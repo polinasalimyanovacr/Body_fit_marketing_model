@@ -3,6 +3,7 @@ view: orders {
     sql: SELECT
         transactionId,
         customer.contactId AS contactId,
+        0 AS age,
         customer.languageCode AS contactLanguageCode,
         customer.emailAddress AS contactEmailAddress,
         shippingAddress.street AS shippingAddressStreet,
