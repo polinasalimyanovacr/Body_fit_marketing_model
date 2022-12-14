@@ -77,7 +77,15 @@ view: contacts {
   dimension: year_of_birth {
     type: number
     sql: ${TABLE}.yearOfBirth ;;
+
   }
+
+  dimension: Button_1 {
+    type:  string
+    sql:   ${contact_id}  ;;
+    html: <a href="?f[orders.shipping_address_country_code]={{orders.shipping_address_country_code._value}}&f[orders.shipping_address_city]={{orders.shipping_address_city._value}}"><button>Send audience</button></a>
+      ;;
+      }
 
   dimension: street {
     type: string
