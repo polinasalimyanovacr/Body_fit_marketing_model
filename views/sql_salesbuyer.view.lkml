@@ -1,8 +1,8 @@
 view: sql_salesbuyer {
   derived_table: {
     sql: SELECT t1.contactId AS id,
-      IFNULL((t1.discountQuantity/t1.quantityOrdered), 0) AS discountQuantityPercentage,
-      CASE WHEN (IFNULL(((t1.discountQuantity/t1.quantityOrdered) >= 0.75), false) AND (s.opts.value = true)) THEN true ELSE false END AS salesBuyer,
+      IFNULL(((t1.discountQuantity/t1.quantityOrdered) * 100), 0) AS discountQuantityPercentage,
+      CASE WHEN (IFNULL((((t1.discountQuantity/t1.quantityOrdered) * 100) >= 75), false) AND (s.opts.value = true)) THEN true ELSE false END AS salesBuyer,
       IFNULL(s.opts.value, false) AS optIn,
       FROM
       (SELECT customer.contactId AS contactId,
