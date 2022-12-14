@@ -85,7 +85,7 @@ view: contacts {
     sql:  ${email_consent}  ;;
 
     drill_fields: [count]
-    html: <a href="https://crystalloids.eu.looker.com/looks/73?f[sql_salesbuyer.sales_buyer]={{value}}&f[sql_inactive.inactive]={{value}}"><button>Send the audience</button></a>
+    html: <a href="https://crystalloids.eu.looker.com/looks/73?f[sql_salesbuyer.sales_buyer]={{value}}&f[sql_inactive.inactive]={{sql_inactive.inactive._value}}"><button>Send the audience</button></a>
 
       ;;
       }
