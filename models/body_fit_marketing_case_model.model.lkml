@@ -20,6 +20,8 @@ explore: sql_salesbuyer {}
 
 explore: sql_unusedvoucher{}
 
+explore:  contacts { }
+
 explore: sql_productslast18months {}
 
 explore: segments_test {
@@ -29,5 +31,6 @@ explore: segments_test {
       sql: LEFT JOIN UNNEST(orderLines.discountAmount) as discountAmount ;;
       relationship: one_to_many
     }
+
 
 }
