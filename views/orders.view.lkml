@@ -23,11 +23,13 @@ view: orders {
       WHERE
         t.customer.contactId IS NOT NULL;;
   }
+
   measure: Count_Distinct_contacts {
     type: count_distinct
     sql: ${contact_id} ;;
     value_format_name: id
-  }
+    }
+
   measure: count {
     type: count
     drill_fields: [detail*]
