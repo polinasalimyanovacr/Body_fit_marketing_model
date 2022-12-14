@@ -21,7 +21,11 @@ view: orders {
         customer.contactId IS NOT NULL
  ;;
   }
-
+  measure: Count_Distinct_contacts {
+    type: count_distinct
+    sql: ${contact_id} ;;
+    value_format_name: id
+  }
   measure: count {
     type: count
     drill_fields: [detail*]
@@ -112,7 +116,8 @@ view: orders {
       currency,
       timestamp_time,
       total_ordered_quantity,
-      total_cancelled_quantity
+      total_cancelled_quantity,
+      Count_Distinct_contacts
     ]
   }
 }
