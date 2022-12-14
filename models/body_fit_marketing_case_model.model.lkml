@@ -31,16 +31,17 @@ explore:  contacts {
 
 explore: sql_productslast18months {}
 
-explore: orders {}
-
-explore:  master_view {
+#MASTER VIEW
+explore:  orders {
   join: contacts {
-    sql: left join ${contacts.contact_id}  ;;
-    relationship: one_to_many
+    type: left_outer
+    sql_on: ${orders.contact_id} = ${contacts.contact_id} ;;
+    relationship: many_to_one
   }
   join: sql_inactive {
-    sql: left join ${sql_inactive.contact_id};;
-    relationship: one_to_many
+   type: left_outer
+    sql_on: ${orders.contact_id} = ${sql_inactive.contact_id} ;;
+    relationship: many_to_one
   }
 }
 
