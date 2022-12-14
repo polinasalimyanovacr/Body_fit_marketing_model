@@ -102,9 +102,15 @@ view: orders {
     sql: ${TABLE}.totalCancelledQuantity ;;
   }
 
+  dimension: age {
+    type: number
+    sql: ${TABLE}.age ;;
+  }
+
   set: detail {
     fields: [
       transaction_id,
+      age,
       contact_id,
       contact_language_code,
       contact_email_address,
