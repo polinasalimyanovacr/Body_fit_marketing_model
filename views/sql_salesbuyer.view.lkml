@@ -31,16 +31,19 @@ view: sql_salesbuyer {
   dimension: quantity_ordered {
     type: number
     sql: ${TABLE}.quantityOrdered ;;
+    description: "Calculation of product quantity bought by customer"
   }
 
   dimension: discount_quantity {
     type: number
     sql: ${TABLE}.discountQuantity ;;
+    description: "Flag if customer bought products on discounts"
   }
 
   dimension: discount_quantity_percentage {
     type: number
     sql: ${TABLE}.discountQuantityPercentage ;;
+    description: "Calculation what percentage of the total number of bought quantity are discounted purchases"
   }
 
   dimension: sales_buyer {
