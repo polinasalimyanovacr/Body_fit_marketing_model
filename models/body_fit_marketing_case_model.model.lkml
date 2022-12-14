@@ -29,6 +29,10 @@ explore:  master_view {
     sql: left join ${contacts.contact_id}  ;;
     relationship: one_to_many
   }
+  join: sql_inactive {
+    sql: left join ${sql_inactive.contact_id};;
+    relationship: one_to_many
+  }
 }
 
 explore: segments_test {
