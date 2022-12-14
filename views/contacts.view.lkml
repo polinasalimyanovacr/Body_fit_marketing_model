@@ -9,7 +9,7 @@ view: contacts {
         surname,
         username,
         gender,
-        IFNULL(age, 0) AS age,
+        age AS age,
         yearOfBirth,
         profileAddress.street AS street,
         profileAddress.houseNumber AS houseNumber,
