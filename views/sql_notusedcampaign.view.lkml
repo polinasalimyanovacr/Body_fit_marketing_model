@@ -33,6 +33,7 @@ view: sql_notusedcampaign {
   dimension: did_not_buy {
     type: yesno
     sql: ${TABLE}.didNotBuy ;;
+    description: "Customer has received campaign email and opened it but didn’t buy anything yet"
   }
 
   set: detail {

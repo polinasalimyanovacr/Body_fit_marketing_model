@@ -30,26 +30,31 @@ view: sql_productslast18months {
   dimension: sku {
     type: string
     sql: ${TABLE}.sku ;;
+    description: "SKU is unique identifier of the product"
   }
 
   dimension: product_last18_months {
     type: yesno
     sql: ${TABLE}.productLast18Months ;;
+    description: "Customers that purchased a specific type of product at least once in the last 18 months."
   }
 
   dimension: product_type {
     type: string
     sql: ${TABLE}.productType ;;
+    description: "Possible values: Accessory, book, clothing etc"
   }
 
   dimension: reporting_category {
     type: string
     sql: ${TABLE}.reportingCategory ;;
+    description: "Possible values: Beauty, clothing, Acrtive food etc"
   }
 
   dimension: reporting_product_type {
     type: string
     sql: ${TABLE}.reportingProductType ;;
+    description: "Possible values: Bag, backery, bath&shower etc"
   }
 
   set: detail {
