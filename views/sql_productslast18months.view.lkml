@@ -1,6 +1,6 @@
 view: sql_productslast18months {
   derived_table: {
-    sql: SELECT t1.contactId,
+    sql: SELECT t1.contactId AS id,
       t1.productLast18Months,
       productType,
       reportingCategory,
@@ -24,7 +24,7 @@ view: sql_productslast18months {
 
   dimension: contact_id {
     type: string
-    sql: ${TABLE}.contactId ;;
+    sql: ${TABLE}.id ;;
   }
 
   dimension: sku {

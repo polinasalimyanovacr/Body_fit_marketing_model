@@ -1,6 +1,6 @@
 view: sql_notusedcampaign {
   derived_table: {
-    sql: SELECT s.contactId,
+    sql: SELECT s.contactId AS id,
       min (CASE WHEN ((((CAST(s.createdTimestamp AS DateTime)) > (CAST(t2.activityDate AS DateTime))) AND
       (s.quantityOrdered > 0)) OR (IFNULL(t2.opened, false) = false))
       THEN false ELSE true END) AS didNotBuy,
@@ -25,9 +25,9 @@ view: sql_notusedcampaign {
     drill_fields: [detail*]
   }
 
-  dimension: external_id {
+  dimension: contact_id {
     type: string
-    sql: ${TABLE}.externalId ;;
+    sql: ${TABLE}.id ;;
   }
 
   dimension: did_not_buy {
@@ -37,6 +37,6 @@ view: sql_notusedcampaign {
   }
 
   set: detail {
-    fields: [external_id, did_not_buy]
+    fields: [contact_id, did_not_buy]
   }
 }

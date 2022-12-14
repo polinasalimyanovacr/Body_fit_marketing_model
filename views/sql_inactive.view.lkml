@@ -1,6 +1,6 @@
 view: sql_inactive {
   derived_table: {
-    sql: SELECT t1.contactId,
+    sql: SELECT t1.contactId AS id,
           CASE WHEN (t1.inactive AND s.opts.value = true) THEN true ELSE false END AS inActive,
           IFNULL(s.opts.value, false) AS optIn,
                 FROM
@@ -29,7 +29,7 @@ view: sql_inactive {
 
   dimension: contact_id {
     type: string
-    sql: ${TABLE}.contactId ;;
+    sql: ${TABLE}.id ;;
   }
 
   dimension: inactive {
