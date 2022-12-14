@@ -84,7 +84,7 @@ view: contacts {
     type:  string
     sql:  ${email_consent}  ;;
     drill_fields: [ count]
-    html: <a href="https://crystalloids.eu.looker.com/dashboards/48?store_id ={{value}}"><button>Send the audience</button></a>
+    html: <a href="https://crystalloids.eu.looker.com/dashboards/48?f[orders.shipping_address_country_code]={{orders.shipping_address_country_code._value}}&f[orders.shipping_address_city]={{orders.shipping_address_city._value}}"><button>Send the audience</button></a>
 
       ;;
       }
