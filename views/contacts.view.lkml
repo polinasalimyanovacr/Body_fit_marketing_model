@@ -1,7 +1,7 @@
 view: contacts {
   derived_table: {
     sql: SELECT
-        distinct contactId,
+        distinct contactId AS contactId,
         emailHashCode,
         (SELECT value FROM t.opts WHERE name = 'generalConditions' ORDER BY confirmedTimestamp DESC LIMIT 1) as emailConsent,
         firstName,
@@ -22,6 +22,11 @@ view: contacts {
         COALESCE(phoneMobile, phoneHome, phoneBusiness, null) AS phone
       FROM `body-fit-test.contacts.contact_actual` t
  ;;
+  }
+  measure: Count_Distinct_contacts {
+    type: count_distinct
+    sql: ${contact_id} ;;
+    value_format_name: id
   }
 
   measure: count {
