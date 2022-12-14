@@ -2,7 +2,7 @@ view: orders {
   derived_table: {
     sql: SELECT
         transactionId,
-        customer.contactId,
+        customer.contactId AS contactId,
         customer.languageCode AS contactLanguageCode,
         customer.emailAddress AS contactEmailAddress,
         shippingAddress.street AS shippingAddressStreet,
