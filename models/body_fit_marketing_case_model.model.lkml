@@ -48,6 +48,24 @@ explore:  orders {
     sql_on: ${orders.contact_id} = ${sql_notusedcampaign.contact_id} ;;
     relationship: many_to_one
   }
+
+  join: sql_productslast18months {
+    type: left_outer
+    sql_on: ${orders.contact_id} = ${sql_productslast18months.contact_id} ;;
+    relationship: many_to_many
+  }
+
+  join: sql_salesbuyer {
+    type: left_outer
+    sql_on: ${orders.contact_id} = ${sql_salesbuyer.contact_id} ;;
+    relationship: many_to_one
+  }
+
+  join: sql_unusedvoucher {
+    type: left_outer
+    sql_on: ${orders.contact_id} = ${sql_unusedvoucher.contact_id} ;;
+    relationship: many_to_many
+  }
 }
 
 explore: segments_test {
