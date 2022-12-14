@@ -24,6 +24,13 @@ explore:  contacts { }
 
 explore: sql_productslast18months {}
 
+explore:  master_view {
+  join: contacts {
+    sql: left join ${contacts.contact_id}  ;;
+    relationship: one_to_many
+  }
+}
+
 explore: segments_test {
     #Repeated nested object
     join: segments_test_copy {
@@ -31,6 +38,5 @@ explore: segments_test {
       sql: LEFT JOIN UNNEST(orderLines.discountAmount) as discountAmount ;;
       relationship: one_to_many
     }
-
 
 }
