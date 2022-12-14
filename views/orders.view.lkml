@@ -1,9 +1,8 @@
 view: orders {
   derived_table: {
-    sql: SELECT
+    sql: SELECT  IFNULL(s.age, 0) AS age,
         transactionId,
         customer.contactId AS contactId,
-        0 AS age,
         customer.languageCode AS contactLanguageCode,
         customer.emailAddress AS contactEmailAddress,
         shippingAddress.street AS shippingAddressStreet,
@@ -15,12 +14,14 @@ view: orders {
         currency,
         timestamp,
         totalOrderedQuantity,
-        COALESCE(totalCancelledQuantity, 0) AS totalCancelledQuantity,
+        COALESCE(totalCancelledQuantity, 0) AS totalCancelledQuantity, FROM (SELECT
+        *
       FROM
-        `body-fit-test.orders.order_actual`
+        `body-fit-test.orders.order_actual`) t
+        LEFT JOIN ( SELECT contactId, age, FROM `body-fit-test.contacts.contact_actual` contact_actual) s
+            ON t.customer.contactId = s.contactId
       WHERE
-        customer.contactId IS NOT NULL
- ;;
+        t.customer.contactId IS NOT NULL;;
   }
   measure: Count_Distinct_contacts {
     type: count_distinct
