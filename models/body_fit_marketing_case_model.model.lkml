@@ -35,7 +35,8 @@ explore: sql_productslast18months {}
 explore:  orders {
   join: contacts {
     type: left_outer
-    sql_on: COALESCE(${orders.contact_id} = ${contacts.contact_id}, 0) ;;
+    sql_on: ${orders.contact_id} = ${contacts.contact_id}
+    AND COALESCE(${contacts.age}, 0});;
     relationship: many_to_one
   }
   join: sql_inactive {
