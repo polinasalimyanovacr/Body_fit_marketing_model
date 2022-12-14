@@ -46,7 +46,7 @@ explore:  orders {
   join: sql_notusedcampaign {
     type: left_outer
     sql_on: ${orders.contact_id} = ${sql_notusedcampaign.contact_id} ;;
-    relationship: many_to_one
+    relationship: many_to_many
   }
 
   join: sql_productslast18months {
