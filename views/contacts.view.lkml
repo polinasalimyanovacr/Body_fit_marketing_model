@@ -82,7 +82,7 @@ view: contacts {
 
   dimension: Button_1 {
     type:  string
-    sql:   ${contact_id}  ;;
+ #   sql:   ${contact_id}  ;;
     html: <a href="?f[orders.shipping_address_country_code]={{orders.shipping_address_country_code._value}}&f[orders.shipping_address_city]={{orders.shipping_address_city._value}}"><button>Send audience</button></a>
       ;;
       }
