@@ -22,8 +22,10 @@ explore: sql_unusedvoucher{}
 
 explore:  contacts {
   join: orders {
-    sql: left join ${orders.contact_id} ;;
-    relationship: one_to_many
+    type: left_outer
+    view_label: "Contacts + Orders"
+    sql_on: ${orders.contact_id} = ${contacts.contact_id} ;;
+    relationship: many_to_one
   }
   }
 
