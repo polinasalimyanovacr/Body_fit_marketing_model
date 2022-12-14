@@ -20,9 +20,16 @@ explore: sql_salesbuyer {}
 
 explore: sql_unusedvoucher{}
 
-explore:  contacts { }
+explore:  contacts {
+  join: orders {
+    sql: left join ${orders.contact_id}=${contacts.contact_id} ;;
+    relationship: one_to_many
+  }
+  }
 
 explore: sql_productslast18months {}
+
+explore: orders {}
 
 explore:  master_view {
   join: contacts {
