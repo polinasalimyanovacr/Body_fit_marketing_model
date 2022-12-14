@@ -1,11 +1,11 @@
 view: sql_salesbuyer {
   derived_table: {
-    sql: SELECT t1.id AS contactId,
+    sql: SELECT t1.contactId AS id,
       (t1.discountQuantity/t1.quantityOrdered) AS discountQuantityPercentage,
       CASE WHEN (IFNULL(((t1.discountQuantity/t1.quantityOrdered) >= 0.75), false) AND (s.opts.value = true)) THEN true ELSE false END AS salesBuyer,
       IFNULL(s.opts.value, false) AS optIn,
       FROM
-      (SELECT customer.contactId AS id,
+      (SELECT customer.contactId AS contactId,
       SUM (CASE WHEN ((quantityOrdered > 0) AND ((CAST(createdTimestamp AS DateTime))
             BETWEEN DATE_ADD(CURRENT_DATE(), INTERVAL -18 MONTH) AND CURRENT_DATE())) THEN quantityOrdered END) AS quantityOrdered,
       SUM (CASE WHEN ((discountAmount > 0) AND (quantityOrdered > 0) AND ((CAST(createdTimestamp AS DateTime))
@@ -25,7 +25,7 @@ view: sql_salesbuyer {
 
   dimension: contact_id {
     type: string
-    sql: ${TABLE}.contactId ;;
+    sql: ${TABLE}.id ;;
   }
 
   dimension: quantity_ordered {
