@@ -1,7 +1,7 @@
 view: contacts {
   derived_table: {
     sql: SELECT
-        distinct contactId AS contactId,
+        distinct contactId,
         emailHashCode,
         (SELECT value FROM t.opts WHERE name = 'generalConditions' ORDER BY confirmedTimestamp DESC LIMIT 1) as emailConsent,
         firstName,
