@@ -59,8 +59,6 @@ AND gave consent (are contactable by email)"
     html:
     {% if value == "Yes" %}
     <span style="color:darkgreen;"> {{rendered_value}} </span>
-    {% else %}
-    <span stype="color:darkred;"> {{rendered_value}} </span>
     {% endif %};;
 
   }
