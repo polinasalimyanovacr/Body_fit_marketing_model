@@ -104,6 +104,12 @@ view: orders {
   dimension: total_order_revenue {
     type: number
     sql: ${TABLE}.totalOrderRevenue ;;
+    html:
+    {% if value > 100 %}
+    <span style="color:darkgreen;"> {{rendered_value}} </span>
+    {% else %}
+    <span stype="color:darkred;"> {{rendered_value}} </span>
+    {% endif %};;
   }
 
   dimension: currency {
