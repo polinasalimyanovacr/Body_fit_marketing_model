@@ -106,7 +106,7 @@ view: orders {
     sql: ${TABLE}.totalOrderRevenue ;;
     html:
     {% if value > 100 %}
-    <p style="color: red; background-color: orange; font-size: 100%; text-align:center"> {{rendered_value}}</p>
+    <p style="color: black; background-color: darkgreen; font-size: 100%; text-align:center"> {{rendered_value}}</p>
     {% else %}
     <span stype="color:darkred;"> {{rendered_value}} </span>
     {% endif %};;
