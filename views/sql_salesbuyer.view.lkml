@@ -25,29 +25,34 @@ view: sql_salesbuyer {
 
   dimension: contact_id {
     type: string
+    primary_key: yes
     sql: ${TABLE}.id ;;
   }
 
   dimension: quantity_ordered {
     type: number
+    primary_key: yes
     sql: ${TABLE}.quantityOrdered ;;
     description: "Calculation of product quantity bought by customer"
   }
 
   dimension: discount_quantity {
     type: number
+    primary_key: yes
     sql: ${TABLE}.discountQuantity ;;
     description: "Flag if customer bought products on discounts"
   }
 
   dimension: discount_quantity_percentage {
     type: number
+    primary_key: yes
     sql: ${TABLE}.discountQuantityPercentage ;;
     description: "Calculation what percentage of the total number of bought quantity are discounted purchases"
   }
 
   dimension: sales_buyer {
     type: yesno
+    primary_key: yes
     sql: ${TABLE}.SalesBuyer ;;
     description: "Customers with that purchased at least once in the last 18 months and have at least 75% of the purchased items discounted.
 AND gave consent (are contactable by email)"
