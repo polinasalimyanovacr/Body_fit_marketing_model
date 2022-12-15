@@ -56,6 +56,13 @@ view: sql_salesbuyer {
     sql: ${TABLE}.SalesBuyer ;;
     description: "Customers with that purchased at least once in the last 18 months and have at least 75% of the purchased items discounted.
 AND gave consent (are contactable by email)"
+    html:
+    {% if value == "Yes" %}
+    <span style="color:darkgreen;"> {{rendered_value}} </span>
+    {% else %}
+    <span stype="color:darkred;"> {{rendered_value}} </span>
+    {% endif %};;
+
   }
 
   set: detail {
