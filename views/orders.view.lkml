@@ -28,7 +28,7 @@ view: orders {
     type: count
     link: {
       label: "Autoapply selection filters and send it using custom action"
-      url: "https://crystalloids.eu.looker.com/looks/56?f[orders.shipping_address_country_code]={{orders.shipping_address_country_code._value}}"
+      url: "https://crystalloids.eu.looker.com/looks/85?f[orders.shipping_address_country_code]={{orders.shipping_address_country_code._value}}&f[contacts.Age]={{contacts.Age._value}}&f[contacts.Gender]={{contacts.Gender._value}}"
     }
     }
 
