@@ -30,6 +30,7 @@ view: sql_productslast18months {
 
   dimension: sku {
     type: string
+    primary_key: yes
     sql: ${TABLE}.sku ;;
     description: "SKU is unique identifier of the product"
   }
@@ -50,12 +51,14 @@ view: sql_productslast18months {
 
   dimension: reporting_category {
     type: string
+    primary_key: yes
     sql: ${TABLE}.reportingCategory ;;
     description: "Possible values: Beauty, clothing, Acrtive food etc"
   }
 
   dimension: reporting_product_type {
     type: string
+    primary_key: yes
     sql: ${TABLE}.reportingProductType ;;
     description: "Possible values: Bag, backery, bath&shower etc"
   }
