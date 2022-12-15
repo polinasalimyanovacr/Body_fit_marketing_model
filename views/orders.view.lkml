@@ -35,11 +35,22 @@ view: orders {
     value_format_name: id
     }
 
-  measure: total_revenue {
+#set the fields for drilling
+  set: revenue_drill {
+    fields: [contact_email_address,
+      transaction_id,
+      shipping_address_postal_code,
+      currency,
+      total_ordered_quantity,
+      total_cancelled_quantity]
+  }
 
+  measure: total_revenue {
     sql: sum(${total_order_revenue}) over() ;;
+    drill_fields: [revenue_drill*]
 
   }
+
   dimension: transaction_id {
     type: string
     sql: ${TABLE}.transactionId ;;
