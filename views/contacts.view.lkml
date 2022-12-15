@@ -82,7 +82,7 @@ view: contacts {
 
   dimension: Button_1 {
     type:  string
-   sql:  ${contact_id} ;;
+   sql:  ${age} ;;
     drill_fields: [count]
     html: <a href="https://crystalloids.eu.looker.com/looks/73?f[sql_salesbuyer.sales_buyer]={{value}}&f[sql_inactive.inactive]={{sql_inactive.inactive._value}}"><button>Send the audience</button></a>
 
@@ -135,6 +135,7 @@ view: contacts {
     type: string
     sql: ${TABLE}.phone ;;
   }
+
 
   set: detail {
     fields: [
