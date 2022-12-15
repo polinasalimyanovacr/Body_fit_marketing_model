@@ -35,7 +35,11 @@ view: orders {
     value_format_name: id
     }
 
+  measure: total_revenue {
 
+    sql: sum(${total_order_revenue}) over() ;;
+
+  }
   dimension: transaction_id {
     type: string
     sql: ${TABLE}.transactionId ;;
