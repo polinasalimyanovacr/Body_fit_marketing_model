@@ -29,11 +29,13 @@ view: sql_inactive {
 
   dimension: contact_id {
     type: string
+    primary_key: yes
     sql: ${TABLE}.id ;;
   }
 
   dimension: inactive {
     type: yesno
+    primary_key: yes
     sql: ${TABLE}.inactive ;;
     description: "Customers that purchased in the past 24 months but did not place any order in last 6 months
 AND gave consent (are contactable by email and gave cookie consent for the session where the purchase was made) "

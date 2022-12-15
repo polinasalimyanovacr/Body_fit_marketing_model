@@ -16,17 +16,20 @@ view: sql_unusedvoucher {
 
   dimension: contact_id {
     type: string
+    primary_key: yes
     sql: ${TABLE}.contactId ;;
   }
 
   dimension: unused {
     type: yesno
+    primary_key: yes
     sql: ${TABLE}.unused ;;
     description: "Customers that have a valid voucher, but have not used the the voucher"
   }
 
   dimension: voucher_code {
     type: string
+    primary_key: yes
     sql: ${TABLE}.voucherCode ;;
     description: "Vaucher code that is sent to customer"
   }
