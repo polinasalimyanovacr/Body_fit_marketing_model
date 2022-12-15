@@ -19,7 +19,13 @@ view: sql_productslast18months {
 
   measure: count {
     type: count
-    drill_fields: [detail*]
+    drill_fields: [count_drill*]
+  }
+
+#set the fields for drilling
+  set: count_drill {
+    fields: [product_last18_months
+    ]
   }
 
   dimension: contact_id {
