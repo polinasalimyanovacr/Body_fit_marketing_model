@@ -26,7 +26,6 @@ view: orders {
 
   measure: count {
     type: count
-    drill_fields: [revenue_drill*]
   }
 
   measure: Count_Distinct_contacts {
@@ -102,6 +101,7 @@ view: orders {
   dimension: currency {
     type: string
     sql: ${TABLE}.currency ;;
+    drill_fields: [revenue_drill*]
   }
 
   dimension_group: timestamp {
