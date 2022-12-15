@@ -35,6 +35,7 @@ view: sql_productslast18months {
 
   dimension: product_last18_months {
     type: yesno
+    primary_key: yes
     sql: ${TABLE}.productLast18Months ;;
     description: "Customers that purchased a specific type of product at least once in the last 18 months."
   }
