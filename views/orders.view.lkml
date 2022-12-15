@@ -26,7 +26,7 @@ view: orders {
 
   measure: count {
     type: count
-    drill_fields: [detail*]
+    drill_fields: [revenue_drill*]
   }
 
   measure: Count_Distinct_contacts {
@@ -47,8 +47,6 @@ view: orders {
 
   measure: total_revenue {
     sql: sum(${total_order_revenue}) over() ;;
-    drill_fields: [revenue_drill*]
-
   }
 
   dimension: transaction_id {
