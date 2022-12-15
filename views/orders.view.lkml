@@ -37,7 +37,7 @@ view: orders {
 
   measure: total_revenue {
 
-    sql: sum(${total_order_revenue}) over() ;;
+    sql: round(sum(${total_order_revenue}),0) over() ;;
 
   }
   dimension: transaction_id {
