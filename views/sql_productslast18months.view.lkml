@@ -41,8 +41,8 @@ view: sql_productslast18months {
     sql: ${TABLE}.productLast18Months ;;
     description: "Customers that purchased a specific type of product at least once in the last 18 months."
     html:
-    {% if value == 'yes' %}
-    <p><img src="https://drive.google.com/uc?id=1FZAKVnPfSto4Fb_iVUQe472l9C_b9SPk" width="20" height="20"/> {{rendered_value}} </p>
+    {% if value == "yes" %}
+    <p><img src="https://drive.google.com/uc?id=1N6m__CVFw4PXK05QADJ9gHFH8wSPplAh/view?usp=sharing" width="20" height="20"/> {{rendered_value}} </p>
     {% endif %};;
   }
 
