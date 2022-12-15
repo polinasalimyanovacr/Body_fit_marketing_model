@@ -42,6 +42,7 @@ view: sql_productslast18months {
 
   dimension: product_type {
     type: string
+    primary_key: yes
     sql: ${TABLE}.productType ;;
     description: "Possible values: Accessory, book, clothing etc"
   }
