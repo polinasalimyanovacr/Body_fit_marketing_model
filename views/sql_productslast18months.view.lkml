@@ -24,6 +24,7 @@ view: sql_productslast18months {
 
   dimension: contact_id {
     type: string
+    primary_key: yes
     sql: ${TABLE}.id ;;
   }
 
