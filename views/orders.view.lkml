@@ -26,7 +26,11 @@ view: orders {
 
   measure: count {
     type: count
-  }
+    link: {
+      label: "Autoapply selection filters and send it using custom action"
+      url: "https://crystalloids.eu.looker.com/looks/56?f[orders.shipping_address_country_code]={{orders.shipping_address_country_code._value}}"
+    }
+    }
 
   measure: Count_Distinct_contacts {
     type: count_distinct
