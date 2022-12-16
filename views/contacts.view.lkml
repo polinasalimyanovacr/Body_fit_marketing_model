@@ -25,7 +25,8 @@ view: contacts {
   }
 
   measure: count {
-    type: count
+    type: count_distinct
+    sql: ${contact_id} ;;
     drill_fields: [detail*]
   }
 
