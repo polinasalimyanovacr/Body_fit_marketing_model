@@ -26,7 +26,6 @@ view: orders {
 
   measure: count {
     type: count
-
     }
 
   measure: Count_Distinct_contacts {
@@ -121,6 +120,7 @@ view: orders {
   }
 
   dimension: total_ordered_quantity {
+    primary_key: yes
     type: number
     sql: ${TABLE}.totalOrderedQuantity ;;
   }
