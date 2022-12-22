@@ -36,6 +36,7 @@ view: sql_inactive {
   dimension: inactive {
     type: yesno
     primary_key: yes
+    allow_fill: no
     sql: ${TABLE}.inactive ;;
     description: "Customers that purchased in the past 24 months but did not place any order in last 6 months
 AND gave consent (are contactable by email and gave cookie consent for the session where the purchase was made) "
