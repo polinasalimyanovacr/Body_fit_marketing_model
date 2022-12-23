@@ -79,15 +79,16 @@ view: contacts {
     sql: ${TABLE}.age ;;
   }
 
-  dimension: year_of_birth {
-    type: number
-    sql: ${TABLE}.yearOfBirth ;;
-
-  }
   dimension: Button_1 {
     type:  string
     html: html: <a href="https://crystalloids.eu.looker.com/looks/73?f[sql_salesbuyer.sales_buyer]={{value}}&f[orders.shipping_address_country_code]={{value}}&f[sql_inactive.inactive]={{value}}"><button>Send the audience</button></a>
       ;;
+  }
+
+  dimension: year_of_birth {
+    type: number
+    sql: ${TABLE}.yearOfBirth ;;
+
   }
 
       #  html: <a href="https://crystalloids.eu.looker.com/looks/73?f[sql_salesbuyer.sales_buyer]={{value}}&f[orders.shipping_address_country_code]={{value}}&f[sql_inactive.inactive]={{value}}"><button>Send the audience</button></a>
