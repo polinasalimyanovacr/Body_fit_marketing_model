@@ -88,8 +88,7 @@ view: contacts {
   dimension: Button_1 {
     type:  string
     sql:   ${email_consent} ;;
-    html: <a href="https://crystalloids.eu.looker.com/looks/73?f[sql_salesbuyer.sales_buyer]={{value}}&f[sql_inactive.inactive]={{value}}"><button>Send the audience</button></a>
-
+    html: <a href="https://crystalloids.eu.looker.com/looks/73_filters[sql_salesbuyer.sales_buyer]"><button>Send the audience</button></a>
       ;;
       }
 
