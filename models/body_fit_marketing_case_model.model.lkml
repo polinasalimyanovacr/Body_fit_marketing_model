@@ -28,6 +28,7 @@ type: left_outer
   relationship: many_to_one
 }
 }
+
 explore: sql_productslast18months {}
 
 #MASTER VIEW
