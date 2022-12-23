@@ -28,12 +28,6 @@ view: orders {
     type: count
     }
 
-  dimension: Button_1 {
-    type:  string
-    html: html: <a href="https://crystalloids.eu.looker.com/looks/73Inactive={{_filters['sql_inactive.inactive']}}"><button>Send the audience</button></a>
-      ;;
-  }
-
   measure: Count_Distinct_contacts {
     type: count_distinct
     sql: ${contact_id} ;;
