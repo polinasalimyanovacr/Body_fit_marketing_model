@@ -20,15 +20,16 @@ explore: sql_salesbuyer {}
 
 explore: sql_unusedvoucher{}
 
-explore:  contacts {
-  join: orders {
-    type: left_outer
-    view_label: "Contacts + Orders"
-    sql_on: ${orders.contact_id} = ${contacts.contact_id} ;;
-    relationship: many_to_one
-  }
-}
+explore:  contacts {}
 
+# explore:  contacts {
+#join: orders {
+# type: left_outer
+#  view_label: "Contacts + Orders"
+#  sql_on: ${orders.contact_id} = ${contacts.contact_id} ;;
+#  relationship: many_to_one
+#}
+#}
 explore: sql_productslast18months {}
 
 #MASTER VIEW
