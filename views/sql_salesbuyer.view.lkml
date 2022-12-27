@@ -25,7 +25,7 @@ view: sql_salesbuyer {
 
   dimension: Button_2 {
     type:  string
-    sql:   ${TABLE} ;;
+    sql:   ${sales_buyer} ;;
     html: <a href="https://crystalloids.eu.looker.com/looks/73?&f[sql_salesbuyer.sales_buyer]={{ _filters['sql_salesbuyer.sales_buyer'] | url_encode }}"><button>Test</button></a>
       ;;
   }
