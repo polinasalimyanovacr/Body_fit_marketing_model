@@ -23,13 +23,6 @@ view: sql_salesbuyer {
     drill_fields: [revenue_drill*]
   }
 
-  dimension: Button_2 {
-    type:  string
-    sql:   ${sales_buyer} ;;
-    html: <a href="https://crystalloids.eu.looker.com/looks/73?&f[sql_salesbuyer.sales_buyer]={{ _filters['sql_salesbuyer.sales_buyer'] | url_encode }}"><button>Test</button></a>
-      ;;
-  }
-
   dimension: contact_id {
     type: string
     primary_key: yes

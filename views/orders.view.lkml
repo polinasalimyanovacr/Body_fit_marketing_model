@@ -34,6 +34,13 @@ view: orders {
     value_format_name: id
     }
 
+  dimension: Button_2 {
+    type:  string
+    sql:   ${TABLE}.contactId ;;
+    html: <a href="https://crystalloids.eu.looker.com/looks/73?&f[sql_salesbuyer.sales_buyer]={{ _filters['sql_salesbuyer.sales_buyer'] | url_encode }}"><button>Test</button></a>
+      ;;
+  }
+
 #set the fields for drilling
   set: revenue_drill {
     fields: [contact_email_address,
