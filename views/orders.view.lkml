@@ -35,7 +35,7 @@ view: orders {
     }
 
   dimension: show_my_dimension_filter {
-    html: {{_filters[0]}};;
+    html: {{_filters['sql_inactive.inactive'] | append: _filters['sql_salesbuyer.sales_buyer']}};;
     sql: 'this does nothing' ;;
   }
 
