@@ -21,7 +21,6 @@ view: sql_inactive {
                   ON t1.contactId = s.contactId
                   ;;
   }
-#https://crystalloids.eu.looker.com/looks/73?f[sql_inactive.inactive]={% if {{ _filters['sql_inactive.inactive']}} == 'Yes' %} 'yes'
 
   dimension: show_my_dimension_filter {
     html: {{_filters['sql_inactive.inactive']}};;
@@ -44,6 +43,10 @@ view: sql_inactive {
     type: yesno
     primary_key: yes
     allow_fill: no
+    link: {
+      label: "test"
+      url: "https://crystalloids.eu.looker.com/looks/85?f[sql_inactive.inactive]={{ _filters['sql_inactive.inactive'] | url_encode }}"
+    }
     sql: ${TABLE}.inactive ;;
     description: "Customers that purchased in the past 24 months but did not place any order in last 6 months
     AND gave consent (are contactable by email and gave cookie consent for the session where the purchase was made) "

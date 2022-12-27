@@ -135,6 +135,7 @@ view: orders {
     sql: ${TABLE}.age ;;
   }
 
+
   set: detail {
     fields: [
       transaction_id,
