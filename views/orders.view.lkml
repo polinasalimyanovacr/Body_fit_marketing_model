@@ -30,10 +30,11 @@ view: orders {
 
   dimension: Button_2 {
     type:  string
-    sql:   ${contact_id} ;;
-    html: <a href="https://crystalloids.eu.looker.com/looks/73?f[sql_salesbuyer.sales_buyer]={{value}}&f[sql_inactive.inactive]={{value}}"><button>Send the audience</button></a>
+    sql:   ${TABLE} ;;
+    html: <a href="https://crystalloids.eu.looker.com/looks/73?&f[sql_salesbuyer.sales_buyer]={{ _filters['sql_salesbuyer.sales_buyer'] | url_encode }}"><button>Test</button></a>
       ;;
   }
+
   measure: Count_Distinct_contacts {
     type: count_distinct
     sql: ${contact_id} ;;
