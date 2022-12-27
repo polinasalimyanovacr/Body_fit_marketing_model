@@ -21,7 +21,6 @@ view: sql_inactive {
                   ON t1.contactId = s.contactId
                   ;;
   }
-#https://crystalloids.eu.looker.com/looks/73?f[sql_inactive.inactive]={% if {{ _filters['sql_inactive.inactive']}} == 'Yes' %} 'yes'
 
   dimension: show_my_dimension_filter {
     html: {{_filters['sql_inactive.inactive']}};;
