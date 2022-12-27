@@ -32,7 +32,7 @@ view: contacts {
       label: "Autoapply selection filters and send it using custom action"
       url: "https://crystalloids.eu.looker.com/looks/85?f[orders.shipping_address_country_code]={{orders.shipping_address_country_code._value}}&f[orders.shipping_address_city]={{orders.shipping_address_city._value}}&f[contacts.age]={{contacts.age._value}}&f[contacts.gender]={{contacts.gender._value}}&f[sql_inactive.inactive]={{sql_inactive.inactive._value}}"
     }
-    value_format:"0 0"
+    value_format:"# 0"
   }
 
   dimension: contact_id {
