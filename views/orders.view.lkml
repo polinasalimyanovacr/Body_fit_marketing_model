@@ -28,13 +28,6 @@ view: orders {
     type: count
     }
 
-  dimension: Button_2 {
-    type:  string
-    sql:   ${TABLE} ;;
-    html: <a href="https://crystalloids.eu.looker.com/looks/73?&f[sql_salesbuyer.sales_buyer]={{ _filters['sql_salesbuyer.sales_buyer'] | url_encode }}"><button>Test</button></a>
-      ;;
-  }
-
   measure: Count_Distinct_contacts {
     type: count_distinct
     sql: ${contact_id} ;;
