@@ -52,6 +52,7 @@ view: orders {
 
   measure: total_revenue {
     sql: sum(${total_order_revenue}) over() ;;
+    drill_fields: [revenue_drill*]
   }
 
   dimension: transaction_id {
@@ -117,7 +118,6 @@ view: orders {
   dimension: currency {
     type: string
     sql: ${TABLE}.currency ;;
-    drill_fields: [revenue_drill*]
   }
 
   dimension_group: timestamp {
