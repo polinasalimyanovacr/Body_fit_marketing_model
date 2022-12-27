@@ -22,12 +22,6 @@ view: sql_inactive {
                   ;;
   }
 
-  dimension: show_my_dimension_filter {
-    html: {{_filters['sql_inactive.inactive']}};;
-    sql: 'this does nothing' ;;
-
-  }
-
   measure: count {
     type: count
     drill_fields: [detail*]
