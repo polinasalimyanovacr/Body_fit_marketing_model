@@ -21,8 +21,15 @@ view: sql_inactive {
                   ON t1.contactId = s.contactId
                   ;;
   }
+#https://crystalloids.eu.looker.com/looks/73?f[sql_inactive.inactive]={% if {{ _filters['sql_inactive.inactive']}} == 'Yes' %} yes
 
-  measure: count {
+  dimension: show_my_dimension_filter {
+    html: _filters['inactive'];;
+    sql: 'this does nothing' ;;
+
+  }
+
+ measure: count {
     type: count
     drill_fields: [detail*]
   }
