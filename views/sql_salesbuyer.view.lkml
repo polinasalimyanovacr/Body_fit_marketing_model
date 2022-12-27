@@ -61,7 +61,17 @@ AND gave consent (are contactable by email)"
     {% if value == "Yes" %}
     <span style="color:darkgreen;"> {{rendered_value}} </span>
     {% endif %};;
+    drill_fields: [revenue_drill*]
 
+  }
+
+#set the fields for drilling
+  set: revenue_drill {
+    fields: [contact_id,
+      quantity_ordered,
+      discount_quantity,
+      discount_quantity_percentage,
+      sales_buyer]
   }
 
   set: detail {
