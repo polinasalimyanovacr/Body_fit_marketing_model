@@ -21,7 +21,7 @@ view: sql_inactive {
                   ON t1.contactId = s.contactId
                   ;;
   }
-#https://crystalloids.eu.looker.com/looks/73?f[sql_inactive.inactive]={% if {{ _filters['sql_inactive.inactive']}} == 'Yes' %} yes
+#https://crystalloids.eu.looker.com/looks/73?f[sql_inactive.inactive]={% if {{ _filters['sql_inactive.inactive']}} == 'Yes' %} 'yes'
 
   dimension: show_my_dimension_filter {
     html: {{_filters['sql_inactive.inactive']}};;
@@ -29,7 +29,17 @@ view: sql_inactive {
 
   }
 
- measure: count {
+  dimension: foo {
+    link: {
+      label: "Link Label"
+      url: "{% if  _filters['sql_inactive.inactive'] == 'Yes' %}
+      https://crystalloids.eu.looker.com/looks/73?f[sql_inactive.inactive] = yes
+      {% endif %}"
+    }
+
+  }
+
+  measure: count {
     type: count
     drill_fields: [detail*]
   }
@@ -46,7 +56,7 @@ view: sql_inactive {
     allow_fill: no
     sql: ${TABLE}.inactive ;;
     description: "Customers that purchased in the past 24 months but did not place any order in last 6 months
-AND gave consent (are contactable by email and gave cookie consent for the session where the purchase was made) "
+    AND gave consent (are contactable by email and gave cookie consent for the session where the purchase was made) "
   }
 
   set: detail {
