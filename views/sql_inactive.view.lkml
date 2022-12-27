@@ -29,16 +29,6 @@ view: sql_inactive {
 
   }
 
-  dimension: foo {
-    link: {
-      label: "Link Label"
-      url: "{% if  _filters['sql_inactive.inactive'] == 'Yes' %}
-      https://crystalloids.eu.looker.com/looks/73?f[sql_inactive.inactive] = yes
-      {% endif %}"
-    }
-
-  }
-
   measure: count {
     type: count
     drill_fields: [detail*]
