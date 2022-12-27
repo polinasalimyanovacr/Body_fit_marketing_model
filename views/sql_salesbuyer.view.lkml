@@ -20,7 +20,7 @@ view: sql_salesbuyer {
 
   measure: count {
     type: count
-    drill_fields: [detail*]
+    drill_fields: [revenue_drill*]
   }
 
   dimension: contact_id {
@@ -62,6 +62,15 @@ AND gave consent (are contactable by email)"
     <span style="color:darkgreen;"> {{rendered_value}} </span>
     {% endif %};;
 
+  }
+
+#set the fields for drilling
+  set: revenue_drill {
+    fields: [contact_id,
+      quantity_ordered,
+      discount_quantity,
+      discount_quantity_percentage,
+      sales_buyer]
   }
 
   set: detail {
