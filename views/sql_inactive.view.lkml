@@ -24,7 +24,7 @@ view: sql_inactive {
 #https://crystalloids.eu.looker.com/looks/73?f[sql_inactive.inactive]={% if {{ _filters['sql_inactive.inactive']}} == 'Yes' %} yes
 
   dimension: show_my_dimension_filter {
-    html: _filters['inactive'];;
+    html: _filters['sql_inactive.inactive'];;
     sql: 'this does nothing' ;;
 
   }
