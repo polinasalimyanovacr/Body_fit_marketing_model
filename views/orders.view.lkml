@@ -47,9 +47,15 @@ view: orders {
     &f[contacts.email_consent]={{ _filters['contacts.email_consent'] | url_encode }}
     &f[orders.shipping_address_city]={{ _filters['orders.shipping_address_city'] | url_encode }}
     &f[orders.timestamp_date]={{ _filters['orders.timestamp_date'] | url_encode }}
-    &f[sql_salesbuyer.sales_buyer]={{ _filters['sql_salesbuyer.sales_buyer'] | url_encode }}
+    &f[contacts.gender]={{ _filters['contacts.gender'] | url_encode }}
+    &f[orders.shipping_address_country_code]={{ _filters['orders.shipping_address_country_code'] | url_encode }}
     &f[sql_inactive.inactive]={{ _filters['sql_inactive.inactive'] | url_encode }}
-    &f[orders.shipping_address_country_code]={{ _filters['orders.shipping_address_country_code'] | url_encode }}"><button>Send the audience</button></a>
+    &f[sql_notusedcampaign.did_not_buy]={{ _filters['sql_notusedcampaign.did_not_buy'] | url_encode }}
+    &f[sql_productslast18months.product_last18_months]={{ _filters['sql_productslast18months.product_last18_months'] | url_encode }}
+    &f[sql_salesbuyer.sales_buyer]={{ _filters['sql_salesbuyer.sales_buyer'] | url_encode }}
+    &f[sql_salesbuyer.discount_quantity_percentage]={{ _filters['sql_salesbuyer.discount_quantity_percentage'] | url_encode }}
+    &f[sql_unusedvoucher.unused]={{ _filters['sql_unusedvoucher.unused'] | url_encode }}
+    &f[sql_productslast18months.product_type]={{ _filters['sql_productslast18months.product_type'] | url_encode }}"><button>Send the audience</button></a>
       ;;
   }
 
