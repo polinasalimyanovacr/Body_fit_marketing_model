@@ -42,7 +42,7 @@ view: orders {
   dimension: Button_2 {
     type:  string
     sql:   ${TABLE}.contactId ;;
-    html: <a href="https://crystalloids.eu.looker.com/looks/73?&f[sql_salesbuyer.sales_buyer]={{ _filters['sql_salesbuyer.sales_buyer'] | url_encode }}"><button>Send the audience</button></a>
+    html: <a href="https://crystalloids.eu.looker.com/looks/73?&f[sql_salesbuyer.sales_buyer]={{ _filters['sql_salesbuyer.sales_buyer'] | url_encode }}&f[sql_inactive.inactive]={{ _filters['sql_inactive.inactive'] | url_encode }}"><button>Send the audience</button></a>
       ;;
   }
 
