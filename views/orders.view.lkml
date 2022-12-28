@@ -61,7 +61,7 @@ view: orders {
   dimension: Button_2 {
     type:  string
     sql:   ${TABLE}.contactId ;;
-    html: <a href="https://crystalloids.eu.looker.com/looks/73?
+    html: <a href="https://crystalloids.eu.looker.com/looks/88?
     &f[orders.age]={{ _filters['orders.age'] | url_encode }}
     &f[contacts.email_consent]={{ _filters['contacts.email_consent'] | url_encode }}
     &f[orders.shipping_address_city]={{ _filters['orders.shipping_address_city'] | url_encode }}
