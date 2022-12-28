@@ -46,7 +46,7 @@ view: orders {
     &f[orders.age]={{ _filters['orders.age'] | url_encode }}
     &f[contacts.email_consent]={{ _filters['contacts.email_consent'] | url_encode }}
     &f[orders.shipping_address_city]={{ _filters['orders.shipping_address_city'] | url_encode }}
-    &f[orders.timestamp_time]={{ _filters['orders.timestamp_time'] | url_encode }}
+    &f[orders.timestamp_date]={{ _filters['orders.timestamp_date'] | url_encode }}
     &f[sql_salesbuyer.sales_buyer]={{ _filters['sql_salesbuyer.sales_buyer'] | url_encode }}
     &f[sql_inactive.inactive]={{ _filters['sql_inactive.inactive'] | url_encode }}
     &f[orders.shipping_address_country_code]={{ _filters['orders.shipping_address_country_code'] | url_encode }}"><button>Send the audience</button></a>
