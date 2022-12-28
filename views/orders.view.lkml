@@ -40,9 +40,9 @@ view: orders {
   }
 
   dimension: dimension_filter {
-    sql: sql_salesbuyer.SalesBuyer;;
+    sql: CONCAT(sql_inactive.inactive, sql_salesbuyer.SalesBuyer;;
   }
-#CONCAT(sql_inactive.inactive, sql_salesbuyer.sales_buyer)
+#CONCAT(sql_inactive.inactive, sql_salesbuyer.SalesBuyer)
   dimension: Button_2 {
     type:  string
     sql:   ${TABLE}.contactId ;;
