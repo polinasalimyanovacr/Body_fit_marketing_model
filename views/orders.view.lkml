@@ -34,9 +34,13 @@ view: orders {
     value_format_name: id
     }
 
-  dimension: Show_dimension_filter {
+  dimension: age_filter {
     html: {{ _filters['orders.age'] }};;
-    sql: ${TABLE}.string;;
+    sql: 'age';;
+  }
+
+  dimension: Show_dimension_filter {
+    sql: ${age_filter};;
   }
 
 #CONCAT(sql_inactive.inactive, " , " , sql_salesbuyer.SalesBuyer)
