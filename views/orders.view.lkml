@@ -39,12 +39,12 @@ view: orders {
     sql: 'this does nothing' ;;
   }
 
-  filter: sql_inactives {
+  filter: sql_inactive_inactive  {
     type: string
   }
 
   dimension: dimension_filter {
-    sql: {% condition sql_inactives %} sql_inactive.inactive {% endcondition %};;
+    sql: sql_inactive.inactive;;
   }
 
   dimension: Button_2 {
