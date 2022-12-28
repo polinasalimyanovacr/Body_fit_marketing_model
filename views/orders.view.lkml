@@ -35,7 +35,7 @@ view: orders {
     }
 
   dimension: dimension_filter {
-    sql: ARRAY_AGG(orders.age order by orders.age);;
+    sql: CONCAT(sql_inactive.inactive, " , " , sql_salesbuyer.SalesBuyer);;
   }
 
 #CONCAT(sql_inactive.inactive, " , " , sql_salesbuyer.SalesBuyer)
