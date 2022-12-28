@@ -1,6 +1,6 @@
 view: orders {
   derived_table: {
-    sql: SELECT  {{ _filters['orders.age'] | sql_quote  }} AS filter,
+    sql: SELECT  CONCAT ({{ _filters['orders.age'] | sql_quote  }}, {{ _filters['sql_inactive.inactive'] | sql_quote  }}) AS filter,
         IFNULL(s.age, 0) AS age,
         transactionId,
         customer.contactId AS contactId,
