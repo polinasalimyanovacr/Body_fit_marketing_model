@@ -35,15 +35,11 @@ view: orders {
     }
 
   dimension: dimension_filter {
-    sql: orders.age = MAX(orders.age);;
-  }
-
-  dimension: age_filter {
-    sql: orders.age = MAX(orders.age);;
+    sql: (orders.age = MAX(orders.age));;
   }
 
   dimension: Show_dimension_filter {
-    html: {{ _filters['sql_inactive.inactive'] }};;
+    html: {{ _filters['orders.age'] }};;
     sql: 'nothing';;
   }
 
