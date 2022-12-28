@@ -34,13 +34,9 @@ view: orders {
     value_format_name: id
     }
 
-  dimension: dimension_filter {
-    sql: (orders.age = MAX(orders.age));;
-  }
-
   dimension: Show_dimension_filter {
     html: {{ _filters['orders.age'] }};;
-    sql: 'nothing';;
+    sql: ${TABLE}.string;;
   }
 
 #CONCAT(sql_inactive.inactive, " , " , sql_salesbuyer.SalesBuyer)
