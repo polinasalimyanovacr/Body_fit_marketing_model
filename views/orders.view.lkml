@@ -35,8 +35,11 @@ view: orders {
     }
 
   dimension: dimension_filter {
-    sql: CREATE TABLE filtersUsed (
-    sql_inactive.inactive BOOL);;
+    sql: sql_inactive.inactive;;
+  }
+
+  dimension: age_filter {
+    sql: MAX(orders.age);;
   }
 
   dimension: Show_dimension_filter {
