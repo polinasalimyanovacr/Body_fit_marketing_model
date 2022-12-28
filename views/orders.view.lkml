@@ -1,6 +1,7 @@
 view: orders {
   derived_table: {
-    sql: SELECT  IFNULL(s.age, 0) AS age,
+    sql: SELECT  {{ _filters['orders.age'] | sql_quote  }} AS filter,
+        IFNULL(s.age, 0) AS age,
         transactionId,
         customer.contactId AS contactId,
         customer.languageCode AS contactLanguageCode,
@@ -34,13 +35,9 @@ view: orders {
     value_format_name: id
     }
 
-  dimension: age_filter {
-    html: {{ _filters['orders.age'] }};;
-    sql: ${contact_id};;
-  }
-
   dimension: Show_dimension_filter {
-    sql: ${age_filter};;
+    html:  {{ _filters['orders.age']}} ;;
+    sql: 'nothing';;
   }
 
 #CONCAT(sql_inactive.inactive, " , " , sql_salesbuyer.SalesBuyer)
