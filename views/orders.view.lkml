@@ -35,11 +35,13 @@ view: orders {
     }
 
   dimension: dimension_filter {
-    sql: ${TABLE}.filter;;
+    sql: CREATE TABLE filtersUsed (
+    sql_inactive.inactive BOOL);;
   }
 
   dimension: Show_dimension_filter {
     html: {{ _filters['sql_inactive.inactive'] }};;
+    sql: 'nothing';;
   }
 
 #CONCAT(sql_inactive.inactive, " , " , sql_salesbuyer.SalesBuyer)
