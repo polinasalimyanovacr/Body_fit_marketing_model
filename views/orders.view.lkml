@@ -1,7 +1,7 @@
 view: orders {
   derived_table: {
     sql: SELECT  CONCAT ("Age: ", {{ _filters['orders.age'] | sql_quote  }},
-        ", Email consent" ,{{ _filters['contacts.email_consent'] | sql_quote }},
+        ", Email consent: " ,{{ _filters['contacts.email_consent'] | sql_quote }},
         ", City: " ,{{ _filters['orders.shipping_address_city'] | sql_quote }},
         ", Timestamp Date: " ,{{ _filters['orders.timestamp_date'] | sql_quote }},
         ", Gender: " ,{{ _filters['contacts.gender'] | sql_quote }},
