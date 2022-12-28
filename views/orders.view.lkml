@@ -35,6 +35,11 @@ view: orders {
     value_format_name: id
     }
 
+  dimension: filter {
+    type: string
+    sql: ${TABLE}.filter ;;
+  }
+
   dimension: Show_dimension_filter {
     html:  {{ _filters['orders.age']}} ;;
     sql: 'nothing';;
