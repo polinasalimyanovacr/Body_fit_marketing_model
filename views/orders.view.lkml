@@ -35,7 +35,11 @@ view: orders {
     }
 
   dimension: dimension_filter {
-    sql: CONCAT(sql_inactive.inactive, ", " , sql_salesbuyer.SalesBuyer, (MAX (orders.age)));;
+    sql: ${TABLE}.filter;;
+  }
+
+  dimension: Show_dimension_filter {
+    html: {{ _filters['sql_inactive.inactive'] }};;
   }
 
 #CONCAT(sql_inactive.inactive, " , " , sql_salesbuyer.SalesBuyer)
