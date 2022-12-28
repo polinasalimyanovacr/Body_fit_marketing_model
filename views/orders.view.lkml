@@ -34,15 +34,11 @@ view: orders {
     value_format_name: id
     }
 
-  dimension: show_my_dimension_filter {
-    html: {{_filters['sql_inactive.inactive']}};;
-    sql: 'this does nothing' ;;
+  dimension: dimension_filter {
+    sql: orders.age;;
   }
 
-  dimension: dimension_filter {
-    sql: CONCAT(sql_inactive.inactive, sql_salesbuyer.SalesBuyer);;
-  }
-#CONCAT(sql_inactive.inactive, sql_salesbuyer.SalesBuyer)
+#CONCAT(sql_inactive.inactive, " , " , sql_salesbuyer.SalesBuyer)
   dimension: Button_2 {
     type:  string
     sql:   ${TABLE}.contactId ;;
