@@ -36,7 +36,7 @@ view: orders {
 
   dimension: age_filter {
     html: {{ _filters['orders.age'] }};;
-    sql: 'age';;
+    sql: ${contact_id};;
   }
 
   dimension: Show_dimension_filter {
