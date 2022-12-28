@@ -40,7 +40,7 @@ view: orders {
   }
 
   dimension: dimension_filter {
-    sql: CONCAT('sql_inactive.inactive', 'sql_salesbuyer.sales_buyer');;
+    sql: CONCAT(sql_inactive.inactive, sql_salesbuyer.sales_buyer);;
   }
 
   dimension: Button_2 {
