@@ -39,6 +39,14 @@ view: orders {
     sql: 'this does nothing' ;;
   }
 
+  filter: sql_inactives {
+    type: string
+  }
+
+  dimension: dimension_filter {
+    sql: {% condition sql_inactives %} sql_inactive.inactive {% endcondition %};;
+  }
+
   dimension: Button_2 {
     type:  string
     sql:   ${TABLE}.contactId ;;
