@@ -12,6 +12,10 @@ view: vocabulary {
   dimension: term {
     type: string
     sql: ${TABLE}.Term ;;
+    html:
+    {% if value == "dashboard" %}
+    <p style="color: black; background-color: lightblue; font-size: 100%; text-align:center"> {{rendered_value}}</p>
+    {% endif %};;
   }
 
   dimension: definition {
