@@ -13,10 +13,16 @@ view: vocabulary {
     type: string
     sql: ${TABLE}.Term ;;
     html:
-    {% if value == "dashboard" %}
+    {% if value == "Dashboard" %}
     <p style="color: black; background-color: lightblue; font-size: 100%; text-align:center"> {{rendered_value}}</p>
-    {% endif %};;
+    {% elsif value == "Look" %}
+    <p style="color: black; background-color: lightblue; font-size: 100%; text-align:center"> {{rendered_value}}</p>
+    {% elsif value == "LookML" %}
+    <p style="color: black; background-color: lightblue; font-size: 100%; text-align:center"> {{rendered_value}}</p>
+     {% endif %}
+   ;;
   }
+
 
   dimension: definition {
     type: string
