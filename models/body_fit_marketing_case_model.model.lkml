@@ -20,6 +20,8 @@ explore: sql_salesbuyer {}
 
 explore: sql_unusedvoucher{}
 
+explore: vocabulary {}
+
 explore: sql_productslast18months {}
 
 #MASTER VIEW
