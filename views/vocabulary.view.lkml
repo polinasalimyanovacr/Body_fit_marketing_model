@@ -20,7 +20,7 @@ view: vocabulary {
     {% elsif value == "LookML" %}
     <p style="color: black; background-color: lightblue; font-size: 100%; text-align:center"> {{rendered_value}}</p>
     {% else %}
-    <div style="text-align:center;">{{ rendered_value }}</div>
+    <div style="text-align:left;">{{ rendered_value }}</div>
     {% endif %}
    ;;
   }
