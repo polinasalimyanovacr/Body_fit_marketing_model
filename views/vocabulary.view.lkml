@@ -14,11 +14,11 @@ view: vocabulary {
     sql: ${TABLE}.Term ;;
     html:
     {% if value == "Dashboard" %}
-    <p style="color: black; background-color: lightblue; font-size: 100%; text-align:center"> {{rendered_value}}</p>
+    <p style="color: black; background-color: lightblue; font-size: 100%; text-align:left"> {{rendered_value}}</p>
     {% elsif value == "Look" %}
-    <p style="color: black; background-color: lightblue; font-size: 100%; text-align:center"> {{rendered_value}}</p>
+    <p style="color: black; background-color: lightblue; font-size: 100%; text-align:left"> {{rendered_value}}</p>
     {% elsif value == "LookML" %}
-    <p style="color: black; background-color: lightblue; font-size: 100%; text-align:center"> {{rendered_value}}</p>
+    <p style="color: black; background-color: lightblue; font-size: 100%; text-align:left"> {{rendered_value}}</p>
     {% else %}
     <div style="text-align:left;">{{ rendered_value }}</div>
     {% endif %}
