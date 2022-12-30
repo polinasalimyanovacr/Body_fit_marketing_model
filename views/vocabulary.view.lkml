@@ -27,6 +27,11 @@ view: vocabulary {
     <div style="text-align:left;">{{ rendered_value }}</div>
     {% endif %}
    ;;
+    link: {
+      label: "Google"
+      url: "https://google.com/search?q={{value}}"
+      icon_url: "https://google.com/favicon.ico"
+    }
   }
 
 
