@@ -19,7 +19,11 @@ view: vocabulary {
     <p style="color: black; background-color: lightblue; font-size: 100%; text-align:left"> {{rendered_value}}</p>
     {% elsif value == "LookML" %}
     <p style="color: black; background-color: lightblue; font-size: 100%; text-align:left"> {{rendered_value}}</p>
-    {% else %}
+    {% elsif value == "Liquid parameter" %}
+    <p style="color: black; background-color: lightblue; font-size: 100%; text-align:left"> {{rendered_value}}</p>
+    {% elsif value == "Looker expression" %}
+    <p style="color: black; background-color: lightblue; font-size: 100%; text-align:left"> {{rendered_value}}</p>
+   {% else %}
     <div style="text-align:left;">{{ rendered_value }}</div>
     {% endif %}
    ;;
