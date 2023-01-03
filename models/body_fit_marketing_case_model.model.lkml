@@ -24,7 +24,7 @@ explore: vocabulary {}
 
 explore: sql_productslast18months {}
 
-#MASTER VIEW
+#MASTER VIEW with joins
 explore:  orders {
   join: contacts {
     type: left_outer
