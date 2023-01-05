@@ -14,15 +14,19 @@ explore: bqml_models {}
 
 explore: segments_test_copy {}
 
+explore: contacts {}
+
 explore: sql_inactive {}
 
 explore: sql_salesbuyer {}
 
 explore: sql_unusedvoucher{}
 
-explore: vocabulary {}
-
 explore: sql_productslast18months {}
+
+explore: sql_notusedcampaign {}
+
+explore: vocabulary {}
 
 #MASTER VIEW with joins
 explore:  orders {
