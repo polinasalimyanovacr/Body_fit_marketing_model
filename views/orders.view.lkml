@@ -52,10 +52,6 @@ view: orders {
     sql: ${TABLE}.filter ;;
   }
 
-  dimension: Show_dimension_filter {
-    html:  {{ _filters['orders.age']}} ;;
-    sql: 'nothing';;
-  }
 
 #CONCAT(sql_inactive.inactive, " , " , sql_salesbuyer.SalesBuyer)
   dimension: Button_2 {
