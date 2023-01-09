@@ -14,28 +14,34 @@ explore: bqml_models {}
 
 explore: segments_test_copy {}
 
+explore: contacts {}
+
 explore: sql_inactive {}
 
 explore: sql_salesbuyer {}
 
 explore: sql_unusedvoucher{}
 
-explore: vocabulary {}
-
 explore: sql_productslast18months {}
+
+explore: sql_notusedcampaign {}
+
+explore: vocabulary {}
 
 #MASTER VIEW with joins
 explore:  orders {
-  join: contacts {
-    type: left_outer
-    sql_on: ${orders.contact_id} = ${contacts.contact_id};;
-    relationship: many_to_one
-  }
   join: sql_inactive {
    type: left_outer
     sql_on: ${orders.contact_id} = ${sql_inactive.contact_id} ;;
     relationship: many_to_one
   }
+
+  join: contacts {
+    type: left_outer
+    sql_on: ${orders.contact_id} = ${contacts.contact_id};;
+    relationship: many_to_one
+  }
+
   join: sql_notusedcampaign {
     type: left_outer
     sql_on: ${orders.contact_id} = ${sql_notusedcampaign.contact_id} ;;
