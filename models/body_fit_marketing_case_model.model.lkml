@@ -9,7 +9,7 @@ datagroup: body_fit_marketing_case_model_default_datagroup {
 }
 
 named_value_format: dollar_formatting {
-  value_format: "###.###.##0"
+  value_format: "###.##0.000"
   strict_value_format: yes
 }
 
