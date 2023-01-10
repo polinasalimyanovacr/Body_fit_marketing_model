@@ -8,6 +8,11 @@ datagroup: body_fit_marketing_case_model_default_datagroup {
   max_cache_age: "1 hour"
 }
 
+named_value_format: eur_in_thousands {
+  value_format: "#.##0"
+  strict_value_format: yes
+}
+
 persist_with: body_fit_marketing_case_model_default_datagroup
 
 explore: bqml_models {}
@@ -75,9 +80,4 @@ explore: segments_test {
       relationship: one_to_many
     }
 
-}
-
-named_value_format: euro_in_thousands {
-  value_format: "#.##0,"
-  strict_value_format: yes
 }
