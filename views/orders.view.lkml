@@ -86,7 +86,7 @@ view: orders {
 
   measure: total_revenue {
     sql: sum(${total_order_revenue}) over() ;;
-    value_format_name: eur
+    value_format_name: dollar_formatting
     drill_fields: [revenue_drill*]
   }
 
@@ -148,7 +148,6 @@ view: orders {
     {% else %}
     <span stype="color:darkred;"> {{rendered_value}} </span>
     {% endif %};;
-    value_format_name: eur_in_thousands
   }
 
   dimension: currency {

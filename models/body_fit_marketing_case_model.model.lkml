@@ -8,8 +8,8 @@ datagroup: body_fit_marketing_case_model_default_datagroup {
   max_cache_age: "1 hour"
 }
 
-named_value_format: eur_in_thousands {
-  value_format: "0.000,\" K\""
+named_value_format: dollar_formatting {
+  value_format: "$#,###.00"
   strict_value_format: yes
 }
 
