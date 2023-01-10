@@ -9,7 +9,7 @@ datagroup: body_fit_marketing_case_model_default_datagroup {
 }
 
 named_value_format: eur_in_thousands {
-  value_format: "#.##0"
+  value_format: "#.###.##0"
   strict_value_format: yes
 }
 
