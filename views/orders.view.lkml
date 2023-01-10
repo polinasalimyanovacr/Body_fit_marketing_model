@@ -148,6 +148,7 @@ view: orders {
     {% else %}
     <span stype="color:darkred;"> {{rendered_value}} </span>
     {% endif %};;
+    value_format_name: eur_in_thousands
   }
 
   dimension: currency {
