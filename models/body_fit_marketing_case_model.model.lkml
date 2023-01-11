@@ -8,6 +8,11 @@ datagroup: body_fit_marketing_case_model_default_datagroup {
   max_cache_age: "1 hour"
 }
 
+#named_value_format: dollar_formatting {
+#  value_format: "###.###.##0"
+#  strict_value_format: yes
+#}
+
 persist_with: body_fit_marketing_case_model_default_datagroup
 
 explore: bqml_models {}
@@ -45,7 +50,7 @@ explore:  orders {
   join: sql_notusedcampaign {
     type: left_outer
     sql_on: ${orders.contact_id} = ${sql_notusedcampaign.contact_id} ;;
-    relationship: many_to_many
+    relationship: many_to_one
   }
 
   join: sql_productslast18months {

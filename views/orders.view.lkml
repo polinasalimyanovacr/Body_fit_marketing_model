@@ -85,8 +85,8 @@ view: orders {
   }
 
   measure: total_revenue {
-    sql: sum(${total_order_revenue}) over() ;;
-    value_format: "#,##0"
+    type: sum
+    sql: ${total_order_revenue} ;;
     drill_fields: [revenue_drill*]
   }
 
@@ -97,6 +97,7 @@ view: orders {
 
   dimension: contact_id {
     type: string
+    primary_key: yes
     sql: ${TABLE}.contactId ;;
   }
 
