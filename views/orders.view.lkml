@@ -85,8 +85,8 @@ view: orders {
   }
 
   measure: total_revenue {
-    type: number
-    sql: sum(${total_order_revenue}) over() ;;
+    type: sum
+    sql: ${total_order_revenue} ;;
     drill_fields: [revenue_drill*]
   }
 
