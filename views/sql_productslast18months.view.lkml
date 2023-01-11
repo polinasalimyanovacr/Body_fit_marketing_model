@@ -5,6 +5,7 @@ view: sql_productslast18months {
       productType,
       reportingCategory,
       reportingProductType,
+      sku
           FROM
             (
             SELECT customer.contactId AS contactId,
