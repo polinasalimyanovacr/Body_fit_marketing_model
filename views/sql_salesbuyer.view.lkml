@@ -4,6 +4,8 @@ view: sql_salesbuyer {
       IFNULL(((t1.discountQuantity/t1.quantityOrdered) * 100), 0) AS discountQuantityPercentage,
       CASE WHEN (IFNULL((((t1.discountQuantity/t1.quantityOrdered) * 100) >= 75), false) AND (s.opts.value = true)) THEN true ELSE false END AS salesBuyer,
       IFNULL(s.opts.value, false) AS optIn,
+      t1.quantityOrdered AS quantityOrdered,
+      t1.discountQuantity AS discountQuantity,
       FROM
       (SELECT customer.contactId AS contactId,
       SUM (CASE WHEN ((quantityOrdered > 0) AND ((CAST(createdTimestamp AS DateTime))
