@@ -8,11 +8,6 @@ datagroup: body_fit_marketing_case_model_default_datagroup {
   max_cache_age: "1 hour"
 }
 
-named_value_format: eur_format {
-  value_format: "\"€\"#,##0.00"
-  strict_value_format: yes
-}
-
 persist_with: body_fit_marketing_case_model_default_datagroup
 
 explore: bqml_models {}
