@@ -87,6 +87,7 @@ view: orders {
   measure: total_revenue {
     type: sum
     sql: ${total_order_revenue} ;;
+    value_format: "euro"
     drill_fields: [revenue_drill*]
   }
 
