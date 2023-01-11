@@ -88,6 +88,7 @@ view: orders {
     type: sum
     sql: ${total_order_revenue} ;;
     value_format: "\"€\"#,##0.00"
+    sql_distinct_key: ${TABLE}.transactionId;;
     drill_fields: [revenue_drill*]
   }
 
