@@ -23,6 +23,7 @@ view: sql_unusedvoucher {
   dimension: unused {
     type: yesno
     sql: ${TABLE}.unused ;;
+    allow_fill: no
     description: "Customers that have a valid voucher, but have not used the the voucher"
   }
 
