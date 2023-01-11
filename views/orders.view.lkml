@@ -167,7 +167,6 @@ view: orders {
   dimension: total_ordered_quantity {
     primary_key: yes
     type: number
-    value_format: "€"
     sql: ${TABLE}.totalOrderedQuantity ;;
   }
 
