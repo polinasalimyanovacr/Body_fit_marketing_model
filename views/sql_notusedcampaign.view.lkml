@@ -2,7 +2,7 @@ view: sql_notusedcampaign {
   derived_table: {
     sql: SELECT s.contactId AS id,
       CASE WHEN ((((CAST(s.createdTimestamp AS DateTime)) > (CAST(t2.activityDate AS DateTime))) AND
-      (s.quantityOrdered > 0)) OR (IFNULL(t2.opened, false) = false))
+      (s.quantityOrdered > 0)) OR (IFNULL(t2.opened, false)))
       THEN false ELSE true END AS didNotBuy,
       IFNULL(t2.opened, false) AS opened,
       FROM
