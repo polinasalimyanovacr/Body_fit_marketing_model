@@ -1,21 +1,22 @@
 view: sql_productslast18months {
   derived_table: {
-    sql: SELECT t1.contactId AS id,
-      t1.productLast18Months,
-      productType,
-      reportingCategory,
-      reportingProductType,
-      sku
-          FROM
-            (
-            SELECT customer.contactId AS contactId,
-            product.sku AS sku,
-            (((CAST(createdTimestamp AS DateTime)) BETWEEN DATE_ADD(CURRENT_DATE(), INTERVAL -18 MONTH) AND CURRENT_DATE()) AND (quantityOrdered > 0)) AS productLast18Months,
-            FROM `body-fit-test.orders.order_actual` order_actual,
-            UNNEST (order_actual.orderLines) AS orderLines
-            ) t1
-            INNER JOIN `body-fit-test.products.product_actual` product_actual ON t1.sku IN UNNEST(product_actual.items.sku)
-       ;;
+    sql: SELECT t.id,
+      max(t.productLast18Months) AS productLast18Months,
+      t.productType,
+      FROM (SELECT t1.contactId AS id,
+            (max(t1.productLast18Months) OVER (PARTITION BY productType)) AS productLast18Months,
+            productType,
+                FROM
+                  (
+                  SELECT customer.contactId AS contactId,
+                  (((CAST(createdTimestamp AS DateTime)) BETWEEN DATE_ADD(CURRENT_DATE(), INTERVAL -18 MONTH) AND CURRENT_DATE()) AND (quantityOrdered > 0)) AS productLast18Months,
+                  product.sku AS sku,
+                  FROM `body-fit-test.orders.order_actual` order_actual,
+                  UNNEST (order_actual.orderLines) AS orderLines
+                  ) t1
+                  INNER JOIN `body-fit-test.products.product_actual` product_actual ON t1.sku IN UNNEST(product_actual.items.sku))t
+                  GROUP BY id, productType
+             ;;
   }
 
   measure: count {
