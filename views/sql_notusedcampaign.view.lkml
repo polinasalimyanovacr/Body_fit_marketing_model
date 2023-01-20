@@ -1,22 +1,17 @@
 view: sql_notusedcampaign {
   derived_table: {
     sql: SELECT s.contactId AS id,
-      CASE WHEN ((((CAST(s.createdTimestamp AS DateTime)) > (CAST(t2.activityDate AS DateTime))) AND
-      (s.quantityOrdered > 0)) OR (IFNULL(t2.opened, false)))
+      CASE WHEN ((((CAST(s.createdTimestamp AS DateTime)) > (CAST(t1.activityDate AS DateTime))) AND
+      (s.quantityOrdered > 0) AND ((IFNULL((t1.activity = 'OPENS'), false) = true))) OR ((IFNULL((t1.activity = 'OPENS'), false)) = false))
       THEN false ELSE true END AS didNotBuy,
-      IFNULL(t2.opened, false) AS opened,
-      FROM
-      (SELECT
-      t1.activityDate AS activityDate,
-      t1.externalId AS id,
-      ((t1.activity = 'OPENS') AND (IFNULL((t1.broadcastId = t.broadcastId), false)))AS opened,
+      IFNULL((t1.activity = 'OPENS'), false) AS opened,
       FROM
       (SELECT
       broadcasts.broadcastId AS broadcastId,
       FROM `body-fit-test.clang.broadcasts` broadcasts) t
-      RIGHT JOIN (SELECT activity, externalId, activityDate, broadcastId, FROM `body-fit-test.clang.activities` activities) t1 ON t1.broadcastId = t.broadcastId) t2
+      INNER JOIN (SELECT activity, externalId, activityDate, broadcastId, FROM `body-fit-test.clang.activities` activities) t1 ON t1.broadcastId = t.broadcastId
       RIGHT JOIN (SELECT customer.contactId AS contactId, quantityOrdered, createdTimestamp, FROM `body-fit-test.orders.order_actual` order_actual, UNNEST (order_actual.orderLines) AS orderLines) s
-      ON t2.id = s.contactId;;
+      ON t1.externalId = s.contactId;;
   }
 
   measure: count {
