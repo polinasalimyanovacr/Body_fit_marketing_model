@@ -39,6 +39,7 @@ view: orders {
 
   measure: count {
     type: count
+    value_format: "#,##0"
     }
 
   measure: Count_Distinct_contacts {
