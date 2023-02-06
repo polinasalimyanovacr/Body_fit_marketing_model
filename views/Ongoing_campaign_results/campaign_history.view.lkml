@@ -95,4 +95,11 @@ view: campaign_history {
     type: count
     drill_fields: []
   }
+
+  measure: total_revenue {
+    type: sum
+    sql: ${TABLE}.total_ordered_revenue ;;
+    value_format: "\"€\"#,##0.00"
+ #   sql_distinct_key: ${TABLE}.transactionId;;
+  }
 }
