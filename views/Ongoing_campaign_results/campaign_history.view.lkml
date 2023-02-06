@@ -74,6 +74,7 @@ view: campaign_history {
   dimension: impression {
     type: number
     sql: ${TABLE}.impression ;;
+    description: "An impression is counted each time your ad is shown on a search result page or other sites on the Google Network."
   }
 
   dimension: total_ordered_quantity {
