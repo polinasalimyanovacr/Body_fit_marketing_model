@@ -25,6 +25,7 @@ view: campaign_history {
   dimension: click {
     type: number
     sql: ${TABLE}.click ;;
+    description: "Decision mamaking category.Worth finding the customers who showed interest in the campaign and clicked on the advert."
   }
 
   dimension: contact_id {
@@ -35,6 +36,7 @@ view: campaign_history {
   dimension: conversion {
     type: number
     sql: ${TABLE}.conversion ;;
+    description: "Purchase category. Capitalise on marketing investments to ensure the audience generates purchases pushed by the campaign."
   }
 
   dimension: currency {
@@ -74,7 +76,7 @@ view: campaign_history {
   dimension: impression {
     type: number
     sql: ${TABLE}.impression ;;
-    description: "An impression is counted each time your ad is shown on a search result page or other sites on the Google Network."
+    description: "Exploration category.An impression is counted each time your ad is shown on a search result page or other sites on the Google Network."
   }
 
   dimension: total_ordered_quantity {
