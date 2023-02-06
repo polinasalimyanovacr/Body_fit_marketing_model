@@ -16,6 +16,8 @@ explore: segments_test_copy {}
 
 explore: vocabulary {}
 
+explore: campaign_history {}
+
 #MASTER VIEW with joins
 explore:  orders {
   join: sql_inactive {
