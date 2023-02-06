@@ -16,7 +16,13 @@ explore: segments_test_copy {}
 
 explore: vocabulary {}
 
-explore: campaign_history {}
+explore: campaign_history {
+  join: segments {
+    type: left_outer
+    sql_on: ${campaign_history.audience_id}=${segments.id} ;;
+    relationship: many_to_one
+  }
+}
 
 #MASTER VIEW with joins
 explore:  orders {
