@@ -52,4 +52,10 @@ view: segments {
     type: count
     drill_fields: [id, segment_name]
   }
+
+  measure: segment_size_n {
+    type: number
+    sql: ${TABLE}.segment_size ;;
+    }
+
 }
