@@ -54,7 +54,7 @@ view: segments {
   }
 
   measure: segment_size_n {
-    type: number
+    type: sum
     sql: ${TABLE}.segment_size ;;
     }
 
