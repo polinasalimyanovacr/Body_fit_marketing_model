@@ -16,19 +16,6 @@ explore: segments_test_copy {}
 
 explore: vocabulary {}
 
-explore: campaign_history {
-  join: segments {
-    type: left_outer
-    sql_on: ${campaign_history.audience_id}=${segments.id} ;;
-    relationship: many_to_one
-  }
-  join:  audience_performance_daily {
-    type: left_outer
-    sql_on: ${audience_performance_daily.audience_id}=${segments.id} ;;
-    relationship: many_to_one
-  }
-}
-
 explore: audience_performance_daily  {
   join: segments {
     type: left_outer
