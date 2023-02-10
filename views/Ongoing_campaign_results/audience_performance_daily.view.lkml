@@ -76,6 +76,7 @@ view: audience_performance_daily {
     type: number
     sql: ${TABLE}.CTR ;;
     description: "CTR is the number of clicks that your ad receives divided by the number of times your ad is shown: clicks ÷ impressions = CTR."
+    hidden: yes
   }
 
   dimension: currency {
@@ -111,11 +112,26 @@ view: audience_performance_daily {
   dimension: impressions {
     type: number
     sql: ${TABLE}.impressions ;;
+    hidden: yes
     description: "The number of times any URL from your site appeared in search results viewed by a user, not including paid Google Ads search impressions."
   }
 
   measure: count {
     type: count
     drill_fields: []
+  }
+
+  measure: impressios_sum {
+    type: sum
+    sql: ${TABLE}.impressions ;;
+    value_format: "\"€\"#,##0.00"
+    description: "The number of times any URL from your site appeared in search results viewed by a user, not including paid Google Ads search impressions."
+  }
+
+  measure: ctr_sum {
+    type: sum
+    sql: ${TABLE}.CTR ;;
+    value_format: "\"€\"#,##0.00"
+    description: "CTR is the number of clicks that your ad receives divided by the number of times your ad is shown: clicks ÷ impressions = CTR."
   }
 }
