@@ -24,6 +24,8 @@ explore: campaign_history {
   }
 }
 
+explore: audience_performance_daily  {}
+
 #MASTER VIEW with joins
 explore:  orders {
   join: sql_inactive {
