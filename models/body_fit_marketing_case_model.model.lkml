@@ -23,7 +23,7 @@ explore: audience_performance_daily  {
     relationship: many_to_one
   }
   join:  campaign_history {
-    type: left_outer
+    type: full_outer
     sql_on: ${audience_performance_daily.audience_id}=${campaign_history.audience_id} ;;
     relationship: many_to_one
   }
