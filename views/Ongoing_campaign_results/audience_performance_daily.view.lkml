@@ -179,6 +179,13 @@ view: audience_performance_daily {
     description: "Conversion rates are calculated by simply taking the number of conversions and dividing that by the number of total ad interactions that can be tracked to a conversion during the same time period."
   }
 
+  measure: conv_rate_avg {
+    type: average
+    sql: ${TABLE}.conv_rate ;;
+    value_format: "#,##0.00"
+    description: "Conversion rates are calculated by simply taking the number of conversions and dividing that by the number of total ad interactions that can be tracked to a conversion during the same time period."
+  }
+
   measure: clicks_sum {
     type: sum
     sql: ${TABLE}.clicks ;;
