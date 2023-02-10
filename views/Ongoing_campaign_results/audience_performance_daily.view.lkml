@@ -132,6 +132,7 @@ view: audience_performance_daily {
   measure: impressios_sum {
     type: sum
     sql: ${TABLE}.impressions ;;
+    hidden: no
     value_format: "\"€\"#,##0.00"
     description: "The number of times any URL from your site appeared in search results viewed by a user, not including paid Google Ads search impressions."
   }
