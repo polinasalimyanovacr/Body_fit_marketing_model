@@ -16,6 +16,19 @@ explore: segments_test_copy {}
 
 explore: vocabulary {}
 
+explore: audience_performance_daily  {
+  join: segments {
+    type: left_outer
+    sql_on: ${audience_performance_daily.audience_id}=${segments.id} ;;
+    relationship: many_to_one
+  }
+  join:  campaign_history {
+    type: left_outer
+    sql_on: ${audience_performance_daily.audience_id}=${campaign_history.audience_id} ;;
+    relationship: many_to_one
+  }
+}
+
 #MASTER VIEW with joins
 explore:  orders {
   join: sql_inactive {
