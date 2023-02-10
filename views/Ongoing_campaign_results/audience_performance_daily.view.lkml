@@ -15,6 +15,7 @@ view: audience_performance_daily {
 
   dimension: audience_id {
     type: string
+    primary_key: yes
     sql: ${TABLE}.audience_id ;;
   }
 
