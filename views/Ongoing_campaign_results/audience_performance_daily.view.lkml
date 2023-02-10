@@ -21,12 +21,14 @@ view: audience_performance_daily {
   dimension: audience_size {
     type: number
     sql: ${TABLE}.audience_size ;;
+    hidden: yes
     description: "The number of customers' emails that are included into the  campaign audience"
   }
 
   dimension: avg_cpc {
     type: number
     sql: ${TABLE}.avg_CPC ;;
+    hidden: yes
     description: "Cost-per-click or CPC can be seen in the Acquisition reports and typically refers to people clicking through to your website from paid ads. This includes traffic from linked Google Ads accounts and campaign tagged URLs where the medium has been defined as ‘cpc’ or ‘paid’. "
   }
 
@@ -39,30 +41,35 @@ view: audience_performance_daily {
   dimension: clicks {
     type: number
     sql: ${TABLE}.clicks ;;
+    hidden: yes
     description: "The number of clicks on your website URLs from a Google Search results page, not including clicks on paid Google Ads search results"
   }
 
   dimension: conv_rate {
     type: number
     sql: ${TABLE}.conv_rate ;;
+    hidden: yes
     description: "Conversion rates are calculated by simply taking the number of conversions and dividing that by the number of total ad interactions that can be tracked to a conversion during the same time period."
   }
 
   dimension: conv_value {
     type: number
     sql: ${TABLE}.conv_value ;;
+    hidden: yes
     description: "Value per conversion tells you approximately how much, on average, each of your conversions is worth. It's calculated by dividing your total conversion value by the number in your “Conversions” column. This metric is useful if each of your conversions has a different value."
   }
 
   dimension: conv_value_per_cost {
     type: number
     sql: ${TABLE}.conv_value_per_cost ;;
+    hidden: yes
     description: "Conversion value per cost estimates your return on investment. It's calculated by dividing your total conversion value by the total cost of all ad interactions."
   }
 
   dimension: conversions {
     type: number
     sql: ${TABLE}.conversions ;;
+    hidden: yes
     description: "A conversion is reported whenever a user completes a goal or makes a purchase during a session. Each goal will report a maximum of one conversion per session, while every transaction is reported. See also goal completion and ecommerce transaction. "
   }
 
@@ -70,6 +77,7 @@ view: audience_performance_daily {
     type: number
     sql: ${TABLE}.cost ;;
     description: "A cost is the value of money that has been used up to manage marketing campaigns"
+    hidden: yes
   }
 
   dimension: ctr {
@@ -133,5 +141,60 @@ view: audience_performance_daily {
     sql: ${TABLE}.CTR ;;
     value_format: "\"€\"#,##0.00"
     description: "CTR is the number of clicks that your ad receives divided by the number of times your ad is shown: clicks ÷ impressions = CTR."
+  }
+
+  measure: cost_sum {
+    type: sum
+    sql: ${TABLE}.cost ;;
+    description: "A cost is the value of money that has been used up to manage marketing campaigns"
+    value_format: "\"€\"#,##0.00"
+  }
+
+  measure: conversion_sum {
+    type: sum
+    sql: ${TABLE}.conversions ;;
+    description: "A conversion is reported whenever a user completes a goal or makes a purchase during a session. Each goal will report a maximum of one conversion per session, while every transaction is reported. See also goal completion and ecommerce transaction. "
+    value_format: "\"€\"#,##0.00"
+  }
+
+  measure: conv_value_per_cost_sum {
+    type: sum
+   sql: ${TABLE}.conv_value_per_cost ;;
+    description: "Conversion value per cost estimates your return on investment. It's calculated by dividing your total conversion value by the total cost of all ad interactions."
+    value_format: "\"€\"#,##0.00"
+  }
+
+  measure: conv_value_sum {
+    type: sum
+   sql: ${TABLE}.conv_value ;;
+    description: "Value per conversion tells you approximately how much, on average, each of your conversions is worth. It's calculated by dividing your total conversion value by the number in your “Conversions” column. This metric is useful if each of your conversions has a different value."
+    value_format: "\"€\"#,##0.00"
+  }
+
+  measure: conv_rate_sum {
+    type: sum
+    sql: ${TABLE}.conv_rate ;;
+    description: "Conversion rates are calculated by simply taking the number of conversions and dividing that by the number of total ad interactions that can be tracked to a conversion during the same time period."
+  }
+
+  measure: clicks_sum {
+    type: sum
+    sql: ${TABLE}.clicks ;;
+    description: "The number of clicks on your website URLs from a Google Search results page, not including clicks on paid Google Ads search results"
+    value_format: "\"€\"#,##0.00"
+  }
+
+  measure: avg_CPC_a {
+    type: average
+    sql: ${TABLE}.avg_CPC ;;
+    description: "Cost-per-click or CPC can be seen in the Acquisition reports and typically refers to people clicking through to your website from paid ads. This includes traffic from linked Google Ads accounts and campaign tagged URLs where the medium has been defined as ‘cpc’ or ‘paid’. "
+    value_format: "\"€\"#,##0.00"
+  }
+
+  measure: audience_size_sum {
+    type: sum
+    sql: ${TABLE}.audience_size ;;
+    description: "The number of customers' emails that are included into the  campaign audience"
+    value_format: "\"€\"#,##0.00"
   }
 }
