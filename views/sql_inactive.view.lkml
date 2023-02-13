@@ -6,11 +6,11 @@ view: sql_inactive {
                 FROM
                   (
                   SELECT customer.contactId AS contactId,
-                  CASE WHEN (max(CASE WHEN ((CAST(createdTimestamp AS DateTime)) BETWEEN DATE_ADD(CURRENT_DATE(), INTERVAL -24 MONTH)
-                                      AND (CURRENT_DATE() - INTERVAL 6 MONTH) AND (quantityOrdered > 0))
+                  CASE WHEN (max(CASE WHEN (((CAST(createdTimestamp AS DateTime)) BETWEEN DATE_ADD(CURRENT_DATE(), INTERVAL -24 MONTH)
+                                      AND (CURRENT_DATE() - INTERVAL 6 MONTH)) AND (quantityOrdered > 0))
                                 THEN true ELSE false END)
-                        AND min(CASE WHEN ((CAST(createdTimestamp AS DateTime)) BETWEEN DATE_ADD(CURRENT_DATE(), INTERVAL -6 MONTH)
-                                      AND CURRENT_DATE() AND (quantityOrdered > 0))
+                        AND min(CASE WHEN (((CAST(createdTimestamp AS DateTime)) BETWEEN DATE_ADD(CURRENT_DATE(), INTERVAL -6 MONTH)
+                                      AND CURRENT_DATE()) AND (quantityOrdered > 0))
                                 THEN false ELSE true END))
                   THEN true ELSE false END AS inactive,
                   FROM `body-fit-test.orders.order_actual` order_actual,

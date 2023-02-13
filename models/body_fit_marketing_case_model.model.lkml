@@ -37,12 +37,6 @@ explore:  orders {
     relationship: many_to_one
   }
 
-  join: contacts {
-    type: left_outer
-    sql_on: ${orders.contact_id} = ${contacts.contact_id};;
-    relationship: many_to_one
-  }
-
   join: sql_notusedcampaign {
     type: left_outer
     sql_on: ${orders.contact_id} = ${sql_notusedcampaign.contact_id} ;;
@@ -67,7 +61,6 @@ explore:  orders {
     relationship: many_to_many
   }
 }
-
 explore: segments_test {
     #Repeated nested object
     join: segments_test_copy {
