@@ -4,7 +4,8 @@ connection: "body-fit-test"
 include: "/views/**/*.view"
 
 datagroup: body_fit_marketing_case_model_default_datagroup {
-  # sql_trigger: SELECT MAX(id) FROM etl_log;;
+  sql_trigger: SELECT FORMAT_TIMESTAMP('%F',
+  CURRENT_TIMESTAMP(), 'Europe/Amsterdam');;
   max_cache_age: "24 hour"
 }
 
@@ -67,6 +68,8 @@ explore:  orders {
     relationship: many_to_many
   }
 }
+
+
 explore: segments_test {
     #Repeated nested object
     join: segments_test_copy {
