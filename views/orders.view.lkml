@@ -186,7 +186,7 @@ view: orders {
     sql: ${TABLE}.totalCancelledQuantity ;;
   }
 
-  dimension: age {
+  dimension: orders.age {
     type: number
     sql: ${TABLE}.age ;;
   }
