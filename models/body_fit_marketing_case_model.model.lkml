@@ -61,12 +61,6 @@ explore:  orders {
     sql_on: ${orders.contact_id} = ${sql_unusedvoucher.contact_id} ;;
     relationship: many_to_many
   }
-
-  join: contacts {
-    type: left_outer
-    sql_on: ${orders.contact_id} = ${contacts.contact_id} ;;
-    relationship: many_to_many
-  }
 }
 
 
