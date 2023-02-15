@@ -1,6 +1,7 @@
 view: orders {
   derived_table: {
     sql: SELECT  CONCAT ("Age: ", {{ _filters['orders.age'] | sql_quote  }},
+        ", Email HashCode: ", {{_filters['orders.email_hash_code'] | sql_quote}},
         ", Email consent: " ,{{ _filters['orders.email_consent'] | sql_quote }},
         ", City: " ,{{ _filters['orders.shipping_address_city'] | sql_quote }},
         ", Timestamp Date: " ,{{ _filters['orders.timestamp_date'] | sql_quote }},
@@ -16,6 +17,7 @@ view: orders {
         IFNULL(s.age, 0) AS age,
         s.gender AS gender,
         transactionId,
+        s.emailHashCode AS emailHashCode,
         (SELECT value FROM s.opts WHERE name = 'generalConditions' ORDER BY confirmedTimestamp DESC LIMIT 1) as emailConsent,
         customer.contactId AS contactId,
         customer.languageCode AS contactLanguageCode,
@@ -33,7 +35,7 @@ view: orders {
         *
       FROM
         `body-fit-test.orders.order_actual`) t
-        LEFT JOIN ( SELECT contactId, age, opts, gender FROM `body-fit-test.contacts.contact_actual` contact_actual) s
+        LEFT JOIN ( SELECT contactId, age, opts, gender, emailHashCode FROM `body-fit-test.contacts.contact_actual` contact_actual) s
             ON t.customer.contactId = s.contactId
       WHERE
         t.customer.contactId IS NOT NULL;;
@@ -60,6 +62,11 @@ view: orders {
     sql: ${TABLE}.emailConsent ;;
   }
 
+  dimension: email_hash_code {
+    type: string
+    sql: ${TABLE}.emailHashCode ;;
+  }
+
   dimension: gender {
     type: string
     sql: ${TABLE}.gender ;;
@@ -71,6 +78,7 @@ view: orders {
     sql:   ${TABLE}.contactId ;;
     html: <a href="https://crystalloids.eu.looker.com/looks/88?
     &f[orders.age]={{ _filters['orders.age'] | url_encode }}
+    &f[orders.email_hash_code]={{ _filters['orders.email_hash_code'] | url_encode }}
     &f[orders.email_consent]={{ _filters['orders.email_consent'] | url_encode }}
     &f[orders.shipping_address_city]={{ _filters['orders.shipping_address_city'] | url_encode }}
     &f[orders.timestamp_date]={{ _filters['orders.timestamp_date'] | url_encode }}
