@@ -42,8 +42,8 @@
       City: orders.shipping_address_city
       Timestamp Date: orders.timestamp_date
       Country Code: orders.shipping_address_country_code
-      Email Consent (Yes / No): contacts.email_consent
-      Gender: contacts.gender
+      Email Consent (Yes / No): orders.email_consent
+      Gender: orders.gender
       Inactive (Yes / No): sql_inactive.inactive
       Did Not Buy (Yes / No): sql_notusedcampaign.did_not_buy
       Product Last18 Months (Yes / No): sql_productslast18months.product_last18_months
@@ -134,8 +134,8 @@
       City: orders.shipping_address_city
       Timestamp Date: orders.timestamp_date
       Country Code: orders.shipping_address_country_code
-      Email Consent (Yes / No): contacts.email_consent
-      Gender: contacts.gender
+      Email Consent (Yes / No): orders.email_consent
+      Gender: orders.gender
       Inactive (Yes / No): sql_inactive.inactive
       Did Not Buy (Yes / No): sql_notusedcampaign.did_not_buy
       Product Last18 Months (Yes / No): sql_productslast18months.product_last18_months
@@ -234,8 +234,8 @@
       City: orders.shipping_address_city
       Timestamp Date: orders.timestamp_date
       Country Code: orders.shipping_address_country_code
-      Email Consent (Yes / No): contacts.email_consent
-      Gender: contacts.gender
+      Email Consent (Yes / No): orders.email_consent
+      Gender: orders.gender
       Inactive (Yes / No): sql_inactive.inactive
       Did Not Buy (Yes / No): sql_notusedcampaign.did_not_buy
       Product Last18 Months (Yes / No): sql_productslast18months.product_last18_months
@@ -653,8 +653,8 @@
       Timestamp Date: orders.timestamp_date
       Age: orders.age
       City: orders.shipping_address_city
-      Email Consent (Yes / No): contacts.email_consent
-      Gender: contacts.gender
+      Email Consent (Yes / No): orders.email_consent
+      Gender: orders.gender
       Inactive (Yes / No): sql_inactive.inactive
       Did Not Buy (Yes / No): sql_notusedcampaign.did_not_buy
       Product Last18 Months (Yes / No): sql_productslast18months.product_last18_months
@@ -730,8 +730,8 @@
       Timestamp Date: orders.timestamp_date
       Age: orders.age
       City: orders.shipping_address_city
-      Email Consent (Yes / No): contacts.email_consent
-      Gender: contacts.gender
+      Email Consent (Yes / No): orders.email_consent
+      Gender: orders.gender
       Inactive (Yes / No): sql_inactive.inactive
       Did Not Buy (Yes / No): sql_notusedcampaign.did_not_buy
       Product Last18 Months (Yes / No): sql_productslast18months.product_last18_months
@@ -777,7 +777,7 @@
     model: body_fit_marketing_case_model
     explore: orders
     listens_to_filters: []
-    field: contacts.email_consent
+    field: orders.email_consent
   - name: City
     title: City
     type: field_filter
@@ -817,7 +817,7 @@
     model: body_fit_marketing_case_model
     explore: orders
     listens_to_filters: []
-    field: contacts.gender
+    field: orders.gender
   - name: Country Code
     title: Country Code
     type: field_filter
