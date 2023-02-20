@@ -7,6 +7,7 @@ navigation: true
 # Generate selection
 
 This section you can use to generate selection for th marketing campaigns and send them to marketing tools such as Google Ads.
+
 A user can easily make a selection by accessing the Looker dashboard. Here they can select (custom) filters to ensure they get their desired audience. The dashboard will continually update while refining their selection to provide the user with relevant information and insights about their current audience selection, for example, the total number of orders or revenue for which the selection is responsible. To send the audience selection, all that the user has to do is click the Select Audience button on the dashboard after they are done.
 
 
