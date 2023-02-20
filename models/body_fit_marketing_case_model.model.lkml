@@ -64,6 +64,19 @@ explore:  orders {
 
 }
 
+# Place in `body_fit_marketing_case_model` model
+explore: +orders {
+  aggregate_table: rollup__contact_email_address__total_order_revenue {
+    query: {
+      dimensions: [contact_email_address, total_order_revenue]
+    }
+
+    materialization: {
+      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
+    }
+  }
+}
+
 
 explore: segments_test {
     #Repeated nested object
