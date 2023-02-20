@@ -1,8 +1,11 @@
 ---
-navigation: true
+navigation:
+  - data_definitions
+  - navigation
+  - section: My Section Name
+  - generate_selection
+  - document_four
 ---
-
-- section: Generate selections for marketing campaigns
 
 # Generate selection
 
