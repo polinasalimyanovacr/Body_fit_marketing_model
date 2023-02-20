@@ -2,7 +2,7 @@
 navigation: true
 ---
 
-# Navigation
+# Navigate your data journey to manage various marketing campaigns
 
 # Generate selection
 
