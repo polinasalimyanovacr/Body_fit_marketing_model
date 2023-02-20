@@ -4,19 +4,10 @@ Put your documentation here! Your text is rendered with [GitHub Flavored Markdow
 
 ---
 
-
-title: Help Center
-
-
+title: Navigation
 navigation:
-
-
-  - section: Help Center
-
-
+  - section: Generate selection
   - document: overview_doc
-
-
     label: Overview
 
 
