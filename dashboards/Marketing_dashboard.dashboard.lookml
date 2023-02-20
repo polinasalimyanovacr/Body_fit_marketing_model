@@ -328,8 +328,8 @@
       City: orders.shipping_address_city
       Timestamp Date: orders.timestamp_date
       Country Code: orders.shipping_address_country_code
-      Email Consent (Yes / No): contacts.email_consent
-      Gender: contacts.gender
+      Email Consent (Yes / No): orders.email_consent
+      Gender: orders.gender
       Inactive (Yes / No): sql_inactive.inactive
       Did Not Buy (Yes / No): sql_notusedcampaign.did_not_buy
       Product Last18 Months (Yes / No): sql_productslast18months.product_last18_months
@@ -534,10 +534,10 @@
     listen:
       Age: orders.age
       City: orders.shipping_address_city
+      Email Consent (Yes / No): orders.email_consent
+      Gender: orders.gender
       Timestamp Date: orders.timestamp_date
       Country Code: orders.shipping_address_country_code
-      Email Consent (Yes / No): contacts.email_consent
-      Gender: contacts.gender
       Inactive (Yes / No): sql_inactive.inactive
       Did Not Buy (Yes / No): sql_notusedcampaign.did_not_buy
       Product Last18 Months (Yes / No): sql_productslast18months.product_last18_months
