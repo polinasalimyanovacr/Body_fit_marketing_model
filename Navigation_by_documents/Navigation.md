@@ -1,10 +1,5 @@
 ---
-navigation:
-  - data_definitions
-  - navigation
-  - section: My Section Name
-  - generate_selection
-  - document_four
+navigation: true
 ---
 
 # Generate selection
