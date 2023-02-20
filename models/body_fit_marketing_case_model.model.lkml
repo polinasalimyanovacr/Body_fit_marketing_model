@@ -30,7 +30,7 @@ explore: audience_performance_daily  {
   }
 }
 
-#MASTER VIEW with join
+#MASTER VIEW with joins
 explore:  orders {
   join: sql_inactive {
    type: left_outer
