@@ -1,5 +1,5 @@
 ---
-navigation: true
+navigation:
  - section: Generate selections for marketing campaigns
  - document: Generate_selection
  - section: Analyse ongoing campaign performance
