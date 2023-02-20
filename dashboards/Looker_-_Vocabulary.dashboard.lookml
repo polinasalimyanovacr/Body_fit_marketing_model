@@ -3,14 +3,43 @@
   layout: newspaper
   preferred_viewer: dashboards-next
   description: ''
+  filters_location_top: false
   preferred_slug: Oc3KV3STWG6umnTnvXNHaI
   elements:
-  - title: Looker - vocabulary
-    name: Looker - vocabulary
+  - type: button
+    name: button_322
+    rich_content_json: '{"text":"Domain data","description":"","newTab":true,"alignment":"center","size":"medium","style":"FILLED","color":"#1A73E8"}'
+    row: 0
+    col: 8
+    width: 3
+    height: 1
+  - type: button
+    name: button_323
+    rich_content_json: '{"text":"Data Definitions","description":"","newTab":true,"alignment":"center","size":"medium","style":"FILLED","color":"#1A73E8"}'
+    row: 0
+    col: 0
+    width: 3
+    height: 1
+  - type: button
+    name: button_324
+    rich_content_json: '{"text":"KPIs ","description":"","newTab":true,"alignment":"center","size":"medium","style":"FILLED","color":"#1A73E8"}'
+    row: 0
+    col: 3
+    width: 2
+    height: 1
+  - type: button
+    name: button_325
+    rich_content_json: '{"text":"Metadata","description":"","newTab":true,"alignment":"center","size":"medium","style":"FILLED","color":"#1A73E8"}'
+    row: 0
+    col: 5
+    width: 3
+    height: 1
+  - title: Business Vocabulary
+    name: Business Vocabulary
     model: body_fit_marketing_case_model
     explore: vocabulary
     type: looker_grid
-    fields: [vocabulary.term, vocabulary.definition]
+    fields: [vocabulary.scope, vocabulary.term, vocabulary.description]
     sorts: [vocabulary.term]
     limit: 500
     show_view_names: false
@@ -28,52 +57,24 @@
     rows_font_size: 12
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    legend_position: center
-    point_style: none
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
     defaults_version: 1
-    series_types: {}
-    series_column_widths:
-      vocabulary.term: 130
     listen:
-      Term: vocabulary.term
-    row: 0
+      Scope: vocabulary.scope
+    row: 1
     col: 0
     width: 24
-    height: 14
+    height: 12
   filters:
-  - name: Term
-    title: Term
+  - name: Scope
+    title: Scope
     type: field_filter
     default_value: ''
     allow_multiple_values: true
     required: false
     ui_config:
-      type: tag_list
-      display: popover
+      type: button_group
+      display: inline
     model: body_fit_marketing_case_model
     explore: vocabulary
     listens_to_filters: []
-    field: vocabulary.term
+    field: vocabulary.scope
