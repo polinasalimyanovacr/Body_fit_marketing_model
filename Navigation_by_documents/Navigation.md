@@ -17,7 +17,7 @@ This section you can use to generate selection for th marketing campaigns and se
 
 [Contact Facet search]()
 
-# Analyse ongoing campaign results
+# Analyse ongoing campaign performance
 
 Blend you data from different marketing tools and accounts, analyse the campaign performance and know more about what is going on with your marketing campaign plans
 
