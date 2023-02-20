@@ -2,6 +2,8 @@
 navigation: true
 ---
 
+# Navigation
+
 # Generate selection
 
 This section you can use to generate selection for th marketing campaigns and send them to marketing tools such as Google Ads.
