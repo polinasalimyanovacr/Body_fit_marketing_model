@@ -64,11 +64,85 @@ explore:  orders {
 
 }
 
-# Place in `body_fit_marketing_case_model` model
 explore: +orders {
-  aggregate_table: rollup__contact_email_address__total_order_revenue {
+  aggregate_table: selection_count {
+    query: {
+      measures: [Count_Distinct_contacts, count]
+    }
+
+    materialization: {
+      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
+    }
+  }
+}
+
+explore: +orders {
+  aggregate_table: product_type_sales {
+    query: {
+      dimensions: [sql_productslast18months.product_type]
+      measures: [sql_productslast18months.count]
+      filters: [sql_productslast18months.product_last18_months: "Yes"]
+    }
+
+    materialization: {
+      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
+    }
+  }
+}
+
+explore: +orders {
+  aggregate_table: top_10_customers_by_revenue {
     query: {
       dimensions: [contact_email_address, total_order_revenue]
+    }
+
+    materialization: {
+      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
+    }
+  }
+}
+
+explore: +orders {
+  aggregate_table: inactive_customers {
+    query: {
+      dimensions: [sql_inactive.inactive]
+      measures: [sql_inactive.count]
+    }
+
+    materialization: {
+      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
+    }
+  }
+}
+
+explore: +orders {
+  aggregate_table: sales_buyers_customers {
+    query: {
+      dimensions: [sql_salesbuyer.sales_buyer]
+      measures: [sql_salesbuyer.count]
+    }
+
+    materialization: {
+      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
+    }
+  }
+}
+
+explore: +orders {
+  aggregate_table: selection_analysis {
+    query: {
+      dimensions: [
+        age,
+        contact_email_address,
+        email_consent,
+        gender,
+        shipping_address_country_code,
+        sql_inactive.inactive,
+        sql_productslast18months.product_last18_months,
+        sql_salesbuyer.sales_buyer,
+        total_order_revenue,
+        total_ordered_quantity
+      ]
     }
 
     materialization: {
