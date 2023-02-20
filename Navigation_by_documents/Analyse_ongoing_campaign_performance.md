@@ -1,8 +1,5 @@
 ---
 navigation: true
-#  - section: Generate selections for marketing campaigns
-#  - section: Analyse ongoing campaign results
-#  - section: Data Definitions
 ---
 
 # Analyse ongoing campaign performance
