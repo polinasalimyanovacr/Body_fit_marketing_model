@@ -191,6 +191,30 @@ explore: +orders {
   }
 }
 
+explore: +orders {
+  aggregate_table: rollup__age__contact_email_address__contact_id__email_consent__gender__shipping_address_country_code__sql_inactive_inactive__sql_productslast18months_product_last18_months__sql_salesbuyer_sales_buyer__surname {
+    query: {
+      dimensions: [
+        age,
+        contact_email_address,
+        contact_id,
+        email_consent,
+        gender,
+        shipping_address_country_code,
+        sql_inactive.inactive,
+        sql_productslast18months.product_last18_months,
+        sql_salesbuyer.sales_buyer,
+        surname
+      ]
+      measures: [average_revenue, sum_ordered_quantity]
+    }
+
+    materialization: {
+      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
+    }
+  }
+}
+
 
 explore: segments_test {
     #Repeated nested object

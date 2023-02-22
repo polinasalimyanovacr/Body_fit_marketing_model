@@ -16,6 +16,7 @@ view: orders {
         ", Product Type: " ,{{ _filters['sql_productslast18months.product_type'] | sql_quote }}) AS filter,
         IFNULL(s.age, 0) AS age,
         s.gender AS gender,
+        s.surname AS surname,
         transactionId,
         s.emailHashCode AS emailHashCode,
         (SELECT value FROM s.opts WHERE name = 'generalConditions' ORDER BY confirmedTimestamp DESC LIMIT 1) as emailConsent,
@@ -35,7 +36,7 @@ view: orders {
         *
       FROM
         `body-fit-test.orders.order_actual`) t
-        LEFT JOIN ( SELECT contactId, age, opts, gender, emailHashCode FROM `body-fit-test.contacts.contact_actual` contact_actual) s
+        LEFT JOIN ( SELECT contactId, age, opts, gender, surname, emailHashCode FROM `body-fit-test.contacts.contact_actual` contact_actual) s
             ON t.customer.contactId = s.contactId
       WHERE
         t.customer.contactId IS NOT NULL;;
@@ -60,6 +61,11 @@ view: orders {
   dimension: email_consent {
     type: yesno
     sql: ${TABLE}.emailConsent ;;
+  }
+
+  dimension: surname {
+    type: string
+    sql: ${TABLE}.surname ;;
   }
 
   dimension: email_hash_code {
@@ -108,6 +114,21 @@ view: orders {
     type: sum
     sql: ${total_order_revenue} ;;
     value_format: "\"€\"#,##0.00"
+    sql_distinct_key: ${TABLE}.transactionId;;
+    drill_fields: [revenue_drill*]
+  }
+
+  measure: average_revenue {
+    type: average
+    sql: ${total_order_revenue} ;;
+    value_format: "\"€\"#,##0.00"
+    sql_distinct_key: ${TABLE}.transactionId;;
+    drill_fields: [revenue_drill*]
+  }
+
+  measure: sum_ordered_quantity {
+    type: sum
+    sql: ${total_ordered_quantity} ;;
     sql_distinct_key: ${TABLE}.transactionId;;
     drill_fields: [revenue_drill*]
   }
