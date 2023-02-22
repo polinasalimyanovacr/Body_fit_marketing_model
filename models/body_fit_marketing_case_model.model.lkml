@@ -150,32 +150,13 @@ explore: +orders {
   }
 }
 
-explore: +orders {
-  aggregate_table: rollup__timestamp_day_of_month {
-    query: {
-      dimensions: [timestamp_day_of_month]
-      measures: [count]
-      filters: [
-        orders.age: "[0, 100]",
-        orders.timestamp_date: "1 months"
-      ]
-    }
-
-    materialization: {
-      increment_key: "orders.timestamp_date"
-      increment_offset: 3
-      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
-    }
-  }
-}
 
 explore: +orders {
-  aggregate_table: rollup__timestamp_month {
+  aggregate_table: rollup__timestamp_date {
     query: {
-      dimensions: [timestamp_month]
+      dimensions: [timestamp_date]
       measures: [count]
       filters: [
-        orders.age: "[0, 100]",
         orders.timestamp_date: "2020/12/08 to 2023/08/23"
       ]
     }
