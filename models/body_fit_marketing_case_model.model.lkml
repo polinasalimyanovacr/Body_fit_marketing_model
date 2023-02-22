@@ -152,12 +152,14 @@ explore: +orders {
 
 
 explore: +orders {
-  aggregate_table: rollup__timestamp_date {
+  aggregate_table: rollup__timestamp_month {
     query: {
-      dimensions: [timestamp_date]
+      dimensions: [timestamp_month]
       measures: [count]
       filters: [
-        orders.timestamp_date: "2020/12/08 to 2023/08/23"
+        orders.age: "[0, 100]",
+        orders.email_consent: "Yes",
+        orders.timestamp_date: "2020/12/01 to 2022/12/16"
       ]
     }
 
@@ -168,6 +170,27 @@ explore: +orders {
     }
   }
 }
+
+explore: +orders {
+  aggregate_table: rollup__timestamp_day_of_month {
+    query: {
+      dimensions: [timestamp_day_of_month]
+      measures: [count]
+      filters: [
+        orders.age: "[0, 100]",
+        orders.email_consent: "Yes",
+        orders.timestamp_date: "1 months"
+      ]
+    }
+
+    materialization: {
+      increment_key: "orders.timestamp_date"
+      increment_offset: 3
+      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
+    }
+  }
+}
+
 
 explore: segments_test {
     #Repeated nested object
