@@ -15,8 +15,6 @@ explore: bqml_models {}
 
 explore: segments_test_copy {}
 
-explore: vocabulary {}
-
 explore: audience_performance_daily  {
   join: segments {
     type: left_outer
@@ -29,6 +27,8 @@ explore: audience_performance_daily  {
     relationship: one_to_many
   }
 }
+
+explore: vocabulary {}
 
 #MASTER VIEW with joins
 explore:  orders {
@@ -61,7 +61,6 @@ explore:  orders {
     sql_on: ${orders.contact_id} = ${sql_unusedvoucher.contact_id} ;;
     relationship: many_to_many
   }
-
 }
 
 explore: +orders {
@@ -151,6 +150,22 @@ explore: +orders {
   }
 }
 
+explore: +orders {
+  aggregate_table: rollup__timestamp_day_of_month {
+    query: {
+      dimensions: [timestamp_day_of_month]
+      measures: [count]
+      filters: [
+        orders.age: "[0, 100]",
+        orders.timestamp_date: "1 months"
+      ]
+    }
+
+    materialization: {
+      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
+    }
+  }
+}
 
 explore: segments_test {
     #Repeated nested object
