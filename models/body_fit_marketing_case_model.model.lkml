@@ -192,13 +192,12 @@ explore: +orders {
 }
 
 explore: +orders {
-  aggregate_table: rollup__age__contact_email_address__contact_id__email_consent__gender__shipping_address_country_code__sql_inactive_inactive__sql_productslast18months_product_last18_months__sql_salesbuyer_sales_buyer__surname {
+  aggregate_table: rollup__age__contact_email_address__contact_id__gender__shipping_address_country_code__sql_inactive_inactive__sql_productslast18months_product_last18_months__sql_salesbuyer_sales_buyer__surname {
     query: {
       dimensions: [
         age,
         contact_email_address,
         contact_id,
-        email_consent,
         gender,
         shipping_address_country_code,
         sql_inactive.inactive,
