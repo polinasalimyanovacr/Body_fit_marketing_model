@@ -190,7 +190,7 @@ explore: +orders {
     }
   }
 }
-
+# Place in `body_fit_marketing_case_model` model
 explore: +orders {
   aggregate_table: rollup__age__contact_email_address__contact_id__gender__shipping_address_country_code__sql_inactive_inactive__sql_productslast18months_product_last18_months__sql_salesbuyer_sales_buyer__surname {
     query: {
@@ -206,6 +206,12 @@ explore: +orders {
         surname
       ]
       measures: [average_revenue, sum_ordered_quantity]
+      filters: [
+        orders.age: "[0, 100]",
+        orders.email_consent: "Yes",
+        orders.timestamp_date: "2020/12/01 to 2023/02/23",
+        sql_salesbuyer.discount_quantity_percentage: "[0, 100]"
+      ]
     }
 
     materialization: {
@@ -213,6 +219,7 @@ explore: +orders {
     }
   }
 }
+
 
 
 explore: segments_test {
