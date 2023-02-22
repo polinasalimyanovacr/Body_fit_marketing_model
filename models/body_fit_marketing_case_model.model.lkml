@@ -167,6 +167,23 @@ explore: +orders {
   }
 }
 
+explore: +orders {
+  aggregate_table: rollup__timestamp_month {
+    query: {
+      dimensions: [timestamp_month]
+      measures: [count]
+      filters: [
+        orders.age: "[0, 100]",
+        orders.timestamp_date: "2020/12/08 to 2023/08/23"
+      ]
+    }
+
+    materialization: {
+      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
+    }
+  }
+}
+
 explore: segments_test {
     #Repeated nested object
     join: segments_test_copy {
