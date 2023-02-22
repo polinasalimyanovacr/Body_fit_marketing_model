@@ -162,6 +162,8 @@ explore: +orders {
     }
 
     materialization: {
+      increment_key: timestamp_date
+      increment_offset: 3
       datagroup_trigger: body_fit_marketing_case_model_default_datagroup
     }
   }
@@ -179,6 +181,8 @@ explore: +orders {
     }
 
     materialization: {
+      increment_key: timestamp_date
+      increment_offset: 3
       datagroup_trigger: body_fit_marketing_case_model_default_datagroup
     }
   }
