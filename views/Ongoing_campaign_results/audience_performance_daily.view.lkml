@@ -15,6 +15,7 @@ view: audience_performance_daily {
 
   dimension: audience_id {
     type: string
+    primary_key: yes
     sql: ${TABLE}.audience_id ;;
   }
 
@@ -48,7 +49,7 @@ view: audience_performance_daily {
   dimension: conv_rate {
     type: number
     sql: ${TABLE}.conv_rate ;;
-    hidden: yes
+    hidden: no
     description: "Conversion rates are calculated by simply taking the number of conversions and dividing that by the number of total ad interactions that can be tracked to a conversion during the same time period."
   }
 
@@ -181,10 +182,11 @@ view: audience_performance_daily {
 
   measure: conv_rate_avg {
     type: average
-    sql: conv_rate_sum ;;
+    sql: ${TABLE}.conv_rate*100;;
     value_format: "#,##0.00"
     description: "Conversion rates are calculated by simply taking the number of conversions and dividing that by the number of total ad interactions that can be tracked to a conversion during the same time period."
   }
+
 
   measure: clicks_sum {
     type: sum

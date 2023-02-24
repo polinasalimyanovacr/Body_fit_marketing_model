@@ -1,10 +1,11 @@
 view: orders {
   derived_table: {
     sql: SELECT  CONCAT ("Age: ", {{ _filters['orders.age'] | sql_quote  }},
-        ", Email consent: " ,{{ _filters['contacts.email_consent'] | sql_quote }},
+        ", Email HashCode: ", {{_filters['orders.email_hash_code'] | sql_quote}},
+        ", Email consent: " ,{{ _filters['orders.email_consent'] | sql_quote }},
         ", City: " ,{{ _filters['orders.shipping_address_city'] | sql_quote }},
         ", Timestamp Date: " ,{{ _filters['orders.timestamp_date'] | sql_quote }},
-        ", Gender: " ,{{ _filters['contacts.gender'] | sql_quote }},
+        ", Gender: " ,{{ _filters['orders.gender'] | sql_quote }},
         ", Country Code: " ,{{ _filters['orders.shipping_address_country_code'] | sql_quote }},
         ", Inactive: " ,{{ _filters['sql_inactive.inactive'] | sql_quote  }},
         ", Did Not Buy: " ,{{ _filters['sql_notusedcampaign.did_not_buy'] | sql_quote }},
@@ -14,7 +15,11 @@ view: orders {
         ", Unused: " ,{{ _filters['sql_unusedvoucher.unused'] | sql_quote }},
         ", Product Type: " ,{{ _filters['sql_productslast18months.product_type'] | sql_quote }}) AS filter,
         IFNULL(s.age, 0) AS age,
+        s.gender AS gender,
+        s.surname AS surname,
         transactionId,
+        s.emailHashCode AS emailHashCode,
+        (SELECT value FROM s.opts WHERE name = 'generalConditions' ORDER BY confirmedTimestamp DESC LIMIT 1) as emailConsent,
         customer.contactId AS contactId,
         customer.languageCode AS contactLanguageCode,
         customer.emailAddress AS contactEmailAddress,
@@ -31,7 +36,7 @@ view: orders {
         *
       FROM
         `body-fit-test.orders.order_actual`) t
-        LEFT JOIN ( SELECT contactId, age, FROM `body-fit-test.contacts.contact_actual` contact_actual) s
+        LEFT JOIN ( SELECT contactId, age, opts, gender, surname, emailHashCode FROM `body-fit-test.contacts.contact_actual` contact_actual) s
             ON t.customer.contactId = s.contactId
       WHERE
         t.customer.contactId IS NOT NULL;;
@@ -53,6 +58,25 @@ view: orders {
     sql: ${TABLE}.filter ;;
   }
 
+  dimension: email_consent {
+    type: yesno
+    sql: ${TABLE}.emailConsent ;;
+  }
+
+  dimension: surname {
+    type: string
+    sql: ${TABLE}.surname ;;
+  }
+
+  dimension: email_hash_code {
+    type: string
+    sql: ${TABLE}.emailHashCode ;;
+  }
+
+  dimension: gender {
+    type: string
+    sql: ${TABLE}.gender ;;
+  }
 
 #CONCAT(sql_inactive.inactive, " , " , sql_salesbuyer.SalesBuyer)
   dimension: Button_2 {
@@ -60,10 +84,11 @@ view: orders {
     sql:   ${TABLE}.contactId ;;
     html: <a href="https://crystalloids.eu.looker.com/looks/88?
     &f[orders.age]={{ _filters['orders.age'] | url_encode }}
-    &f[contacts.email_consent]={{ _filters['contacts.email_consent'] | url_encode }}
+    &f[orders.email_hash_code]={{ _filters['orders.email_hash_code'] | url_encode }}
+    &f[orders.email_consent]={{ _filters['orders.email_consent'] | url_encode }}
     &f[orders.shipping_address_city]={{ _filters['orders.shipping_address_city'] | url_encode }}
     &f[orders.timestamp_date]={{ _filters['orders.timestamp_date'] | url_encode }}
-    &f[contacts.gender]={{ _filters['contacts.gender'] | url_encode }}
+    &f[orders.gender]={{ _filters['orders.gender'] | url_encode }}
     &f[orders.shipping_address_country_code]={{ _filters['orders.shipping_address_country_code'] | url_encode }}
     &f[sql_inactive.inactive]={{ _filters['sql_inactive.inactive'] | url_encode }}
     &f[sql_notusedcampaign.did_not_buy]={{ _filters['sql_notusedcampaign.did_not_buy'] | url_encode }}
@@ -89,6 +114,21 @@ view: orders {
     type: sum
     sql: ${total_order_revenue} ;;
     value_format: "\"€\"#,##0.00"
+    sql_distinct_key: ${TABLE}.transactionId;;
+    drill_fields: [revenue_drill*]
+  }
+
+  measure: average_revenue {
+    type: average
+    sql: ${total_order_revenue} ;;
+    value_format: "\"€\"#,##0.00"
+    sql_distinct_key: ${TABLE}.transactionId;;
+    drill_fields: [revenue_drill*]
+  }
+
+  measure: sum_ordered_quantity {
+    type: sum
+    sql: ${total_ordered_quantity} ;;
     sql_distinct_key: ${TABLE}.transactionId;;
     drill_fields: [revenue_drill*]
   }
@@ -175,7 +215,7 @@ view: orders {
     sql: ${TABLE}.totalCancelledQuantity ;;
   }
 
-  dimension: age {
+  dimension: orders.age {
     type: number
     sql: ${TABLE}.age ;;
   }

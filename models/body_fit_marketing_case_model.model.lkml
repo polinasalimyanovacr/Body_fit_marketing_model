@@ -4,7 +4,8 @@ connection: "body-fit-test"
 include: "/views/**/*.view"
 
 datagroup: body_fit_marketing_case_model_default_datagroup {
-  # sql_trigger: SELECT MAX(id) FROM etl_log;;
+  sql_trigger: SELECT FORMAT_TIMESTAMP('%F',
+  CURRENT_TIMESTAMP(), 'Europe/Amsterdam');;
   max_cache_age: "24 hour"
 }
 
@@ -14,34 +15,26 @@ explore: bqml_models {}
 
 explore: segments_test_copy {}
 
-explore: vocabulary {}
-
-explore: campaign_history {
+explore: audience_performance_daily  {
   join: segments {
-    type: left_outer
-    sql_on: ${campaign_history.audience_id}=${segments.id} ;;
-    relationship: many_to_one
-  }
-  join:  audience_performance_daily {
     type: left_outer
     sql_on: ${audience_performance_daily.audience_id}=${segments.id} ;;
     relationship: many_to_one
   }
+  join:  campaign_history {
+    type: left_outer
+    sql_on: ${audience_performance_daily.audience_id}=${campaign_history.audience_id} ;;
+    relationship: one_to_many
+  }
 }
 
-explore: audience_performance_daily  {}
+explore: vocabulary {}
 
 #MASTER VIEW with joins
 explore:  orders {
   join: sql_inactive {
    type: left_outer
     sql_on: ${orders.contact_id} = ${sql_inactive.contact_id} ;;
-    relationship: many_to_one
-  }
-
-  join: contacts {
-    type: left_outer
-    sql_on: ${orders.contact_id} = ${contacts.contact_id};;
     relationship: many_to_one
   }
 
@@ -69,6 +62,165 @@ explore:  orders {
     relationship: many_to_many
   }
 }
+
+explore: +orders {
+  aggregate_table: selection_count {
+    query: {
+      measures: [Count_Distinct_contacts, count]
+    }
+
+    materialization: {
+      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
+    }
+  }
+}
+
+explore: +orders {
+  aggregate_table: product_type_sales {
+    query: {
+      dimensions: [sql_productslast18months.product_type]
+      measures: [sql_productslast18months.count]
+      filters: [sql_productslast18months.product_last18_months: "Yes"]
+    }
+
+    materialization: {
+      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
+    }
+  }
+}
+
+explore: +orders {
+  aggregate_table: top_10_customers_by_revenue {
+    query: {
+      dimensions: [contact_email_address, total_order_revenue]
+    }
+
+    materialization: {
+      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
+    }
+  }
+}
+
+explore: +orders {
+  aggregate_table: inactive_customers {
+    query: {
+      dimensions: [sql_inactive.inactive]
+      measures: [sql_inactive.count]
+    }
+
+    materialization: {
+      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
+    }
+  }
+}
+
+explore: +orders {
+  aggregate_table: sales_buyers_customers {
+    query: {
+      dimensions: [sql_salesbuyer.sales_buyer]
+      measures: [sql_salesbuyer.count]
+    }
+
+    materialization: {
+      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
+    }
+  }
+}
+
+explore: +orders {
+  aggregate_table: selection_analysis {
+    query: {
+      dimensions: [
+        age,
+        contact_email_address,
+        email_consent,
+        gender,
+        shipping_address_country_code,
+        sql_inactive.inactive,
+        sql_productslast18months.product_last18_months,
+        sql_salesbuyer.sales_buyer,
+        total_order_revenue,
+        total_ordered_quantity
+      ]
+    }
+
+    materialization: {
+      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
+    }
+  }
+}
+
+
+explore: +orders {
+  aggregate_table: rollup__timestamp_month {
+    query: {
+      dimensions: [timestamp_month]
+      measures: [count]
+      filters: [
+        orders.age: "[0, 100]",
+        orders.email_consent: "Yes",
+        orders.timestamp_date: "2020/12/01 to 2022/12/16"
+      ]
+    }
+
+    materialization: {
+      increment_key: "orders.timestamp_date"
+      increment_offset: 3
+      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
+    }
+  }
+}
+
+explore: +orders {
+  aggregate_table: rollup__timestamp_day_of_month {
+    query: {
+      dimensions: [timestamp_day_of_month]
+      measures: [count]
+      filters: [
+        orders.age: "[0, 100]",
+        orders.email_consent: "Yes",
+        orders.timestamp_date: "1 months"
+      ]
+    }
+
+    materialization: {
+      increment_key: "orders.timestamp_date"
+      increment_offset: 3
+      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
+    }
+  }
+}
+# Place in `body_fit_marketing_case_model` model
+explore: +orders {
+  aggregate_table: rollup__age__contact_email_address__contact_id__gender__shipping_address_country_code__sql_inactive_inactive__sql_productslast18months_product_last18_months__sql_salesbuyer_sales_buyer__surname {
+    query: {
+      dimensions: [
+        age,
+        contact_email_address,
+        contact_id,
+        gender,
+        shipping_address_country_code,
+        sql_inactive.inactive,
+        sql_productslast18months.product_last18_months,
+        sql_salesbuyer.sales_buyer,
+        surname
+      ]
+      measures: [average_revenue, sum_ordered_quantity]
+      filters: [
+        orders.age: "[0, 100]",
+        orders.email_consent: "Yes",
+        orders.timestamp_date: "2020/12/01 to 2023/02/23",
+        sql_salesbuyer.discount_quantity_percentage: "[0, 100]"
+      ]
+    }
+
+    materialization: {
+      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
+    }
+  }
+}
+
+
 
 explore: segments_test {
     #Repeated nested object

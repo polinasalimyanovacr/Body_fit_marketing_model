@@ -11,7 +11,7 @@ view: vocabulary {
 
   dimension: term {
     type: string
-    sql: ${TABLE}.Term ;;
+    sql: ${TABLE}.term ;;
     html:
     {% if value == "Dashboard" %}
     <p style="color: black; background-color: lightblue; font-size: 100%; text-align:left"> {{rendered_value}}</p>
@@ -27,20 +27,25 @@ view: vocabulary {
     <div style="text-align:left;">{{ rendered_value }}</div>
     {% endif %}
    ;;
-    link: {
-      label: "Google"
-      url: "https://google.com/search?q={{value}}"
-      icon_url: "https://google.com/favicon.ico"
-    }
+#    link: {
+#      label: "Google"
+#      url: "https://google.com/search?q={{value}}"
+#      icon_url: "https://google.com/favicon.ico"
+#    }
   }
 
 
-  dimension: definition {
+  dimension: description {
     type: string
-    sql: ${TABLE}.Definition ;;
+    sql: ${TABLE}.description ;;
+  }
+
+  dimension: scope {
+    type: string
+    sql: ${TABLE}.scope ;;
   }
 
   set: detail {
-    fields: [term, definition]
+    fields: [term, description]
   }
 }
