@@ -3,8 +3,10 @@ connection: "body-fit-test"
 # include all the views
 include: "/views/**/*.view"
 
-# include all the dashboards
+# include all the dashboards by name (as '/dashboards/**/*.dashboard.lookml' does not work)
 include: "/dashboards/audience_overlap.dashboard.lookml"
+include: "/dashboards/audience_performance.dashboard.lookml"
+include: "/dashboards/campaign_performance.dashboard.lookml"
 
 datagroup: body_fit_marketing_case_model_default_datagroup {
   sql_trigger: SELECT FORMAT_TIMESTAMP('%F',
