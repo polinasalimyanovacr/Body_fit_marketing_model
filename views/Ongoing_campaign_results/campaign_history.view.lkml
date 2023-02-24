@@ -1,5 +1,5 @@
 view: campaign_history {
-  sql_table_name: `tmp.campaign_history`
+  sql_table_name: `body-fit-test.tmp.campaign_history`
     ;;
 
   dimension: ad_group {
@@ -15,7 +15,6 @@ view: campaign_history {
   dimension: audience_id {
     type: string
     sql: ${TABLE}.audience_id ;;
-    primary_key: yes
   }
 
   dimension: campaign {
@@ -23,10 +22,9 @@ view: campaign_history {
     sql: ${TABLE}.campaign ;;
   }
 
-  dimension: click {
-    type: number
+  measure: click {
+    type: sum
     sql: ${TABLE}.click ;;
-    description: "Decision mamaking category.Worth finding the customers who showed interest in the campaign and clicked on the advert."
   }
 
   dimension: contact_id {
@@ -34,10 +32,9 @@ view: campaign_history {
     sql: ${TABLE}.contact_id ;;
   }
 
-  dimension: conversion {
-    type: number
+  measure: conversion {
+    type: sum
     sql: ${TABLE}.conversion ;;
-    description: "Purchase category. Capitalise on marketing investments to ensure the audience generates purchases pushed by the campaign."
   }
 
   dimension: currency {
@@ -47,15 +44,7 @@ view: campaign_history {
 
   dimension_group: date {
     type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
+    timeframes: [date, week, month]
     sql: ${TABLE}.date ;;
   }
 
@@ -74,24 +63,28 @@ view: campaign_history {
     sql: ${TABLE}.hashed_email ;;
   }
 
-  dimension: impression {
-    type: number
+  measure: impression {
+    type: sum
     sql: ${TABLE}.impression ;;
-    description: "Exploration category.An impression is counted each time your ad is shown on a search result page or other sites on the Google Network."
   }
 
-  dimension: total_ordered_quantity {
+  measure: num_contacts {
     type: number
+    sql: ${TABLE}.num_contacts ;;
+  }
+
+  measure: total_ordered_quantity {
+    type: sum
     sql: ${TABLE}.total_ordered_quantity ;;
   }
 
-  dimension: total_ordered_revenue {
-    type: number
+  measure: total_ordered_revenue {
+    type: sum
     sql: ${TABLE}.total_ordered_revenue ;;
   }
 
-  dimension: total_orders {
-    type: number
+  measure: total_orders {
+    type: sum
     sql: ${TABLE}.total_orders ;;
   }
 
@@ -99,17 +92,4 @@ view: campaign_history {
     type: count
     drill_fields: []
   }
-
-  measure: total_revenue_sum {
-    type: sum
-    sql: ${TABLE}.total_ordered_revenue ;;
-    value_format: "\"€\"#,##0.00"
- #   sql_distinct_key: ${TABLE}.transactionId;;
-  }
-
-  measure: total_ordered_quantity_sum {
-    type: sum
-    sql: ${TABLE}.total_ordered_quantity ;;
-    value_format: "#,##0.00"
-    }
 }

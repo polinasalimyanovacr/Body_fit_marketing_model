@@ -15,17 +15,33 @@ explore: bqml_models {}
 
 explore: segments_test_copy {}
 
-explore: audience_performance_daily  {
-  join: segments {
-    type: left_outer
-    sql_on: ${audience_performance_daily.audience_id}=${segments.id} ;;
-    relationship: many_to_one
-  }
-  join:  campaign_history {
-    type: left_outer
-    sql_on: ${audience_performance_daily.audience_id}=${campaign_history.audience_id} ;;
-    relationship: one_to_many
-  }
+# explore: audience_performance_daily  {
+#   join: segments {
+#     type: left_outer
+#     sql_on: ${audience_performance_daily.audience_id}=${segments.id} ;;
+#     relationship: many_to_one
+#   }
+#   join:  campaign_history {
+#     type: left_outer
+#     sql_on: ${audience_performance_daily.audience_id}=${campaign_history.audience_id} ;;
+#     relationship: one_to_many
+#   }
+# }
+
+explore: campaign_history {
+  from:  campaign_history
+}
+
+explore: campaign_performance {
+  from:  campaign_performance_daily
+}
+
+explore: audience_performance {
+  from:  audience_performance_daily
+}
+
+explore: audience_overlap {
+  from:  audience_overlap
 }
 
 explore: vocabulary {}
