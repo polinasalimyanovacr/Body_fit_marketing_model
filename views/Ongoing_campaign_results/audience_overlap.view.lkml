@@ -47,6 +47,7 @@ view: audience_overlap {
     type: sum
     value_format_name: percent_2
     sql: ${TABLE}.co_occurences/NULLIF(${TABLE}.audience_size,0) ;;
+    value_format: "0"
   }
 
   measure: count {
