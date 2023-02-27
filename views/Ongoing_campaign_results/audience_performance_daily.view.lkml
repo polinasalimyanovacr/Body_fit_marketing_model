@@ -31,7 +31,6 @@ view: audience_performance_daily {
   dimension: campaign {
     type: string
     sql: ${TABLE}.campaign ;;
-    primary_key: yes
   }
 
   measure: clicks {
