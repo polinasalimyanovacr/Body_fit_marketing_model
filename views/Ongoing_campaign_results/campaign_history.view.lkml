@@ -26,6 +26,7 @@ view: campaign_history {
   measure: click {
     type: sum
     sql: ${TABLE}.click ;;
+    value_format: "#,##0"
   }
 
   dimension: contact_id {
@@ -36,6 +37,7 @@ view: campaign_history {
   measure: conversion {
     type: sum
     sql: ${TABLE}.conversion ;;
+    value_format: "#,##0"
   }
 
   dimension: currency {
@@ -67,16 +69,13 @@ view: campaign_history {
   measure: impression {
     type: sum
     sql: ${TABLE}.impression ;;
-  }
-
-  measure: num_contacts {
-    type: sum
-    sql: ${TABLE}.num_contacts ;;
+    value_format: "#,##0"
   }
 
   measure: total_ordered_quantity {
     type: sum
     sql: ${TABLE}.total_ordered_quantity ;;
+    value_format: "#,##0"
   }
 
   measure: total_ordered_revenue {
