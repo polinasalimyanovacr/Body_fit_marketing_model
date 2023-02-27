@@ -20,18 +20,18 @@ explore: bqml_models {}
 
 explore: segments_test_copy {}
 
-# explore: audience_performance_daily  {
-#   join: segments {
-#     type: left_outer
-#     sql_on: ${audience_performance_daily.audience_id}=${segments.id} ;;
-#     relationship: many_to_one
-#   }
-#   join:  campaign_history {
-#     type: left_outer
-#     sql_on: ${audience_performance_daily.audience_id}=${campaign_history.audience_id} ;;
-#     relationship: one_to_many
-#   }
-# }
+explore: audience_performance_daily  {
+  join: segments {
+  type: left_outer
+   sql_on: ${audience_performance_daily.audience_id}=${segments.id} ;;
+  relationship: many_to_one
+ }
+  join:  campaign_history {
+  type: left_outer
+  sql_on: ${audience_performance_daily.audience_id}=${campaign_history.audience_id} ;;
+  relationship: one_to_many
+ }
+}
 
 explore: campaign_history {
   from:  campaign_history
@@ -46,11 +46,7 @@ explore: audience_performance {
 }
 
 explore: audience_overlap {
-  join: audience_performance_daily {
-  type: left_outer
-  sql_on: ${audience_overlap.audience_id} = ${audience_performance_daily.audience_id} ;;
-  relationship: one_to_many
-}
+  from:  audience_overlap
 }
 
 
