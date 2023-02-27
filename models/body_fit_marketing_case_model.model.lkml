@@ -33,6 +33,19 @@ explore: audience_performance_daily  {
  }
 }
 
+explore: campaign_performance_daily {
+  join: audience_performance_daily {
+    type: left_outer
+    sql_on: ${audience_performance_daily.audience_id}=${campaign_performance_daily.campaign} ;;
+    relationship: one_to_many
+  }
+  join:  campaign_history {
+    type: left_outer
+    sql_on: ${audience_performance_daily.audience_id}=${campaign_history.audience_id} ;;
+    relationship: one_to_many
+    }
+}
+
 explore: campaign_history {
   from:  campaign_history
 }
