@@ -43,6 +43,12 @@ view: audience_overlap {
     sql: ${TABLE}.co_occurences/NULLIF(${TABLE}.audience_size,0) ;;
   }
 
+  measure: overlap_measure {
+    type: sum
+    value_format_name: percent_2
+    sql: ${TABLE}.co_occurences/NULLIF(${TABLE}.audience_size,0) ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
