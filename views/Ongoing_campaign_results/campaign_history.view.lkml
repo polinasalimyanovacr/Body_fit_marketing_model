@@ -15,6 +15,7 @@ view: campaign_history {
   dimension: audience_id {
     type: string
     sql: ${TABLE}.audience_id ;;
+    primary_key: yes
   }
 
   dimension: campaign {
