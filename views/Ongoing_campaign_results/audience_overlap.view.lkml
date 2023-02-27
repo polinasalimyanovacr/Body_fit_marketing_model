@@ -9,6 +9,7 @@ view: audience_overlap {
 
   dimension: audience_id {
     type: string
+    primary_key: yes
     sql: ${TABLE}.audience_id ;;
   }
 

@@ -15,6 +15,7 @@ view: audience_performance_daily {
   dimension: audience_id {
     type: string
     sql: ${TABLE}.audience_id ;;
+    primary_key: yes
   }
 
   measure: audience_size {
