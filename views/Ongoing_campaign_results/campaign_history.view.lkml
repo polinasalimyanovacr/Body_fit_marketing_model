@@ -70,7 +70,7 @@ view: campaign_history {
   }
 
   measure: num_contacts {
-    type: number
+    type: sum
     sql: ${TABLE}.num_contacts ;;
   }
 
