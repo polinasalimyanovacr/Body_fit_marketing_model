@@ -50,7 +50,10 @@ view: audience_performance_daily {
 
   measure: conv_value_per_cost {
     type: number
+    value_format: "#,##0"
     sql: ${conv_value}/NULLIF(${cost}, 0) ;;
+
+
   }
 
   measure: conversions {

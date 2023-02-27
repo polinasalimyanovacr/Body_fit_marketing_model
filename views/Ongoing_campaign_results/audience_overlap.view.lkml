@@ -51,6 +51,31 @@ view: audience_overlap {
     value_format: "0"
   }
 
+  measure: audience_size_measure {
+    type: sum
+    sql: ${TABLE}.audience_size ;;
+    value_format: "0"
+  }
+
+  measure: co_occurences_measure {
+    type: sum
+    sql: ${TABLE}.co_occurences;;
+    value_format: "0"
+  }
+
+#  measure: conv_value_per_cost_main {
+#    type: number
+#    value_format: "#,##0"
+#    sql: ${audience_performance_daily.conv_value}/NULLIF(${audience_performance_daily.cost}, 0) where ${audience_id}=${audience_performance_daily.audience_id};;
+#  }
+
+#  measure: conv_value_per_cost_second {
+ #   type: number
+ #   value_format: "#,##0"
+ #   sql: ${audience_performance_daily.conv_value}/NULLIF(${audience_performance_daily.cost}, 0) where ${audience_id2}=${audience_performance_daily.audience_id};;
+ # }
+
+
   measure: count {
     type: count
     drill_fields: []

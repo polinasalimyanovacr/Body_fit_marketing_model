@@ -47,11 +47,12 @@ explore: audience_performance {
 
 explore: audience_overlap {
   join: audience_performance_daily {
-    type: left_outer
-    sql_on: ${audience_overlap.audience_id} = ${audience_performance_daily.audience_id} ;;
-    relationship: one_to_many
-  }
+  type: left_outer
+  sql_on: ${audience_overlap.audience_id} = ${audience_performance_daily.audience_id} ;;
+  relationship: one_to_many
 }
+}
+
 
 explore: vocabulary {}
 
