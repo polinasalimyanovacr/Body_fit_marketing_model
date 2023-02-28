@@ -69,24 +69,24 @@ view: campaign_history {
   }
 
   measure: impression {
-    type: sum
+    type: average
     sql: ${TABLE}.impression ;;
     value_format: "#,##0"
   }
 
   measure: total_ordered_quantity {
-    type: sum
+    type: average
     sql: ${TABLE}.total_ordered_quantity ;;
     value_format: "#,##0"
   }
 
   measure: total_ordered_revenue {
-    type: sum
+    type: average
     sql: ${TABLE}.total_ordered_revenue ;;
   }
 
   measure: total_orders {
-    type: sum
+    type: average
     sql: ${TABLE}.total_orders ;;
   }
 
