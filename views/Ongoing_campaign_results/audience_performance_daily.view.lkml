@@ -45,14 +45,14 @@ view: audience_performance_daily {
   dimension: clicks {
     type: number
     sql: ${TABLE}.clicks ;;
-    hidden: yes
+    hidden: no
     description: "The number of clicks on your website URLs from a Google Search results page, not including clicks on paid Google Ads search results"
   }
 
   dimension: conv_rate {
     type: number
     sql: ${TABLE}.conv_rate ;;
-    hidden: yes
+    hidden: no
     description: "Conversion rates are calculated by simply taking the number of conversions and dividing that by the number of total ad interactions that can be tracked to a conversion during the same time period."
   }
 
@@ -82,7 +82,7 @@ view: audience_performance_daily {
     type: number
     sql: ${TABLE}.cost ;;
     description: "A cost is the value of money that has been used up to manage marketing campaigns"
-    hidden: yes
+    hidden: no
   }
 
   dimension: ctr {
