@@ -193,7 +193,7 @@ view: audience_performance_daily {
   }
 
   measure: clicks_sum {
-    type: sum
+    type: average
     sql: ${TABLE}.clicks ;;
     description: "The number of clicks on your website URLs from a Google Search results page, not including clicks on paid Google Ads search results"
     value_format: "#,##0"
