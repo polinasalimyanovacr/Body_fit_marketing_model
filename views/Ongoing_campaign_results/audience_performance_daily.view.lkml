@@ -42,8 +42,8 @@ view: audience_performance_daily {
     description: "The campaign name is provided when you use a campaign tagged URL for your inbound marketing or from your Google Ads campaigns "
   }
 
-  measure: clicks {
-    type: running_total
+  dimension: clicks {
+    type: number
     sql: ${TABLE}.clicks ;;
     hidden: no
     description: "The number of clicks on your website URLs from a Google Search results page, not including clicks on paid Google Ads search results"

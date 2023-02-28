@@ -24,7 +24,7 @@ view: campaign_history {
   }
 
   measure: click {
-    type: sum
+    type: average
     sql: ${TABLE}.click ;;
     value_format: "#,##0"
     description: "The number of clicks on your website URLs from a Google Search results page, not including clicks on paid Google Ads search results"
@@ -37,7 +37,7 @@ view: campaign_history {
   }
 
   measure: conversion {
-    type: sum
+    type: average
     sql: ${TABLE}.conversion ;;
     value_format: "#,##0"
   }
