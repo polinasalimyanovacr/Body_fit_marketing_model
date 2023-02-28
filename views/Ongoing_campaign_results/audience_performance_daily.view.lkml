@@ -207,7 +207,7 @@ view: audience_performance_daily {
   }
 
   measure: audience_size_sum {
-    type: sum
+    type: number
     sql: ${TABLE}.audience_size ;;
     description: "The number of customers' emails that are included into the campaign audience"
     value_format: "#,##0"
