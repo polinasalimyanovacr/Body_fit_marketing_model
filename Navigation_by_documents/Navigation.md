@@ -15,22 +15,17 @@ A user can easily make a selection by accessing the Looker dashboard. Here they 
 
 [Generate selection Dashboard](https://crystalloids.eu.looker.com/dashboards/56)
 
-[Dashboard to analyse campaign overlapping]()
+[Dashboard to analyse campaign overlapping](https://crystalloids.eu.looker.com/dashboards/68?Main+audience+Segment=&Co+Occurences=%5B0%2C100%5D&Audience+Size+=%5B0%2C10000%5D)
 
-[Transaction viewer]()
 
-[Contact Facet search]()
-
-# Analyse ongoing campaign performance
+# Analyse campaign performance
 
 Blend you data from different marketing tools and accounts, analyse the campaign performance and know more about what is going on with your marketing campaign plans.
 
 There are two levels of aggregations to get know more about campaign performance: campaign level and audience level.
 
 
-[Dashboard to analyse ongoing campaign performance](https://crystalloids.eu.looker.com/dashboards/64)
-
-[Dashboard to analyse campaign audiences performance]()
+[Dashboard to analyse campaign and audiences performance](https://crystalloids.eu.looker.com/dashboards/64)
 
 # Data Definitions
 
