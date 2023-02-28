@@ -135,7 +135,7 @@ view: audience_performance_daily {
   }
 
   measure: impressios_sum {
-    type: sum
+    type: average
     sql: ${TABLE}.impressions ;;
     hidden: no
     value_format: "#,##0"
@@ -143,42 +143,42 @@ view: audience_performance_daily {
   }
 
   measure: ctr_sum {
-    type: sum
+    type: average
     sql: ${TABLE}.CTR ;;
     value_format: "#,##0.00"
     description: "CTR is the number of clicks that your ad receives divided by the number of times your ad is shown: clicks ÷ impressions = CTR."
   }
 
   measure: cost_sum {
-    type: sum
+    type: average
     sql: ${TABLE}.cost ;;
     description: "A cost is the value of money that has been used up to manage marketing campaigns"
     value_format: "\"€\"#,##0.00"
   }
 
   measure: conversion_sum {
-    type: sum
+    type: average
     sql: ${TABLE}.conversions ;;
     description: "A conversion is reported whenever a user completes a goal or makes a purchase during a session. Each goal will report a maximum of one conversion per session, while every transaction is reported. See also goal completion and ecommerce transaction. "
     value_format: "#,##0.00"
   }
 
   measure: conv_value_per_cost_sum {
-    type: sum
+    type: average
     sql: ${TABLE}.conv_value_per_cost ;;
     description: "Conversion value per cost estimates your return on investment. It's calculated by dividing your total conversion value by the total cost of all ad interactions."
     value_format: "#,##0.00"
   }
 
   measure: conv_value_sum {
-    type: sum
+    type: average
     sql: ${TABLE}.conv_value ;;
     description: "Value per conversion tells you approximately how much, on average, each of your conversions is worth. It's calculated by dividing your total conversion value by the number in your “Conversions” column. This metric is useful if each of your conversions has a different value."
     value_format: "#,##0.00"
   }
 
   measure: conv_rate_sum {
-    type: sum
+    type: average
     sql: ${TABLE}.conv_rate ;;
     value_format: "#,##0.00"
     description: "Conversion rates are calculated by simply taking the number of conversions and dividing that by the number of total ad interactions that can be tracked to a conversion during the same time period."
@@ -208,7 +208,7 @@ view: audience_performance_daily {
   }
 
   measure: audience_size_sum {
-    type: number
+    type: average
     sql: ${TABLE}.audience_size ;;
     description: "The number of customers' emails that are included into the campaign audience"
     value_format: "#,##0"
