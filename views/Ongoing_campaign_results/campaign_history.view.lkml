@@ -27,6 +27,8 @@ view: campaign_history {
     type: sum
     sql: ${TABLE}.click ;;
     value_format: "#,##0"
+    description: "The number of clicks on your website URLs from a Google Search results page, not including clicks on paid Google Ads search results"
+
   }
 
   dimension: contact_id {

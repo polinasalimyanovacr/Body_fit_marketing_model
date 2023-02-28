@@ -25,7 +25,7 @@ view: audience_performance_daily {
   dimension: audience_size {
     type: number
     sql: ${TABLE}.audience_size ;;
-    hidden: yes
+    hidden: no
     description: "The number of customers' emails that are included into the campaign audience"
   }
 
@@ -53,7 +53,7 @@ view: audience_performance_daily {
     type: number
     sql: ${TABLE}.conv_rate ;;
     hidden: yes
-    description: "Conversion rates are calculated by simply taking the number of conversions and dividing that by the number of total ad interactions that can be tracked to a conversion during the same time period."
+    description: "Conversion rates are calculated by simply taking the number of conversions and dividing that by the number of total ad interactions that can be tracked to a conversion during the same time period."
   }
 
 
