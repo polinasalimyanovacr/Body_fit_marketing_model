@@ -15,7 +15,7 @@ A user can easily make a selection by accessing the Looker dashboard. Here they 
 
 [Generate selection Dashboard](https://crystalloids.eu.looker.com/dashboards/56)
 
-[Dashboard to analyse campaign overlapping](https://crystalloids.eu.looker.com/dashboards/68?Main+audience+Segment=&Co+Occurences=%5B0%2C100%5D&Audience+Size+=%5B0%2C10000%5D)
+[Dashboard to analyse campaign overlap](https://crystalloids.eu.looker.com/dashboards/68?Main+audience+Segment=&Co+Occurences=%5B0%2C100%5D&Audience+Size+=%5B0%2C10000%5D)
 
 
 # Analyse campaign performance
