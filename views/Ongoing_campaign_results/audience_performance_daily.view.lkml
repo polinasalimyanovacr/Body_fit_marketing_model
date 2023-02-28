@@ -135,7 +135,7 @@ view: audience_performance_daily {
   }
 
   measure: impressios_sum {
-    type: average
+    type: sum
     sql: ${TABLE}.impressions ;;
     hidden: no
     value_format: "#,##0"
@@ -150,7 +150,7 @@ view: audience_performance_daily {
   }
 
   measure: cost_sum {
-    type: average
+    type: sum
     sql: ${TABLE}.cost ;;
     description: "A cost is the value of money that has been used up to manage marketing campaigns"
     value_format: "\"€\"#,##0.00"
@@ -158,7 +158,7 @@ view: audience_performance_daily {
 
   measure: conversion_sum {
     type: average
-    sql: ${TABLE}.conversions ;;
+    sql: ${TABLE}.conversions*100 ;;
     description: "A conversion is reported whenever a user completes a goal or makes a purchase during a session. Each goal will report a maximum of one conversion per session, while every transaction is reported. See also goal completion and ecommerce transaction. "
     value_format: "#,##0.00"
   }
@@ -193,11 +193,11 @@ view: audience_performance_daily {
   }
 
   measure: clicks_sum {
-    type: average
+    type: sum
     sql: ${TABLE}.clicks ;;
     description: "The number of clicks on your website URLs from a Google Search results page, not including clicks on paid Google Ads search results"
     value_format: "#,##0"
-    sql_distinct_key: ${TABLE}.audience_id;;
+    sql_distinct_key: ${TABLE}.campaign;;
   }
 
   measure: avg_CPC_a {

@@ -37,7 +37,7 @@ view: campaign_history {
   }
 
   measure: conversion {
-    type: average
+    type: sum
     sql: ${TABLE}.conversion ;;
     value_format: "#,##0"
   }
@@ -69,7 +69,7 @@ view: campaign_history {
   }
 
   measure: impression {
-    type: average
+    type: sum
     sql: ${TABLE}.impression ;;
     value_format: "#,##0"
   }
