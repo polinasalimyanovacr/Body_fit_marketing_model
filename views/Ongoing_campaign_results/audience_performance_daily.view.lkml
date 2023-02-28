@@ -42,7 +42,7 @@ view: audience_performance_daily {
     description: "The campaign name is provided when you use a campaign tagged URL for your inbound marketing or from your Google Ads campaigns "
   }
 
-  dimension: clicks {
+  measure: clicks {
     type: number
     sql: ${TABLE}.clicks ;;
     hidden: no
