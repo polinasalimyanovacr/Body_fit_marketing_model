@@ -179,7 +179,6 @@ explore: +orders {
       dimensions: [timestamp_month]
       measures: [count]
       filters: [
-        orders.age: "[0, 100]",
         orders.email_consent: "Yes",
         orders.timestamp_date: "2020/12/01 to 2022/12/16"
       ]
@@ -199,7 +198,6 @@ explore: +orders {
       dimensions: [timestamp_day_of_month]
       measures: [count]
       filters: [
-        orders.age: "[0, 100]",
         orders.email_consent: "Yes",
         orders.timestamp_date: "1 months"
       ]
@@ -229,10 +227,8 @@ explore: +orders {
       ]
       measures: [average_revenue, sum_ordered_quantity]
       filters: [
-        orders.age: "[0, 100]",
         orders.email_consent: "Yes",
         orders.timestamp_date: "2020/12/01 to 2023/02/23",
-        sql_salesbuyer.discount_quantity_percentage: "[0, 100]"
       ]
     }
 
