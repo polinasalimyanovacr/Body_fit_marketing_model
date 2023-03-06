@@ -1,8 +1,8 @@
 view: sql_inactive {
   derived_table: {
     sql: SELECT t1.contactId AS id,
-          CASE WHEN (t1.inactive AND s.opts.value = true) THEN true ELSE false END AS inActive,
-          IFNULL(s.opts.value, false) AS optIn,
+          CASE WHEN (t1.inactive AND ((SELECT value FROM s.opts WHERE name = 'generalConditions') = true)) THEN true ELSE false END AS inActive,
+          (SELECT value FROM s.opts WHERE name = 'generalConditions') AS emailConsent,
                 FROM
                   (
                   SELECT customer.contactId AS contactId,
@@ -17,7 +17,7 @@ view: sql_inactive {
                   UNNEST (order_actual.orderLines) AS orderLines
                   GROUP BY contactId
                   ) t1
-                  LEFT JOIN (SELECT opts, contactId, FROM `body-fit-test.contacts.contact_actual` contact_actual, UNNEST (contact_actual.opts) AS opts) s
+                  LEFT JOIN (SELECT opts, contactId, FROM `body-fit-test.contacts.contact_actual` contact_actual) s
                   ON t1.contactId = s.contactId
                   ;;
   }

@@ -54,6 +54,7 @@ explore: vocabulary {}
 
 #MASTER VIEW with joins
 explore:  orders {
+
   join: sql_inactive {
    type: left_outer
     sql_on: ${orders.contact_id} = ${sql_inactive.contact_id} ;;
