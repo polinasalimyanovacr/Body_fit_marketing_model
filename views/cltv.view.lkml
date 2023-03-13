@@ -57,4 +57,12 @@ view: cltv {
     type: count
     drill_fields: []
   }
+
+  measure: avg_cltv {
+    type: average
+    sql: ${pred_cltv} ;;
+    value_format: "\"€\"#,##0.00"
+    sql_distinct_key: ${TABLE}.customer_id;;
+    drill_fields: []
+  }
 }
