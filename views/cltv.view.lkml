@@ -1,4 +1,4 @@
-view: sql_cltv {
+view: cltv {
   sql_table_name: `body-fit-test.tmp.cltv_pred`
     ;;
 
