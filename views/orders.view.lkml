@@ -97,7 +97,7 @@ view: orders {
   }
 
 
-
+#Button for sending the selection to the Explore and GoogleAds
 #CONCAT(sql_inactive.inactive, " , " , sql_salesbuyer.SalesBuyer)
   dimension: Button_2 {
     type:  string
@@ -120,6 +120,7 @@ view: orders {
             ;;
   }
 
+#Button for the Null values dashboard
   dimension: Button_3 {
     type:  string
     sql:   ${TABLE}.contactId ;;
@@ -137,6 +138,27 @@ view: orders {
           &Discount+Quantity+Percentage={{ _filters['sql_salesbuyer.discount_quantity_percentage'] | url_encode }}
           &Unused+(Yes+%2F+No)={{ _filters['sql_unusedvoucher.unused'] | url_encode }}
           &Product+Type={{ _filters['sql_productslast18months.product_type'] | url_encode }}"><button>Inspect Null Values in Selection</button></a>
+           ;;
+  }
+
+#Button for Contact Facet Search
+  dimension: Button_4 {
+    type:  string
+    sql:   ${TABLE}.contactId ;;
+    html: <a href="https://crystalloids.eu.looker.com/dashboards/74?
+          &Age+Tier={{ _filters['orders.age_tier'] | url_encode }}
+          &Email+Consent={{ _filters['orders.email_consent'] | url_encode }}
+          &Shipping+Address+City={{ _filters['orders.shipping_address_city'] | url_encode }}
+          &ampTimestamp+Date={{ _filters['orders.timestamp_date'] | url_encode }}
+          &Gender={{ _filters['orders.gender'] | url_encode }}
+          &Shipping+Address+Country+Code={{ _filters['orders.shipping_address_country_code'] | url_encode }}
+          &Inactive+(Yes+%2F+No)={{ _filters['sql_inactive.inactive'] | url_encode }}
+          &Did+Not+Buy={{ _filters['sql_notusedcampaign.did_not_buy'] | url_encode }}
+          &Product+Last18+Months+(Yes+%2F+No)={{ _filters['sql_productslast18months.product_last18_months'] | url_encode }}
+          &Sales+Buyer+(Yes+%2F+No)={{ _filters['sql_salesbuyer.sales_buyer'] | url_encode }}
+          &Discount+Quantity+Percentage={{ _filters['sql_salesbuyer.discount_quantity_percentage'] | url_encode }}
+          &Unused+(Yes+%2F+No)={{ _filters['sql_unusedvoucher.unused'] | url_encode }}
+          &Product+Type={{ _filters['sql_productslast18months.product_type'] | url_encode }}"><button>Contact Facet Search</button></a>
            ;;
   }
 

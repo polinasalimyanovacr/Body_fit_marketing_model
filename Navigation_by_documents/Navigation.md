@@ -33,4 +33,15 @@ Data definitions and metadata management in one place for all the business colla
 
 [Vocabulary dashboard](https://crystalloids.eu.looker.com/dashboards/58)
 
+
+# Assistive Visualizations
+
+This section contains auxiliary visualizations that will help users to better understand performance, system information, etc.
+
+[Dashboards performance (in-built)](https://crystalloids.eu.looker.com/looks/94)
+
+# Looker Studio connector
+
+[Looker Studio report](https://lookerstudio.google.com/u/0/reporting/ba814b30-6d52-4d73-8ce6-08caf387ee01/page/83pID/edit)
+
 ---
