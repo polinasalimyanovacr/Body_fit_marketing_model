@@ -12,6 +12,11 @@ view: audience_performance_daily {
     type: string
     sql: ${TABLE}.audience ;;
     description: "Users that you group together based on any combination of attributes that is meaningful to your business"
+    link: {
+      label: "Open audience in GoogleAds"
+      url: "https://ads.google.com/aw/audiences/management?ocid=403229427&ascid=403229427&euid=747123595&__u=4394407155&uscid=403229427&__c=9291018523&authuser=0"
+      icon_url : "https://www.globalsocialmediamarketing.com/wp-content/uploads/2020/02/Google_ads.png"
+    }
   }
 
 
