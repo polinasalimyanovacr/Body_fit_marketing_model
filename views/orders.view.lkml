@@ -1,6 +1,6 @@
 view: orders {
   derived_table: {
-    sql: SELECT  CONCAT ("Age: ", {{ _filters['orders.age'] | sql_quote  }},
+    sql: SELECT  CONCAT ("Age: ", {{ _filters['orders.age_tier'] | sql_quote  }},
         ", Email HashCode: ", {{_filters['orders.email_hash_code'] | sql_quote}},
         ", Email consent: " ,{{ _filters['orders.email_consent'] | sql_quote }},
         ", City: " ,{{ _filters['orders.shipping_address_city'] | sql_quote }},
@@ -14,20 +14,20 @@ view: orders {
         ", Discount Quantity Percentage: " ,{{ _filters['sql_salesbuyer.discount_quantity_percentage'] | sql_quote }},
         ", Unused: " ,{{ _filters['sql_unusedvoucher.unused'] | sql_quote }},
         ", Product Type: " ,{{ _filters['sql_productslast18months.product_type'] | sql_quote }}) AS filter,
-        IFNULL(s.age, 0) AS age,
-        s.gender AS gender,
+        s.age AS age,
+        IFNULL(s.gender, "Null") AS gender,
         s.surname AS surname,
         transactionId,
         s.emailHashCode AS emailHashCode,
-        (SELECT value FROM s.opts WHERE name = 'generalConditions' ORDER BY confirmedTimestamp DESC LIMIT 1) as emailConsent,
+        (SELECT value FROM s.opts WHERE name = 'generalConditions' ORDER BY confirmedTimestamp DESC LIMIT 1) AS emailConsent,
         customer.contactId AS contactId,
         customer.languageCode AS contactLanguageCode,
         customer.emailAddress AS contactEmailAddress,
         shippingAddress.street AS shippingAddressStreet,
         CONCAT(COALESCE(shippingAddress.houseNumber, ''), COALESCE(shippingAddress.houseNumberSuffix, '')) AS shippingAddressHouseNumber,
-        shippingAddress.city AS shippingAddressCity,
+        COALESCE(NULLIF(shippingAddress.city, ''), 'Null') AS shippingAddressCity,
         shippingAddress.postalCode AS shippingAddressPostalCode,
-        shippingAddress.countryCode AS shippingAddressCountryCode,
+        COALESCE(NULLIF(shippingAddress.countryCode, ''), 'Null') AS shippingAddressCountryCode,
         totalAmountInclTax AS totalOrderRevenue,
         currency,
         timestamp,
@@ -41,17 +41,23 @@ view: orders {
       WHERE
         t.customer.contactId IS NOT NULL;;
   }
+  filter: null_values {
+    type: string
+    suggest_dimension: contact_id
+    sql: ((${age_tier} = 'Undefined') OR (${gender} = 'Null') OR (${email_consent} IS NULL) OR (${shipping_address_city} = 'Null')
+    OR (${shipping_address_country_code} = 'Null'));;
+  }
 
   measure: count {
     type: count
     value_format: "#,##0"
-    }
+  }
 
   measure: Count_Distinct_contacts {
     type: count_distinct
     sql: ${contact_id} ;;
     value_format_name: id
-    }
+  }
 
   dimension: filter {
     type: string
@@ -59,8 +65,20 @@ view: orders {
   }
 
   dimension: email_consent {
-    type: yesno
-    sql: ${TABLE}.emailConsent ;;
+    case: {
+      when: {
+        sql: ${TABLE}.emailConsent = False ;;
+        label: "No"
+      }
+      when: {
+        sql: ${TABLE}.emailConsent = True ;;
+        label: "Yes"
+      }
+      when: {
+        sql: ${TABLE}.emailConsent IS NULL ;;
+        label: "Null"
+      }
+    }
   }
 
   dimension: surname {
@@ -78,26 +96,48 @@ view: orders {
     sql: ${TABLE}.gender ;;
   }
 
+
+
 #CONCAT(sql_inactive.inactive, " , " , sql_salesbuyer.SalesBuyer)
   dimension: Button_2 {
     type:  string
     sql:   ${TABLE}.contactId ;;
     html: <a href="https://crystalloids.eu.looker.com/looks/88?
-    &f[orders.age]={{ _filters['orders.age'] | url_encode }}
-    &f[orders.email_hash_code]={{ _filters['orders.email_hash_code'] | url_encode }}
-    &f[orders.email_consent]={{ _filters['orders.email_consent'] | url_encode }}
-    &f[orders.shipping_address_city]={{ _filters['orders.shipping_address_city'] | url_encode }}
-    &f[orders.timestamp_date]={{ _filters['orders.timestamp_date'] | url_encode }}
-    &f[orders.gender]={{ _filters['orders.gender'] | url_encode }}
-    &f[orders.shipping_address_country_code]={{ _filters['orders.shipping_address_country_code'] | url_encode }}
-    &f[sql_inactive.inactive]={{ _filters['sql_inactive.inactive'] | url_encode }}
-    &f[sql_notusedcampaign.did_not_buy]={{ _filters['sql_notusedcampaign.did_not_buy'] | url_encode }}
-    &f[sql_productslast18months.product_last18_months]={{ _filters['sql_productslast18months.product_last18_months'] | url_encode }}
-    &f[sql_salesbuyer.sales_buyer]={{ _filters['sql_salesbuyer.sales_buyer'] | url_encode }}
-    &f[sql_salesbuyer.discount_quantity_percentage]={{ _filters['sql_salesbuyer.discount_quantity_percentage'] | url_encode }}
-    &f[sql_unusedvoucher.unused]={{ _filters['sql_unusedvoucher.unused'] | url_encode }}
-    &f[sql_productslast18months.product_type]={{ _filters['sql_productslast18months.product_type'] | url_encode }}"><button>Click to Send</button></a>
-      ;;
+          &f[orders.age_tier]={{ _filters['orders.age_tier'] | url_encode }}
+          &f[orders.email_hash_code]={{ _filters['orders.email_hash_code'] | url_encode }}
+          &f[orders.email_consent]={{ _filters['orders.email_consent'] | url_encode }}
+          &f[orders.shipping_address_city]={{ _filters['orders.shipping_address_city'] | url_encode }}
+          &f[orders.timestamp_date]={{ _filters['orders.timestamp_date'] | url_encode }}
+          &f[orders.gender]={{ _filters['orders.gender'] | url_encode }}
+          &f[orders.shipping_address_country_code]={{ _filters['orders.shipping_address_country_code'] | url_encode }}
+          &f[sql_inactive.inactive]={{ _filters['sql_inactive.inactive'] | url_encode }}
+          &f[sql_notusedcampaign.did_not_buy]={{ _filters['sql_notusedcampaign.did_not_buy'] | url_encode }}
+          &f[sql_productslast18months.product_last18_months]={{ _filters['sql_productslast18months.product_last18_months'] | url_encode }}
+          &f[sql_salesbuyer.sales_buyer]={{ _filters['sql_salesbuyer.sales_buyer'] | url_encode }}
+          &f[sql_salesbuyer.discount_quantity_percentage]={{ _filters['sql_salesbuyer.discount_quantity_percentage'] | url_encode }}
+          &f[sql_unusedvoucher.unused]={{ _filters['sql_unusedvoucher.unused'] | url_encode }}
+          &f[sql_productslast18months.product_type]={{ _filters['sql_productslast18months.product_type'] | url_encode }}"><button>Click to Send</button></a>
+            ;;
+  }
+
+  dimension: Button_3 {
+    type:  string
+    sql:   ${TABLE}.contactId ;;
+    html: <a href="https://crystalloids.eu.looker.com/dashboards/69?
+          &Age+Tier={{ _filters['orders.age_tier'] | url_encode }}
+          &Email+Consent={{ _filters['orders.email_consent'] | url_encode }}
+          &Shipping+Address+City={{ _filters['orders.shipping_address_city'] | url_encode }}
+          &ampTimestamp+Date={{ _filters['orders.timestamp_date'] | url_encode }}
+          &Gender={{ _filters['orders.gender'] | url_encode }}
+          &Shipping+Address+Country+Code={{ _filters['orders.shipping_address_country_code'] | url_encode }}
+          &Inactive+(Yes+%2F+No)={{ _filters['sql_inactive.inactive'] | url_encode }}
+          &Did+Not+Buy={{ _filters['sql_notusedcampaign.did_not_buy'] | url_encode }}
+          &Product+Last18+Months+(Yes+%2F+No)={{ _filters['sql_productslast18months.product_last18_months'] | url_encode }}
+          &Sales+Buyer+(Yes+%2F+No)={{ _filters['sql_salesbuyer.sales_buyer'] | url_encode }}
+          &Discount+Quantity+Percentage={{ _filters['sql_salesbuyer.discount_quantity_percentage'] | url_encode }}
+          &Unused+(Yes+%2F+No)={{ _filters['sql_unusedvoucher.unused'] | url_encode }}
+          &Product+Type={{ _filters['sql_productslast18months.product_type'] | url_encode }}"><button>Inspect Null Values in Selection</button></a>
+           ;;
   }
 
 #set the fields for drilling
@@ -220,6 +260,12 @@ view: orders {
     sql: ${TABLE}.age ;;
   }
 
+  dimension: age_tier {
+    type: tier
+    tiers: [18, 25, 35, 45, 55, 65, 75, 90]
+    style: integer
+    sql: ${age} ;;
+  }
 
   set: detail {
     fields: [

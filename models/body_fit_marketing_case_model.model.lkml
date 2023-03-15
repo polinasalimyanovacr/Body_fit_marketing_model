@@ -49,11 +49,15 @@ explore: audience_overlap {
   from:  audience_overlap
 }
 
-
 explore: vocabulary {}
+
+explore: cltv {
+  from: cltv
+}
 
 #MASTER VIEW with joins
 explore:  orders {
+
   join: sql_inactive {
    type: left_outer
     sql_on: ${orders.contact_id} = ${sql_inactive.contact_id} ;;
@@ -81,6 +85,12 @@ explore:  orders {
   join: sql_unusedvoucher {
     type: left_outer
     sql_on: ${orders.contact_id} = ${sql_unusedvoucher.contact_id} ;;
+    relationship: many_to_many
+  }
+
+  join: cltv {
+    type: left_outer
+    sql_on: ${orders.contact_email_address} = ${cltv.customer_id} ;;
     relationship: many_to_many
   }
 }

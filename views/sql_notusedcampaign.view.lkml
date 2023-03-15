@@ -2,9 +2,11 @@ view: sql_notusedcampaign {
   derived_table: {
     sql: SELECT s.contactId AS id,
       CASE WHEN ((((CAST(s.createdTimestamp AS DateTime)) > (CAST(t1.activityDate AS DateTime))) AND
-      (s.quantityOrdered > 0) AND ((IFNULL((t1.activity = 'OPENS'), false) = true))) OR ((IFNULL((t1.activity = 'OPENS'), false)) = false))
-      THEN false ELSE true END AS didNotBuy,
-      IFNULL((t1.activity = 'OPENS'), false) AS opened,
+      (s.quantityOrdered > 0) AND (t1.activity = 'OPENS')) OR (t1.activity != 'OPENS'))
+      THEN false
+      WHEN (t1.activity IS NULL) THEN NULL
+      ELSE true END AS didNotBuy,
+      t1.activity AS opened,
       FROM
       (SELECT
       broadcasts.broadcastId AS broadcastId,
@@ -26,8 +28,20 @@ view: sql_notusedcampaign {
   }
 
   dimension: did_not_buy {
-    type: yesno
-    sql: ${TABLE}.didNotBuy ;;
+    case: {
+      when: {
+        sql: ${TABLE}.didNotBuy = True ;;
+        label: "Yes"
+      }
+      when: {
+        sql: ${TABLE}.didNotBuy = False ;;
+        label: "No"
+      }
+      when: {
+        sql: ${TABLE}.didNotBuy IS NULL ;;
+        label: "Null"
+      }
+      }
     description: "Customer has received campaign email and opened it but didn’t buy anything yet"
   }
 
