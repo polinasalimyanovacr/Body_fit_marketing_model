@@ -58,11 +58,22 @@ explore: cltv {
 #MASTER VIEW with joins
 explore:  orders {
 
+  #Explore shotcut to make Quick start panel
     query: Orders {
     dimensions: [contact_id, email_consent, email_hash_code, shipping_address_postal_code ]
     measures: [total_order_revenue, total_ordered_quantity ]
     label: "Contacts by country code"
     description: "The query helps to start the analysis of contacts in sections Revenue, Country code, Ordered quantity. "
+    #pivots: [dimension1, dimension2, ... ]
+    #sorts: [field1: asc, field2: desc, ... ]
+    #filters: [field1: "value1", field2: "value2", ... ]
+    limit: 100}
+
+  query: contacts_sql_inactive {
+    dimensions: [contact_id, email_consent, email_hash_code]
+    measures: []
+    label: "Inactive contacts"
+    description: "The query helps to analyze inactive contacts that haven't made a purchase in a while"
     #pivots: [dimension1, dimension2, ... ]
     #sorts: [field1: asc, field2: desc, ... ]
     #filters: [field1: "value1", field2: "value2", ... ]
