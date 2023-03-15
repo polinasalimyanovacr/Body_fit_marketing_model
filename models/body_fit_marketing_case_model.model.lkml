@@ -116,6 +116,8 @@ explore:  orders {
   }
 }
 
+## list of aggregated tables to increase model performance
+
 explore: +orders {
   aggregate_table: selection_count {
     query: {
@@ -128,19 +130,6 @@ explore: +orders {
   }
 }
 
-explore: +orders {
-  aggregate_table: product_type_sales {
-    query: {
-      dimensions: [sql_productslast18months.product_type]
-      measures: [sql_productslast18months.count]
-      filters: [sql_productslast18months.product_last18_months: "Yes"]
-    }
-
-    materialization: {
-      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
-    }
-  }
-}
 
 explore: +orders {
   aggregate_table: top_10_customers_by_revenue {
@@ -181,19 +170,14 @@ explore: +orders {
 }
 
 explore: +orders {
-  aggregate_table: selection_analysis {
+  aggregate_table: rollup__timestamp_year {
     query: {
-      dimensions: [
-        age,
-        contact_email_address,
-        email_consent,
-        gender,
-        shipping_address_country_code,
-        sql_inactive.inactive,
-        sql_productslast18months.product_last18_months,
-        sql_salesbuyer.sales_buyer,
-        total_order_revenue,
-        total_ordered_quantity
+      dimensions: [timestamp_year]
+      measures: [count]
+      filters: [
+        orders.email_consent: "Yes",
+        orders.timestamp_date: "2020/12/01 to 2022/12/16",
+        sql_salesbuyer.discount_quantity_percentage: "[0, 100]"
       ]
     }
 
@@ -241,7 +225,46 @@ explore: +orders {
     }
   }
 }
-# Place in `body_fit_marketing_case_model` model
+
+# Section to count number of selection
+explore: +orders {
+  aggregate_table: rollup__Count_Distinct_contacts__count {
+    query: {
+      measures: [Count_Distinct_contacts, count]
+      filters: [
+        orders.email_consent: "Yes",
+        orders.timestamp_date: "2020/12/01 to 2022/12/16",
+        sql_salesbuyer.discount_quantity_percentage: "[0, 100]"
+      ]
+    }
+
+    materialization: {
+      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
+    }
+  }
+}
+
+# Section ordered entitity in the past year
+explore: +orders {
+  aggregate_table: rollup__Count_Distinct_contacts__count__sum_ordered_quantity {
+    query: {
+      measures: [Count_Distinct_contacts, count, sum_ordered_quantity]
+      filters: [
+        orders.email_consent: "Yes",
+        orders.timestamp_date: "2020/12/01 to 2022/12/16",
+        orders.timestamp_year: "2 years",
+        sql_salesbuyer.discount_quantity_percentage: "[0, 100]"
+      ]
+    }
+
+    materialization: {
+      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
+    }
+  }
+}
+
+
+
 explore: +orders {
   aggregate_table: rollup__age__contact_email_address__contact_id__gender__shipping_address_country_code__sql_inactive_inactive__sql_productslast18months_product_last18_months__sql_salesbuyer_sales_buyer__surname {
     query: {
@@ -268,6 +291,25 @@ explore: +orders {
     }
   }
 }
+
+#Button to sent the selection
+explore: +orders {
+  aggregate_table: rollup__Button_2 {
+    query: {
+      dimensions: [Button_2]
+      filters: [
+        orders.email_consent: "Yes",
+        orders.timestamp_date: "2020/12/01 to 2022/12/16",
+        sql_salesbuyer.discount_quantity_percentage: "[0, 100]"
+      ]
+    }
+
+    materialization: {
+      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
+    }
+  }
+}
+
 
 
 
