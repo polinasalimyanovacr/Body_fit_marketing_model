@@ -56,7 +56,7 @@ view: orders {
   measure: Count_Distinct_contacts {
     type: count_distinct
     sql: ${contact_id} ;;
-    value_format_name: id
+    value_format: "#,##0"
   }
 
   dimension: filter {
