@@ -58,6 +58,16 @@ explore: cltv {
 #MASTER VIEW with joins
 explore:  orders {
 
+    query: Orders {
+    dimensions: [contact_id, email_consent, email_hash_code, shipping_address_postal_code ]
+    measures: [total_order_revenue, total_ordered_quantity ]
+    label: "Contacts by country code"
+    description: "The query helps to start the analysis of contacts in sections Revenue, Country code, Ordered quantity. "
+    #pivots: [dimension1, dimension2, ... ]
+    #sorts: [field1: asc, field2: desc, ... ]
+    #filters: [field1: "value1", field2: "value2", ... ]
+    limit: 100}
+
   join: sql_inactive {
    type: left_outer
     sql_on: ${orders.contact_id} = ${sql_inactive.contact_id} ;;
