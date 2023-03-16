@@ -4,9 +4,9 @@ connection: "body-fit-test"
 include: "/views/**/*.view"
 
 # include all the dashboards by name (as '/dashboards/**/*.dashboard.lookml' does not work)
-include: "/dashboards/audience_overlap.dashboard.lookml"
-include: "/dashboards/audience_performance.dashboard.lookml"
-include: "/dashboards/campaign_performance.dashboard.lookml"
+#include: "/dashboards/audience_overlap.dashboard.lookml"
+#include: "/dashboards/audience_performance.dashboard.lookml"
+#include: "/dashboards/campaign_performance.dashboard.lookml"
 
 datagroup: body_fit_marketing_case_model_default_datagroup {
   sql_trigger: SELECT FORMAT_TIMESTAMP('%F',
@@ -51,9 +51,9 @@ explore: audience_overlap {
 
 explore: vocabulary {}
 
-explore: cltv {
-  from: cltv
-}
+explore: cltv{
+  from:  cltv
+  }
 
 #MASTER VIEW with joins
 explore:  orders {
@@ -108,13 +108,18 @@ explore:  orders {
     sql_on: ${orders.contact_id} = ${sql_unusedvoucher.contact_id} ;;
     relationship: many_to_many
   }
-
-  join: cltv {
-    type: left_outer
-    sql_on: ${orders.contact_email_address} = ${cltv.customer_id} ;;
-    relationship: many_to_many
   }
+
+explore: segments_test {
+  #Repeated nested object
+  join: segments_test_copy {
+    view_label: "Nested content"
+    sql: LEFT JOIN UNNEST(orderLines.discountAmount) as discountAmount ;;
+    relationship: one_to_many
+  }
+
 }
+
 
 ## list of aggregated tables to increase model performance
 
@@ -340,17 +345,4 @@ explore: +orders {
       datagroup_trigger: body_fit_marketing_case_model_default_datagroup
     }
   }
-}
-
-
-
-
-explore: segments_test {
-    #Repeated nested object
-    join: segments_test_copy {
-      view_label: "Nested content"
-      sql: LEFT JOIN UNNEST(orderLines.discountAmount) as discountAmount ;;
-      relationship: one_to_many
-    }
-
 }
