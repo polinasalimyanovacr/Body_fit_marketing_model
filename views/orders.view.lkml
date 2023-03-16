@@ -175,7 +175,7 @@ view: orders {
   measure: total_revenue {
     type: sum
     sql: ${total_order_revenue} ;;
-    value_format: "\"€\"#,##0.00"
+    value_format: "\"€\"#,##0"
     sql_distinct_key: ${TABLE}.transactionId;;
     drill_fields: [revenue_drill*]
   }
