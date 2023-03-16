@@ -292,6 +292,38 @@ explore: +orders {
   }
 }
 
+# Contact facet search
+explore: +orders {
+  aggregate_table: rollup__age__contact_id__email_hash_code__gender__shipping_address_country_code__sql_inactive_inactive__sql_productslast18months_product_last18_months__sql_salesbuyer_sales_buyer__surname {
+    query: {
+      dimensions: [
+        age,
+        contact_id,
+        email_hash_code,
+        gender,
+        shipping_address_country_code,
+        sql_inactive.inactive,
+        sql_productslast18months.product_last18_months,
+        sql_salesbuyer.sales_buyer,
+        surname
+      ]
+      measures: [average_revenue, sum_ordered_quantity]
+      filters: [
+        orders.email_consent: "Yes",
+        orders.timestamp_date: "2020/12/01 to 2022/12/16",
+        sql_productslast18months.product_type: "beauty",
+        sql_salesbuyer.discount_quantity_percentage: "[0, 100]"
+      ]
+    }
+
+    materialization: {
+      datagroup_trigger: body_fit_marketing_case_model_default_datagroup
+    }
+  }
+}
+
+
+
 #Button to sent the selection
 explore: +orders {
   aggregate_table: rollup__Button_2 {
