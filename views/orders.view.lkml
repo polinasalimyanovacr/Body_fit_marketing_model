@@ -36,7 +36,7 @@ view: orders {
         *
       FROM
         `body-fit-test.orders.order_actual`) t
-        LEFT JOIN ( SELECT contactId, age, opts, gender, surname, emailHashCode FROM `body-fit-test.contacts.contact_actual` contact_actual) s
+      LEFT JOIN ( SELECT contactId, age, opts, gender, surname, emailHashCode FROM `body-fit-test.contacts.contact_actual` contact_actual) s
             ON t.customer.contactId = s.contactId
       WHERE
         t.customer.contactId IS NOT NULL;;
@@ -137,7 +137,7 @@ view: orders {
           &Sales+Buyer+(Yes+%2F+No)={{ _filters['sql_salesbuyer.sales_buyer'] | url_encode }}
           &Discount+Quantity+Percentage={{ _filters['sql_salesbuyer.discount_quantity_percentage'] | url_encode }}
           &Unused+(Yes+%2F+No)={{ _filters['sql_unusedvoucher.unused'] | url_encode }}
-          &Product+Type={{ _filters['sql_productslast18months.product_type'] | url_encode }}"><button>Inspect Null Values in Selection</button></a>
+          &Product+Type={{ _filters['sql_productslast18months.product_type'] | url_encode }}"><button style="background-color: AliceBlue; font-size: 50%; text-align:left">Inspect Null Values in Selection</button></a>
            ;;
   }
 
@@ -158,7 +158,7 @@ view: orders {
           &Sales+Buyer+(Yes+%2F+No)={{ _filters['sql_salesbuyer.sales_buyer'] | url_encode }}
           &Discount+Quantity+Percentage={{ _filters['sql_salesbuyer.discount_quantity_percentage'] | url_encode }}
           &Unused+(Yes+%2F+No)={{ _filters['sql_unusedvoucher.unused'] | url_encode }}
-          &Product+Type={{ _filters['sql_productslast18months.product_type'] | url_encode }}"><button>Contact Facet Search</button></a>
+          &Product+Type={{ _filters['sql_productslast18months.product_type'] | url_encode }}"><button style="background-color: AliceBlue; font-size: 50%; text-align:center">Contact Facet Search</button></a>
            ;;
   }
 
@@ -183,7 +183,7 @@ view: orders {
   measure: average_revenue {
     type: average
     sql: ${total_order_revenue} ;;
-    value_format: "\"€\"#,##0.00"
+    value_format: "\"€\"#,##0"
     sql_distinct_key: ${TABLE}.transactionId;;
     drill_fields: [revenue_drill*]
   }
