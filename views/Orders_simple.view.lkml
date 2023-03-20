@@ -198,12 +198,6 @@ view: orders_simple {
     sql: ${TABLE}.totalCancelledQuantity ;;
   }
 
-  dimension: orders.age {
-    type: number
-    sql: ${TABLE}.age ;;
-  }
-
-
 
   set: detail {
     fields: [
