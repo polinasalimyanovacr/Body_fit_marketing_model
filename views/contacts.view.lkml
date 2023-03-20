@@ -1,3 +1,4 @@
+#THE VIEW IS CREATED FOR THE CONTACT ENTITY
 view: contacts {
   derived_table: {
     sql: SELECT
