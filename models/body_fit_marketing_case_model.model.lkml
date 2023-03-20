@@ -57,7 +57,7 @@ explore: cltv{
 
 #MASTER VIEW with joins
 explore:  orders {
-
+  from:  orders
   #Explore shotcut to make Quick start panel
     query: Orders {
     dimensions: [contact_id, email_consent, email_hash_code, shipping_address_postal_code ]
