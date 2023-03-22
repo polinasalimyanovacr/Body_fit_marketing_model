@@ -51,7 +51,7 @@ explore: audience_overlap {
 
 explore: vocabulary {}
 
-explore: cltv{}
+explore: cltv_pred{}
 
 #MASTER VIEW with joins
 explore:  orders {
@@ -105,6 +105,12 @@ explore:  orders {
     type: left_outer
     sql_on: ${orders.contact_id} = ${sql_unusedvoucher.contact_id} ;;
     relationship: many_to_many
+  }
+
+  join: cltv_pred {
+    type:  left_outer
+    sql_on: ${cltv_pred.customer_id}=${orders.contact_id} ;;
+    relationship: many_to_one
   }
   }
 

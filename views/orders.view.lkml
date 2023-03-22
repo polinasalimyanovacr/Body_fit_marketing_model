@@ -194,6 +194,28 @@ view: orders {
            ;;
   }
 
+#Button for CLTV Viewer
+  dimension: Button_6 {
+    type:  string
+    sql:   ${TABLE}.contactId ;;
+    html: <a href="https://crystalloids.eu.looker.com/dashboards/72?
+          &Age+Tier={{ _filters['orders.age_tier'] | url_encode }}
+          &Email+Consent={{ _filters['orders.email_consent'] | url_encode }}
+          &Shipping+Address+City={{ _filters['orders.shipping_address_city'] | url_encode }}
+          &ampTimestamp+Date={{ _filters['orders.timestamp_date'] | url_encode }}
+          &Gender={{ _filters['orders.gender'] | url_encode }}
+          &Shipping+Address+Country+Code={{ _filters['orders.shipping_address_country_code'] | url_encode }}
+          &Inactive+(Yes+%2F+No)={{ _filters['sql_inactive.inactive'] | url_encode }}
+          &Did+Not+Buy={{ _filters['sql_notusedcampaign.did_not_buy'] | url_encode }}
+          &Product+Last18+Months+(Yes+%2F+No)={{ _filters['sql_productslast18months.product_last18_months'] | url_encode }}
+          &Sales+Buyer+(Yes+%2F+No)={{ _filters['sql_salesbuyer.sales_buyer'] | url_encode }}
+          &Discount+Quantity+Percentage={{ _filters['sql_salesbuyer.discount_quantity_percentage'] | url_encode }}
+          &Unused+(Yes+%2F+No)={{ _filters['sql_unusedvoucher.unused'] | url_encode }}
+          &Product+Type={{ _filters['sql_productslast18months.product_type'] | url_encode }}"><button style="background-color: AliceBlue; border-color: AliceBlue; border-style: solid; font-size: 50%; text-align:center">CLTV Viewer</button></a>
+           ;;
+  }
+
+
 #set the fields for drilling
   set: revenue_drill {
     fields: [contact_email_address,
