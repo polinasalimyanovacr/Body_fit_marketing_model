@@ -109,10 +109,7 @@ explore:  orders {
 
   join: cltv_pred {
     type:  left_outer
-    sql_on: ${cltv_pred.customer_email}=${orders.contact_email_address} AND
-    ${cltv_pred.country}=${orders.shipping_address_country_code} AND
-    ${cltv_pred.currency}=${orders.currency} AND
-    ${orders.timestamp_date}=${cltv_pred.timestamp_date} ;;
+    sql_on: ${cltv_pred.customer_id}=${orders.contact_id} ;;
     relationship: many_to_one
   }
   }
