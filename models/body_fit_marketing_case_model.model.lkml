@@ -106,6 +106,15 @@ explore:  orders {
     sql_on: ${orders.contact_id} = ${sql_unusedvoucher.contact_id} ;;
     relationship: many_to_many
   }
+
+  join: cltv_pred {
+    type:  left_outer
+    sql_on: ${cltv_pred.customer_email}=${orders.contact_email_address} AND
+    ${cltv_pred.country}=${orders.shipping_address_country_code} AND
+    ${cltv_pred.currency}=${orders.currency} AND
+    ${orders.timestamp_date}=${cltv_pred.timestamp_date} ;;
+    relationship: many_to_one
+  }
   }
 
 explore: segments_test {
