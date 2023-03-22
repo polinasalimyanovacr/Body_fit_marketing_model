@@ -51,7 +51,7 @@ explore: audience_overlap {
 
 explore: vocabulary {}
 
-explore: cltv{}
+explore: cltv_pred{}
 
 #MASTER VIEW with joins
 explore:  orders {
