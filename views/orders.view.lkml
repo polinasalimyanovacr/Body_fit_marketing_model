@@ -53,7 +53,16 @@ view: orders {
   measure: count {
     type: count
     value_format: "#,##0"
+    drill_fields: [detail_drill*]
+    link: {label:"Explore drill down"
+      url: "{{ link }}"}
+
   }
+
+  set: detail_drill {
+    fields: [date_group_week, transaction_id,sql_inactive.inactive, contact_email_address, timestamp_date, ctlv.pred_cltv]
+  }
+
 
   measure: Count_Distinct_contacts {
     type: count_distinct
@@ -311,6 +320,27 @@ view: orders {
     style: integer
     sql: ${age} ;;
   }
+
+  dimension: date_day_of_week {
+    type: date_day_of_week
+    sql: ${TABLE}.timestamp ;;
+  }
+
+  dimension_group: date_group {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.timestamp ;;
+  }
+
 
   set: detail {
     fields: [
