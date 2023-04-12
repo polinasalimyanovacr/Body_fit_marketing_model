@@ -33,6 +33,7 @@ view: orders {
         currency,
         timestamp,
         totalOrderedQuantity,
+        totalDiscountAmount,
         COALESCE(totalCancelledQuantity, 0) AS totalCancelledQuantity, FROM (SELECT
         *
       FROM
@@ -60,9 +61,8 @@ view: orders {
   }
 
   set: detail_drill {
-    fields: [date_group_week, transaction_id,sql_inactive.inactive, contact_email_address, timestamp_date, ctlv.pred_cltv]
+    fields: [date_group_week, transaction_id, sql_inactive.inactive, contact_email_address, timestamp_date, ctlv.pred_cltv]
   }
-
 
   measure: Count_Distinct_contacts {
     type: count_distinct
@@ -76,20 +76,8 @@ view: orders {
   }
 
   dimension: email_consent {
-    case: {
-      when: {
-        sql: ${TABLE}.emailConsent = False ;;
-        label: "No"
-      }
-      when: {
-        sql: ${TABLE}.emailConsent = True ;;
-        label: "Yes"
-      }
-      when: {
-        sql: ${TABLE}.emailConsent IS NULL ;;
-        label: "Null"
-      }
-    }
+    type: yesno
+    sql: ${TABLE}.emailConsent ;;
   }
 
   dimension: surname {
@@ -324,6 +312,44 @@ view: orders {
   dimension: total_ordered_quantity {
     type: number
     sql: ${TABLE}.totalOrderedQuantity ;;
+  }
+
+  dimension: total_discounted_amount {
+    type: number
+    sql: (CASE WHEN ${TABLE}.totalOrderedQuantity > 0 THEN ${TABLE}.totalDiscountAmount END) ;;
+    description: "Value amount of discount on the order"
+    value_format: "\"€\"#,##0.00"
+    html:
+    {% if value > 100 %}
+    <p style="color: black; background-color: lightblue; font-size: 100%; text-align:center"> {{rendered_value}}</p>
+    {% else %}
+    <span stype="color:darkred;"> {{rendered_value}} </span>
+    {% endif %};;
+  }
+
+  measure: discount_quantity_percentage {
+    type: number
+    description: "Calculation what percentage of the total number of bought quantity are discounted purchases"
+    sql: CASE WHEN ${sum_ordered_quantity} > 0 THEN IFNULL(${discount_quantity} / ${sum_ordered_quantity} * 100, 0) ELSE 0 END ;;
+  }
+
+  measure: discount_quantity {
+    type: sum
+    description: "Flag if customer bought products on discounts"
+    sql: (CASE WHEN ${total_discounted_amount} > 0 THEN 1 END) ;;
+  }
+
+  measure: last_email_consent {
+    type: yesno
+    description: "Last known value of email consent"
+    sql: MAX(${email_consent}) ;;
+  }
+
+  measure: sales_buyer {
+    type: yesno
+    description: "Customers with that purchased at least once and have at least 75% of the purchased items discounted.
+          AND gave consent (are contactable by email)"
+    sql: ${discount_quantity_percentage} > 75 AND ${last_email_consent}  ;;
   }
 
   dimension: total_cancelled_quantity {
