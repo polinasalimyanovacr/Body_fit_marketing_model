@@ -16,10 +16,6 @@ datagroup: body_fit_marketing_case_model_default_datagroup {
 
 persist_with: body_fit_marketing_case_model_default_datagroup
 
-explore: bqml_models {}
-
-explore: segments_test_copy {}
-
 explore: audience_performance_daily  {
   join: segments {
   type: left_outer
@@ -33,25 +29,8 @@ explore: audience_performance_daily  {
  }
 }
 
-explore: campaign_history {
-  from:  campaign_history
-}
-
-explore: campaign_performance {
-  from:  campaign_performance_daily
-}
-
-explore: audience_performance {
-  from:  audience_performance_daily
-}
-
-explore: audience_overlap {
-  from:  audience_overlap
-}
-
 explore: vocabulary {}
 
-explore: cltv_pred{}
 
 #MASTER VIEW with joins
 explore:  orders {
@@ -107,11 +86,12 @@ explore:  orders {
     relationship: many_to_many
   }
 
-  join: cltv_pred {
-    type:  left_outer
-    sql_on: ${cltv_pred.customer_id}=${orders.contact_id} ;;
-    relationship: many_to_one
-  }
+#I have skipped it at the moment as it cases warnings at the dashboard. You can copy paste the main explore of orders and include your model inside the new explore.
+#  join: cltv_pred {
+#    type:  left_outer
+#    sql_on: ${cltv_pred.customer_id}=${orders.contact_id} ;;
+#    relationship: many_to_one
+#  }
   }
 
 explore: segments_test {

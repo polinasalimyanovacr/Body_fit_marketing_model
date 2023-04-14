@@ -74,6 +74,12 @@ view: campaign_history {
     value_format: "#,##0"
   }
 
+  measure: impression_avg {
+    type: average
+    sql: ${TABLE}.impression ;;
+    value_format: "#,##0"
+  }
+
   measure: total_ordered_quantity {
     type: average
     sql: ${TABLE}.total_ordered_quantity ;;
@@ -93,5 +99,12 @@ view: campaign_history {
   measure: count {
     type: count
     drill_fields: []
+  }
+
+  measure: conv_rate_avg {
+    type: average
+    sql: ${TABLE}.conversion*100;;
+    value_format: "#,##0.00"
+    description: "Conversion rates are calculated by simply taking the number of conversions and dividing that by the number of total ad interactions that can be tracked to a conversion during the same time period."
   }
 }
