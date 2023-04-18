@@ -309,6 +309,7 @@ view: orders {
     sql: ${TABLE}.timestamp ;;
   }
 
+# Properties for SalesBuyers metric
   dimension: total_ordered_quantity {
     type: number
     sql: ${TABLE}.totalOrderedQuantity ;;
@@ -345,6 +346,7 @@ view: orders {
     sql: MAX(${email_consent}) ;;
   }
 
+#Sales buyers metric
   measure: sales_buyer {
     type: yesno
     description: "Customers with that purchased at least once and have at least 75% of the purchased items discounted.
