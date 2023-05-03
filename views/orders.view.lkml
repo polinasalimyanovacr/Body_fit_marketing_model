@@ -379,7 +379,7 @@ view: orders {
     type: yesno
     description: "Customers with that purchased at least once and have at least 75% of the purchased items discounted.
     AND gave consent (are contactable by email)"
-    sql: ${discount_quantity_percentage} > 0.75 AND ${last_email_consent}  ;;
+    sql: ${discount_quantity_percentage} > 0.75  ;;
   }
 
   dimension: total_cancelled_quantity {
