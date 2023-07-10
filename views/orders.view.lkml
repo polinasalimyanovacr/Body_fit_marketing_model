@@ -324,14 +324,18 @@ view: orders {
   dimension: total_discounted_amount {
     type: number
     hidden: yes
-    sql: (CASE WHEN ${TABLE}.totalOrderedQuantity > 0 THEN ${TABLE}.totalDiscountAmount END) ;;
+    sql: (CASE WHEN ${TABLE}.totalOrderedQuantity > 0
+      THEN ${TABLE}.totalDiscountAmount
+      END) ;;
     description: "Value amount of discount on the order"
     value_format: "\"€\"#,##0.00"
   }
 
   measure: total_discounted_amount_sum {
     type: sum
-    sql:(CASE WHEN ${TABLE}.totalOrderedQuantity > 0 THEN ${TABLE}.totalDiscountAmount END) ;;
+    sql:(CASE WHEN ${TABLE}.totalOrderedQuantity > 0
+      THEN ${TABLE}.totalDiscountAmount
+      END) ;;
   #  value_format: "\"€\"#,##0.00"
     html:
     {% if value > 100 %}
@@ -345,25 +349,36 @@ view: orders {
     type: number
     hidden: yes
     description: "Calculation what percentage of the total number of bought quantity are discounted purchases"
-    sql: CASE WHEN ${sum_ordered_quantity} > 0 THEN IFNULL(${discount_quantity} / ${sum_ordered_quantity} * 100, 0) ELSE 0 END ;;
+    sql: CASE WHEN ${sum_ordered_quantity} > 0
+      THEN IFNULL(${discount_quantity} / ${sum_ordered_quantity} * 100, 0)
+      ELSE 0
+      END ;;
   }
 
   # REWORK
   measure: discount_quantity_percentage {
     type: number
     description: "Calculation what percent of the total number of bought quantity are discounted purchases"
-    sql: CASE WHEN ${total_ordered_quantity_sum}>0 THEN ${discount_quantity}/ ${total_ordered_quantity_sum} ELSE 0 END;;
+    sql: CASE WHEN ${total_ordered_quantity_sum}>0
+      THEN ${discount_quantity}/ ${total_ordered_quantity_sum}
+      ELSE 0 END;;
   }
 
   measure: discount_quantity {
     type: number
     description: "Flag if customer bought products on discounts"
-    sql: (CASE WHEN ${total_discounted_amount_sum} > 0 THEN 1 ELSE 0 END) ;;
+    sql: (CASE WHEN ${total_discounted_amount_sum} > 0
+      THEN 1
+      ELSE 0
+      END) ;;
   }
 
   measure: discount_quantity_sum {
     type: sum
-    sql: (CASE WHEN ${total_discounted_amount_sum} > 0 THEN SUM(${discount_quantity}) ELSE 0 END) ;;
+    sql: (CASE WHEN ${total_discounted_amount_sum} > 0
+      THEN SUM(${discount_quantity})
+      ELSE 0
+      END) ;;
   }
 
 #The filed from contacts table.
