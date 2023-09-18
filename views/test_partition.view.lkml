@@ -1,4 +1,4 @@
-view: facebook_api_response {
+view: test_partition {
   sql_table_name: select * from `body-fit-test.facebook.facebook_api_response`
   partition_key: [${timestamp_date}];;
 
