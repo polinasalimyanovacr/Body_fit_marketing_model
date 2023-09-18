@@ -638,3 +638,5 @@ explore: +audience_performance_daily {
     }
   }
 }
+
+#explore:  test_partition {}
