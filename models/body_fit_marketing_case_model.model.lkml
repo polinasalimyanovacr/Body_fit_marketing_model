@@ -16,6 +16,8 @@ datagroup: body_fit_marketing_case_model_default_datagroup {
 
 persist_with: body_fit_marketing_case_model_default_datagroup
 
+explore: test_partition {}
+
 explore: audience_performance_daily  {
   join: segments {
   type: left_outer
