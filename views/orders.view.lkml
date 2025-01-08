@@ -206,7 +206,7 @@ view: orders {
 
 #set the fields for drilling
   set: revenue_drill {
-    fields: [contact_email_address,
+    fields: [
       transaction_id,
       shipping_address_postal_code,
       currency,

@@ -1,7 +1,7 @@
 view: test_partition {
   sql_table_name: select * from `body-fit-test.facebook.facebook_api_response`
   partition_key: [${timestamp_date}];;
-
+  #define the partition field as date
 
   dimension: batch_number {
     type: number
